@@ -1,0 +1,39 @@
+.App {
+    text-align: left;
+    }
+  
+  .Expander {
+    width: 200px;
+  }
+  
+  .Input-Basic {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid rgb(189, 189, 189);
+    margin-bottom: 0px;
+    margin-top: 15px;
+    width: 140px;
+    font-size: 12px;
+  }
+  
+  .Title {
+    text-decoration: underline;
+    text-decoration-color: coral;
+    font-size: 20px;
+    margin-bottom: auto;
+  }
+  
+  .Button-Primary {
+    background-color: #ffab5d;
+    border-radius: 18px;
+    color: white;
+    font-weight: bold;
+    height: 22px;
+    width: 150px;
+    font-size: 15px;
+    margin-top: 20px;
+    border-width: 0ch;
+    margin-bottom: 20px;
+    font-size: small;
+  }
