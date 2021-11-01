@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+ProductType.create({"product_type"=>1, "name"=>"T-shirt"})
+Product.create({"product_id"=>"B097NN6PZC", "product_name"=>"Generic BLM T-Shirt, 100% Super 210 GSM Pima Cotton", "product_description"=>"100% Highest Quality Super 210 GSM Cotton\nImported\nMachine wash cold with like colors, Cold wash inside, Tumble dry low, Warm iron inside out, Do Not Dry Clean, Do Not Bleach\nMachine wash cold with like colors, Cold wash inside, Tumble dry low, Warm iron inside out, Do Not Dry Clean, Do Not Bleach", "link"=>"https://m.media-amazon.com/images/I/61IOdAl8bAS._AC_UL320_.jpg", "image_url"=>"https://m.media-amazon.com/images/I/61IOdAl8bAS._AC_UL320_.jpg", "brand"=>"Generic", "rating"=>5.0, "ratings"=>2.0, "product_type"=>1})
+ProductPriceMapper.create({"product_id"=>"B097NN6PZC", "product_link"=>"https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A01297723T9ILEYH5725I&url=%2FT-Shirt-Super-Pima-Cotton-Size%2Fdp%2FB097NN6PZC%2Fref%3Dsr_1_1_sspa%3Fdchild%3D1%26keywords%3Dt-shirts%26qid%3D1635720544%26sr%3D8-1-spons%26psc%3D1&qualifier=1635720544&id=8195719190343937&widgetName=sp_atf", "price"=>19.99})

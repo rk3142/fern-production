@@ -35,6 +35,7 @@ Fern::Application.configure do
 
   # See everything in the log (default is :info)
   config.log_level = :debug
+  config.firebase_api_key = :AIzaSyBXvChLq7RR_YKIr1Uq0tdaeak4Bhewfp4
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new

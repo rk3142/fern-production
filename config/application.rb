@@ -40,7 +40,7 @@ module Fern
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-
+    config.firebase_api_key = 'AIzaSyBXvChLq7RR_YKIr1Uq0tdaeak4Bhewfp4'
     # Enable the asset pipeline
     #config.assets.enabled = true
 

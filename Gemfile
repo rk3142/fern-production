@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '>= 2.6.6', '< 2.7.0'
 gem 'rails', '4.2.10'
+gem 'active_model_serializers'
 
 # for Heroku deployment
 group :development, :test do
