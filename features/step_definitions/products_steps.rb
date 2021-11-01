@@ -1,7 +1,7 @@
 
-Given /the following movies exist/ do |movies_table|
-  movies_table.hashes.each do |movie|
-    Movie.create movie
+Given /the following products exist/ do |products_table|
+  products_table.hashes.each do |product|
+    Product.create product
   end
 end
 
@@ -11,15 +11,8 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   expect(page.body.index(e1) < page.body.index(e2))
 end
 
-When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
-  rating_list.split(', ').each do |rating|
-    step %{I #{uncheck.nil? ? '' : 'un'}check "ratings_#{rating}"}
-  end
-end
-
-Then /I should see all the movies/ do
-  # Make sure that all the movies in the app are visible in the table
-  Movie.all.each do |movie|
-    step %{I should see "#{movie.title}"}
+When /I (un)?check the following category: (.*)/ do |uncheck, category_list|
+  rating_list.split(', ').each do |category|
+    step %{I #{uncheck.nil? ? '' : 'un'}check "categorys_#{category}"}
   end
 end
