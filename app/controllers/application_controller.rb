@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  rescue_from 'ActionController::ParameterMissing' do |exception|
+    render json: { errors: exception.to_s }.to_json, status: 422
+  end
+
   def get_limit_value limit
     if limit.nil?
       return 50
@@ -28,9 +32,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+
   def logged_in?
     session_user = session[:user_id]
-    p session_user.inspect
     firebase_response, error_code = FirebaseHelper.validate_token(request.headers[:idToken])
     unless error_code.to_s == "200"
       return false

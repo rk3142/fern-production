@@ -17,13 +17,19 @@ module FirebaseHelper
   end
 
   def self.validate_token(token)
-    firebase_url = "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=#{FirebaseHelper.get_firebase_api_key}"
-    request_body = Hash.new
-    request_body['idToken'] = token
-    firebase_call = HTTParty.post(firebase_url, headers: {
-      'Content-Type' => 'application/json'}, body: request_body.to_json)
-    response = firebase_call.body
-    return response, firebase_call.code
+    begin
+      firebase_url = "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=#{FirebaseHelper.get_firebase_api_key}"
+      request_body = Hash.new
+      request_body['idToken'] = token
+      firebase_call = HTTParty.post(firebase_url, headers: {
+        'Content-Type' => 'application/json'}, body: request_body.to_json)
+      response = firebase_call.body
+      return response, firebase_call.code
+    rescue Exception => e
+      Rails.logger.error "Exception occurred while processing function: validate_token"
+      Rails.logger.error e.message
+      raise Exception.new "Generic Exception"
+    end
   end
 
   private
