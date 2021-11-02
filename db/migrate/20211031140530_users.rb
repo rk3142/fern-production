@@ -14,7 +14,7 @@ class Users < ActiveRecord::Migration
 
     add_index "product_types", ["product_type"], name: "idx_product_types_product_type", unique: true
 
-    create_table "products", id: false,primary_key: "product_id", force: :cascade do |t|
+    create_table "products", id: false, force: :cascade do |t|
       t.string "product_id",           limit: 32
       t.string  "product_name",        limit: 128
       t.text    "product_description"
