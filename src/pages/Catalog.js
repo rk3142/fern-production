@@ -8,6 +8,8 @@ import logo from '../assets/logo.png'
 import fern_text from '../assets/fern_text.png'
 import search_icon from '../assets/search_icon.png'
 import co2_icon from '../assets/CO2.png'
+import h2o_icon from '../assets/h2o_icon.png'
+import energy_icon from '../assets/energy_icon.jpeg'
 import apiMock from "./ApiMock";
 import './Catalog.css';
 
@@ -22,7 +24,8 @@ export default class Catalog extends Component {
             items: [],
             items_col1: [],
             items_col2: [],
-            items_col3: []
+            items_col3: [],
+            isGoing: true
         };
     }
 
@@ -66,6 +69,44 @@ export default class Catalog extends Component {
         return trimmedString + " . . . "
     }
 
+    renderColumn = (data) => {
+        return (
+            <ul>
+                {data.map(({ product_id, product_name, image_url, prices, rating, ratings, product_description, carbon, water, energy }) => (
+                    <div className="Item">
+                        <ul className="ProductName" key={product_id}>{product_name}</ul>
+                        <div className="ProductEcoStats">
+                            <img className="EcoStatsIcon" src={co2_icon} />
+                            <p className="EcoStatsText">{carbon} kg</p>
+                            <img className="EcoStatsIcon" src={h2o_icon} />
+                            <p className="EcoStatsText">{water} k Liters</p>
+                            <img className="EcoStatsIcon" src={energy_icon} />
+                            <p className="EcoStatsText">{energy} kWh</p>
+                        </div>
+                        <img className="ProductImage" src={image_url} />
+                        <div className="ProductBody">
+                            <ul className="ProductPrice" key={product_id}>${prices[0]["price"]}</ul>
+                            <ul className="ProductSource" key={product_id}>Amazon</ul>
+                            <ul className="ProductRatingText" key={product_id}>{rating}</ul>
+                            <ul className="ProductRating" key={product_id}>
+                                <StarRatings
+                                    rating={rating}
+                                    starRatedColor="#FFDC61"
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension="15"
+                                    starSpacing="5"
+                                />
+                            </ul>
+                            <ul className="ProductRatings" key={product_id}>({ratings})</ul>
+                        </div>
+                        <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
+                    </div>
+                ))}
+            </ul>
+        )
+    }
+
     render() {
         return (
             <div className="App">
@@ -90,85 +131,22 @@ export default class Catalog extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="ItemsContainer">
-                    <ul>
-                        {this.state.items_col1.map(({ product_id, product_name, image_url, prices, rating, ratings, product_description }) => (
-                            <div className="Item">
-                                <ul className="ProductName" key={product_id}>{product_name}</ul>
-                                <div className="ProductEcoStats">
-                                    <img className="EcoStatsIcon" src={co2_icon} />
-                                </div>
-                                <img className="ProductImage" src={image_url} />
-                                <div className="ProductBody">
-                                    <ul className="ProductPrice" key={product_id}>{prices[0]["price"]}</ul>
-                                    <ul className="ProductSource" key={product_id}>Amazon</ul>
-                                    <ul className="ProductRatingText" key={product_id}>{rating}</ul>
-                                    <ul className="ProductRating" key={product_id}>
-                                        <StarRatings
-                                            rating={rating}
-                                            starRatedColor="#FFDC61"
-                                            numberOfStars={5}
-                                            name='rating'
-                                            starDimension="15"
-                                            starSpacing="5"
-                                        />
-                                    </ul>
-                                    <ul className="ProductRatings" key={product_id}>({ratings})</ul>
-                                </div>
-                                <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
-                            </div>
-                        ))}
-                    </ul>
-                    <ul>
-                        {this.state.items_col2.map(({ product_id, product_name, image_url, prices, rating, ratings, product_description }) => (
-                            <div className="Item">
-                                <ul className="ProductName" key={product_id}>{product_name}</ul>
-                                <img className="ProductImage" src={image_url} />
-                                <div className="ProductBody">
-                                    <ul className="ProductPrice" key={product_id}>{prices[0]["price"]}</ul>
-                                    <ul className="ProductSource" key={product_id}>Amazon</ul>
-                                    <ul className="ProductRatingText" key={product_id}>{rating}</ul>
-                                    <ul className="ProductRating" key={product_id}>
-                                        <StarRatings
-                                            rating={rating}
-                                            starRatedColor="#FFDC61"
-                                            numberOfStars={5}
-                                            name='rating'
-                                            starDimension="15"
-                                            starSpacing="5"
-                                        />
-                                    </ul>
-                                    <ul className="ProductRatings" key={product_id}>({ratings})</ul>
-                                </div>
-                                <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
-                            </div>
-                        ))}
-                    </ul>
-                    <ul>
-                        {this.state.items_col3.map(({ product_id, product_name, image_url, prices, rating, ratings, product_description }) => (
-                            <div className="Item">
-                                <ul className="ProductName" key={product_id}>{product_name}</ul>
-                                <img className="ProductImage" src={image_url} />
-                                <div className="ProductBody">
-                                    <ul className="ProductPrice" key={product_id}>{prices[0]["price"]}</ul>
-                                    <ul className="ProductSource" key={product_id}>Amazon</ul>
-                                    <ul className="ProductRatingText" key={product_id}>{rating}</ul>
-                                    <ul className="ProductRating" key={product_id}>
-                                        <StarRatings
-                                            rating={rating}
-                                            starRatedColor="#FFDC61"
-                                            numberOfStars={5}
-                                            name='rating'
-                                            starDimension="15"
-                                            starSpacing="5"
-                                        />
-                                    </ul>
-                                    <ul className="ProductRatings" key={product_id}>({ratings})</ul>
-                                </div>
-                                <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
-                            </div>
-                        ))}
-                    </ul>
+                <div className="PageBody">
+                    <div className="SideBarContainer">
+                        <div className="CheckBox">
+                            <input
+                                name="isGoing"
+                                type="checkbox"
+                                checked={this.state.isGoing}
+                                onChange={this.handleInputChange} />
+                            <p>test</p>
+                        </div>
+                    </div>
+                    <div className="ItemsContainer">
+                        {this.renderColumn(this.state.items_col1)}
+                        {this.renderColumn(this.state.items_col2)}
+                        {this.renderColumn(this.state.items_col3)}
+                    </div>
                 </div>
             </div>
         );
