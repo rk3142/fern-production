@@ -1,12 +1,8 @@
 .App {
     text-align: left;
-    }
-  
-  .Expander {
-    width: 200px;
-  }
-  
-  .Input-Basic {
+}
+
+.Input-Basic {
     border: 0;
     outline: 0;
     background: transparent;
@@ -15,16 +11,58 @@
     margin-top: 15px;
     width: 140px;
     font-size: 12px;
-  }
-  
-  .Title {
-    text-decoration: underline;
-    text-decoration-color: coral;
-    font-size: 20px;
-    margin-bottom: auto;
-  }
-  
-  .Button-Primary {
+}
+
+.Sidebar {
+    width: 50px;
+    background-color: black;
+    height: 1000px;
+}
+
+.Icon {
+    margin-top: 25px;
+}
+
+.Title {
+    text-decoration: none;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: left;
+    color: black;
+    flex-direction: row;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.Logo {
+    width: 60px;
+    height: 60px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.Fern {
+    width: 71px;
+    height: 28px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.Header {
+    height: fit-content;
+    flex-direction: row;
+    display: flex;
+}
+
+.SidebarButton {
+    height: 80px;
+    background-color: black;
+    width: 80px;
+    flex-direction: row;
+}
+
+.Button-Primary {
     background-color: #ffab5d;
     border-radius: 18px;
     color: white;
@@ -36,4 +74,170 @@
     border-width: 0ch;
     margin-bottom: 20px;
     font-size: small;
-  }
+}
+
+.Body {
+    flex-direction: row;
+    display: flex;
+}
+
+.CartCountContainer {
+    flex-direction: row;
+    display: flex;
+    justify-self: right;
+    margin-left: auto;
+}
+
+.CartCount {
+    height: 60px;
+    background-color: black;
+    width: 130px;
+    flex-direction: row;
+    display: flex;
+}
+
+.CartCountText {
+    margin-left: 25px;
+    margin-top: 17px;
+    color: palevioletred;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.CartCountText2 {
+    color: white;
+    font-weight: bolder;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.SearchBar {
+    height: 40px;
+    width: 800px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    border-color: #979797;
+    border-left-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-right-width: 0px;
+    margin-top: 8px;
+    margin-left: 100px;
+    font-size: 20px;
+    padding-left: 10px;
+    flex-direction: row;
+    display: flex;
+}
+
+.SearchIcon {
+    height: 25px;
+    width: 25px;
+    margin-top: 7.5px;
+    margin-left: 7.5px;
+}
+
+.SearchButton {
+    height: 40.5px;
+    width: 50px;
+    margin-top: 7.5px;
+    margin-left: 0px;
+    background-color: #d3d3d3;
+    border-top-width: 2px;
+    border-color: #979797;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.Item {
+    height: 546px;
+    width: 300px;
+    border-style: double;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: #979797;
+    justify-content: left;
+    align-content: left;
+    margin-top: 15px;
+}
+
+.ProductImage {
+    width: 270px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.ProductName {
+    font-size: 17px;
+    justify-self: left;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.ProductDescription {
+    font-size: 14px;
+    color: #7d7d7d;
+    margin-top: 15px;
+    width: 150px;
+    text-align: left;
+    margin-left: -20px;
+}
+
+.ProductRatingText {
+    font-size: 14px;
+    margin-left: -10px;
+    margin-top: 17px;
+    margin-right: -10px;
+}
+
+.ProductRating {
+    font-size: 14px;
+    margin-left: -20px;
+    margin-top: 17px;
+    margin-right: -10px;
+}
+
+.ProductRatings {
+    font-size: 14px;
+    color: #7d7d7d;
+    margin-top: 17px;
+    margin-left: -25px;
+}
+
+.ProductSource {
+    font-size: 12px;
+    color: #7d7d7d;
+    margin-top: 20px;
+}
+
+.ProductPrice {
+    font-size: 24px;
+    margin-left: -20px;
+    width: 30px;
+    margin-top: 10px;
+}
+
+.ItemsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ProductBody {
+    flex-direction: row;
+    display: flex;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.ProductEcoStats {
+    flex-direction: row;
+    display: flex;
+    text-align: left;
+    margin-top: 10px;
+    height: 50px
+}
+
+.EcoStatsIcon {
+    height: 30px;
+    width: auto;
+}

@@ -5,8 +5,8 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Catalog from './pages/Catalog';
-import { store } from './app/store';
-import { Provider } from 'react-redux';
+// import { store } from './app/store';
+// import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import ProductDetails from "./pages/ProductDetails";
 import { browserHistory } from "./common/utils";
@@ -49,7 +49,7 @@ axios.interceptors.response.use(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    {/*<Provider store={store}>*/}
         <Router history={browserHistory}>
             <Switch>
                 <Route path="/auth" component={Authentication} />
@@ -75,7 +75,7 @@ ReactDOM.render(
                 </Route>
             </Switch>
         </Router>
-    </Provider>
+    {/*</Provider>*/}
   </React.StrictMode>,
   document.getElementById('root')
 );
