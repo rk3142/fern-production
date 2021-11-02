@@ -14,15 +14,19 @@ class Users < ActiveRecord::Migration
 
     add_index "product_types", ["product_type"], name: "idx_product_types_product_type", unique: true
 
-    create_table "products", primary_key: "product_id", force: :cascade do |t|
+    create_table "products", id: false,primary_key: "product_id", force: :cascade do |t|
+      t.string "product_id",           limit: 32
       t.string  "product_name",        limit: 128
       t.text    "product_description"
       t.string  "link",                limit: 256
       t.string  "image_url",           limit: 256
       t.string  "brand",               limit: 64
       t.float   "rating",                          default: 5.0
-      t.float   "ratings",                         default: 5.0
+      t.float   "ratings",                         default: 1
       t.integer "product_type"
+      t.float   "carbon",              limit: 2
+      t.float   "water",               limit: 2
+      t.float   "energy",              limit: 2
     end
 
     add_index "products", ["product_id"], name: "idx_product_product_id", unique: true

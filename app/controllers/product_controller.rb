@@ -24,9 +24,15 @@ class ProductController < ApplicationController
   end
 
   def all_product_types
-    @product_type = ProductType.all
     resp = Hash.new
-    resp['product_types'] = @product_type
+    Rails.logger.info "Proceeding to process API: all_product_types"
+    begin
+      @product_type = ProductType.all
+      resp['product_types'] = @product_type
+    rescue Exception => e
+      Rails.logger.error e.backtrace
+    end
+
     render json: resp, status: 200
   end
 

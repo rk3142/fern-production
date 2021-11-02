@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211031140530) do
+ActiveRecord::Schema.define(version: 0) do
 
   create_table "product_price_mapper", id: false, force: :cascade do |t|
     t.string   "product_id",   limit: 32
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20211031140530) do
     t.string "name", limit: 128
   end
 
-  add_index "product_types", ["product_type"], name: "idx_product_types_product_type", unique: true
+  add_index "product_types", ["product_type"], name: "sqlite_autoindex_product_types_1", unique: true
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.string  "product_name",        limit: 128
@@ -36,12 +36,15 @@ ActiveRecord::Schema.define(version: 20211031140530) do
     t.float   "rating",                          default: 5.0
     t.float   "ratings",                         default: 5.0
     t.integer "product_type"
+    t.float   "carbon",              limit: 2
+    t.float   "water",               limit: 2
+    t.float   "energy",              limit: 2
   end
 
-  add_index "products", ["product_id"], name: "idx_product_product_id", unique: true
+  add_index "products", ["product_id"], name: "sqlite_autoindex_products_1", unique: true
 
   create_table "user", primary_key: "user_id", force: :cascade do |t|
-    t.string   "first_name",    limit: 128, null: false
+    t.string   "first_name",    limit: 128
     t.string   "last_name",     limit: 128
     t.string   "profile_image", limit: 256
     t.string   "email_address", limit: 256, null: false
@@ -50,6 +53,12 @@ ActiveRecord::Schema.define(version: 20211031140530) do
   end
 
   add_index "user", ["email_address"], name: "user_email_address_uindex", unique: true
-  add_index "user", ["user_id"], name: "user_user_id", unique: true
+  add_index "user", ["user_id"], name: "sqlite_autoindex_user_1", unique: true
+  add_index "user", ["user_id"], name: "user_user_id_uindex", unique: true
+
+  create_table "website_mapper", id: false, force: :cascade do |t|
+    t.integer "interface_id"
+    t.string  "interface_name", limit: 32
+  end
 
 end
