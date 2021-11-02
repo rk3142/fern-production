@@ -1,16 +1,5 @@
 require 'rails_helper'
 
-
-RSpec.describe "Product Renderer", :type => :request do
-  describe 'GET product_by_id' do
-    it 'returns details of product by id' do
-      get "/products/:product_id", params: {:product_id => "B097NN6PZC"}
-      expect(response.status).to eq(200)
-      expect(response.content_type).to eq("application/json")
-    end
-  end
-end
-
 RSpec.describe ProductController do
 
   describe 'GET all products without pagination' do

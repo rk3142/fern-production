@@ -21,7 +21,7 @@ class UserController < ApplicationController
       user = save_user_data JSON.parse(firebase_response)
       log_in user
       msg['user'] = user
-      render json: user, status: 200
+      render json: msg, status: 200
     rescue Exception => e
       Rails.logger.error "Exception occurred while processing API: get_products_by_type"
       Rails.logger.error e.message
