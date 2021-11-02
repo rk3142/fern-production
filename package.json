@@ -21,7 +21,7 @@
     "react-star-ratings": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts -r @cypress/instrument-cra start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
@@ -46,7 +46,6 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/jest": "^27.0.2",
     "istanbul-instrumenter-loader": "^3.0.1",
-    "jest": "^27.3.1",
     "nyc": "^15.1.0",
     "source-map-support": "^0.5.20",
     "ts-node": "^10.4.0"
