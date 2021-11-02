@@ -18,7 +18,7 @@ class Users < ActiveRecord::Migration
       t.string "product_id",           limit: 32
       t.string  "product_name",        limit: 128
       t.text    "product_description"
-      t.string  "link",                limit: 256
+      t.text  "link"
       t.string  "image_url",           limit: 256
       t.string  "brand",               limit: 64
       t.float   "rating",                          default: 5.0
