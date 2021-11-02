@@ -1,5 +1,6 @@
 class UserController < ApplicationController
   include FirebaseHelper
+  include SessionHelper
 
   def new
     firebase_response = FirebaseHelper.create_user(params[:email], params[:password], true)
@@ -16,6 +17,7 @@ class UserController < ApplicationController
     end
     user = save_user_data JSON.parse(firebase_response)
     log_in user
+    p session[:user_id]
     msg['user'] = user
     render json: user, status: 200
   end
@@ -30,10 +32,8 @@ class UserController < ApplicationController
   private
 
   def save_user_data(firebase_response)
-    p firebase_response['users']
     user_obj = firebase_response["users"][0]
-    p user_obj
-    user = User.find_by_user_id(user_obj['localId'])
+    user = User.find_by_email_address(user_obj['email'])
     unless user.present?
       user = User.new
       user.user_id = user_obj['localId']
@@ -47,17 +47,9 @@ class UserController < ApplicationController
       end
       user.created_at = Time.now
       user.updated_at = Time.now
-    else
-      unless user_obj['displayName'].nil?
-        user.first_name = user_obj['displayName']
-      end
-
-      unless user_obj['photoUrl'].nil?
-        user.profile_image = user_obj['photoUrl']
-      end
-      user.updated_at = Time.now
+      user.save
     end
-    user.save
+
     return user
   end
 end

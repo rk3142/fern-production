@@ -1,6 +1,8 @@
 class ProductController < ApplicationController
   include ProductHelper
 
+  before_action :require_login
+
   def index
     resp = Hash.new
     products = Product.all.limit(get_limit_value(params[:limit])).offset(get_offset_value(params[:offset]))
