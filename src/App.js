@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import Catalog from './pages/Catalog';
 import ProductDetails from "./pages/ProductDetails";
 import './App.css';

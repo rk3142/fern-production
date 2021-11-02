@@ -134,6 +134,7 @@
     height: 25px;
     width: 25px;
     margin-top: 7.5px;
+    margin-left: 7.5px;
 }
 
 .SearchButton {
@@ -146,4 +147,97 @@
     border-color: #979797;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.Item {
+    height: 546px;
+    width: 300px;
+    border-style: double;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: #979797;
+    justify-content: left;
+    align-content: left;
+    margin-top: 15px;
+}
+
+.ProductImage {
+    width: 270px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.ProductName {
+    font-size: 17px;
+    justify-self: left;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.ProductDescription {
+    font-size: 14px;
+    color: #7d7d7d;
+    margin-top: 15px;
+    width: 150px;
+    text-align: left;
+    margin-left: -20px;
+}
+
+.ProductRatingText {
+    font-size: 14px;
+    margin-left: -10px;
+    margin-top: 17px;
+    margin-right: -10px;
+}
+
+.ProductRating {
+    font-size: 14px;
+    margin-left: -20px;
+    margin-top: 17px;
+    margin-right: -10px;
+}
+
+.ProductRatings {
+    font-size: 14px;
+    color: #7d7d7d;
+    margin-top: 17px;
+    margin-left: -25px;
+}
+
+.ProductSource {
+    font-size: 12px;
+    color: #7d7d7d;
+    margin-top: 20px;
+}
+
+.ProductPrice {
+    font-size: 24px;
+    margin-left: -20px;
+    width: 30px;
+    margin-top: 10px;
+}
+
+.ItemsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ProductBody {
+    flex-direction: row;
+    display: flex;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.ProductEcoStats {
+    flex-direction: row;
+    display: flex;
+    text-align: left;
+    margin-top: 10px;
+    height: 50px
+}
+
+.EcoStatsIcon {
+    height: 30px;
+    width: auto;
 }
