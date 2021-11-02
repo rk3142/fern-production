@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import './ProductDetails.css';
 
-export default class ProductDetails extends Component {
+class ProductDetails extends Component {
 
   constructor(props) {
     super(props);
@@ -31,3 +31,5 @@ export default class ProductDetails extends Component {
     );
   }
 }
+
+export default ProductDetails
