@@ -151,7 +151,7 @@
 
 .Item {
     height: 556px;
-    width: 300px;
+    width: 320px;
     border-style: double;
     border-radius: 25px;
     border-width: 2px;
@@ -163,7 +163,7 @@
 
 .ProductImage {
     width: 270px;
-    height: auto;
+    height: 300px;
     margin-top: 20px;
 }
 
@@ -212,7 +212,7 @@
 }
 
 .ProductPrice {
-    font-size: 24px;
+    font-size: 20px;
     margin-left: -20px;
     width: 30px;
     margin-top: 10px;

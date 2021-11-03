@@ -23,6 +23,7 @@ export default class Catalog extends Component {
             items_col1: [],
             items_col2: [],
             items_col3: [],
+            allItems:[],
             isPrice1: false,
             isPrice2: false,
             isPrice3: false,
@@ -34,20 +35,22 @@ export default class Catalog extends Component {
     }
 
     async componentDidMount() {
-        var items = this.getAllProducts();
-        this.updateColumns(items)
-        console.log(items)
+        await this.getAllProducts();
+        this.updateColumns(this.state.allItems)
     }
 
     async test() {
-        await axios.get("https://fern-development.herokuapp.com/products").then(resp => {
-
-            console.log(resp);
-        });
+        
     }
 
-    getAllProducts() {
-        return apiMock()
+    async getAllProducts() {
+        await axios.get("https://fern-development.herokuapp.com/products")
+        .then(response => (
+            this.setState({ allItems: response["data"]["products"]}))
+            )
+        .catch(error => {
+            alert("Error getting data please try again")
+        });;
     }
 
     goToDetails = async (item) => {
@@ -97,9 +100,20 @@ export default class Catalog extends Component {
 
     truncateString = (string) => {
         var maxLength = 60
+        if(string == null) {
+            return ""
+        }
         var trimmedString = string.substr(0, maxLength);
         trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
         return trimmedString + " . . . "
+    }
+
+    truncateRatings = (rating) => {
+        let rate = parseInt(rating)
+        if(rate > 1000) {
+            return Math.round(rate/1000).toString() + "k"
+        }
+        return rating
     }
 
     handleCheckPrice = async (start) => {
@@ -253,7 +267,7 @@ export default class Catalog extends Component {
                                     starSpacing="5"
                                 />
                             </ul>
-                            <ul className="ProductRatings" key={product_id}>({ratings})</ul>
+                            <ul className="ProductRatings" key={product_id}>({this.truncateRatings(ratings)})</ul>
                         </div>
                         <div className="ProductFooter">
                             <ul className="ProductDescription" key={product_id} onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>{this.truncateString(product_description)}</ul>

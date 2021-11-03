@@ -51,7 +51,7 @@ class ProductDetails extends Component {
           <p className="PageTitle"><a className="ProductName" href={this.state.product[3]}>{this.state.product[1]}</a></p>
         </div>
         <div className="Body">
-          <img className="ProductImage" src={this.state.product[3]} />
+          <img className="ProductImage" src={this.state.product[2]} />
           <div>
             <div className="DetailsBody">
               <img className="EcoDetsIcon" src={co2_icon} />
