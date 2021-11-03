@@ -49,6 +49,11 @@ export default class Catalog extends Component {
         var items1 = []
         var items2 = []
         var items3 = []
+        await this.setState({
+            items_col1: [],
+            items_col2: [],
+            items_col3: []
+        })
         for (var i in items) {
             if (i % 3 == 0) {
                 items1.push(items[i])
@@ -107,8 +112,13 @@ export default class Catalog extends Component {
         } else if (start == 20) {
             await this.setState({ isPrice4: !this.state.isPrice4 })
         }
+        this.updateByPrice(allItems)
+    }
+
+    updateByPrice = async (allItems) => {
         if (!this.state.isPrice1 && !this.state.isPrice2 && !this.state.isPrice3 && !this.state.isPrice4) {
-            return this.updateColumns(allItems)
+            await this.updateColumns(allItems)
+            return allItems
         }
         var filteredItems = []
         if (this.state.isPrice1) {
@@ -140,7 +150,7 @@ export default class Catalog extends Component {
             }
         }
         await this.updateColumns(filteredItems);
-        this.forceUpdate()
+        return filteredItems
     }
 
     handleCheckRating = async (start) => {
@@ -149,7 +159,9 @@ export default class Catalog extends Component {
             items_col2: [],
             items_col3: []
         })
-        var allItems = await this.getAllProducts()
+        var allItemsOld = await this.getAllProducts()
+        var allItems = await this.updateByPrice(allItemsOld)
+        console.log(allItems)
         if (start == 2) {
             this.setState({ isRating1: !this.state.isRating1 })
         } else if (start == 3) {
@@ -183,7 +195,6 @@ export default class Catalog extends Component {
             }
         }
         await this.updateColumns(filteredItems);
-        this.forceUpdate()
     }
 
     handleSearch = async (query) => {
