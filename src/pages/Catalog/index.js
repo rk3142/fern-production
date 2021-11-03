@@ -98,11 +98,6 @@ export default class Catalog extends Component {
 
     handleCheckPrice = async (start) => {
         var allItems = await this.getAllProducts()
-        await this.setState({
-            items_col1: [],
-            items_col2: [],
-            items_col3: []
-        })
         if (start == 0) {
             await this.setState({ isPrice1: !this.state.isPrice1 })
         } else if (start == 10) {
@@ -154,11 +149,6 @@ export default class Catalog extends Component {
     }
 
     handleCheckRating = async (start) => {
-        await this.setState({
-            items_col1: [],
-            items_col2: [],
-            items_col3: []
-        })
         var allItemsOld = await this.getAllProducts()
         var allItems = await this.updateByPrice(allItemsOld)
         console.log(allItems)

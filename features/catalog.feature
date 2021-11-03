@@ -24,3 +24,8 @@ Scenario: I want to remove from my cart
   Given I am on the catalog page with an item in my cart
   When I remove an item from the cart
   Then I should have an empty cart
+
+Scenario: I want to filter by price 
+  Given I am on the catalog page
+  When I filter by price
+  Then I should have results filtered by price
