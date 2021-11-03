@@ -22,3 +22,7 @@ export const getAllProducts = async function () {
     const response = await axios.get(BASE_URL + "/products", GET_OPTIONS);
     return response.data.products;
 }
+
+export const signIn = async function () {
+    await axios.post(BASE_URL + "/user/signin");
+}

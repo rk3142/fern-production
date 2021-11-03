@@ -1,5 +1,6 @@
 import * as firebaseui from 'firebaseui'
 import firebase from "firebase/compat";
+import {signIn} from "../api";
 // import { useDispatch } from 'react-redux';
 // import { setUser } from "../reducers/userSlice";
 
@@ -27,6 +28,7 @@ const uiConfig = {
                 // const dispatch = useDispatch()
                 // dispatch(setUser(idToken))
                 localStorage.setItem('auth_token', idToken)
+                signIn()
             }).catch(function(error) {
                 console.log(error)
             });
