@@ -3,7 +3,7 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-* Application URL(Heroku): 
+* Application URL(Heroku): https://fern-development.herokuapp.com/
 
 * Versions of Package
   - Ruby: Allowed versions 2.6.6 to 2.7.0 
