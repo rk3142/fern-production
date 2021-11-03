@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  rescue_from 'ActionController::ParameterMissing' do |exception|
-    render json: { errors: exception.to_s }.to_json, status: 422
-  end
-
   def get_limit_value limit
     if limit.nil?
       return 50

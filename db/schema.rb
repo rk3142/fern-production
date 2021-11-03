@@ -44,8 +44,9 @@ ActiveRecord::Schema.define(version: 20211031140530) do
 
   add_index "products", ["product_id"], name: "idx_product_product_id", unique: true
 
-  create_table "user", primary_key: "user_id", force: :cascade do |t|
-    t.string   "first_name",    limit: 128, null: false
+  create_table "user", id: false, force: :cascade do |t|
+    t.string   "user_id",       limit: 32
+    t.string   "first_name",    limit: 128
     t.string   "last_name",     limit: 128
     t.string   "profile_image", limit: 256
     t.string   "email_address", limit: 256, null: false

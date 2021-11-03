@@ -1,22 +1,39 @@
 require 'rails_helper'
 
-RSpec.describe UserController, type: :controller do
-    
-    
+RSpec.describe UserController do
     describe "create user" do
         describe "valid user creation" do
-            before(:each) do
-                #create user with email bob@fern.com and password Bob@123456
+            before do
+                request.headers["idToken"] = generate_firebase_token "rk3142@columbia.edu"
+                post 'login'
             end
+
             it "has a 200 status code" do
-                post :new, {:email => "alice@fern.com", :password => "Alice@123456"} # will this be rolled back by firebase ?
                 expect(response.status).to eq(200)
             end
-            it "get reponse body" do
-                post :new, {:email => "bob@fern.com", :password => "Bob@123456"} # will this be rolled back by firebase ?
-                expect(firebase_response.nil?).to be false
+            it "has json response body" do
+                expect(response.content_type).to eq("application/json")
+            end
+
+            it "has user object in body" do
+              json = JSON.parse(response.body)
+              expect(json["user"]).to include("user_id")
             end
         end
 
-        
+        describe "invalid user creation" do
+            before do
+                request.headers["idToken"] = generate_firebase_token "rk314@columbia.edu"
+                post 'login'
+            end
+
+            it "does not have a 200 status code" do
+                expect(response.status).to eq(400)
+            end
+        end
+    end
+
+
+
+
 end

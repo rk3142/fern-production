@@ -3,11 +3,11 @@ class UserController < ApplicationController
   include SessionHelper
 
   # For development purpose
-  def new
-    firebase_response = FirebaseHelper.create_user(params[:email], params[:password], true)
-    Rails.logger.info firebase_response.inspect
-    render :nothing => true, status: 200
-  end
+  # def new
+  #   firebase_response = FirebaseHelper.create_user(params[:email], params[:password], false)
+  #   Rails.logger.info firebase_response.inspect
+  #   render json: firebase_response, status: 200
+  # end
 
   def login
     msg = Hash.new
@@ -32,8 +32,8 @@ class UserController < ApplicationController
   def show
     Rails.logger.info "Proceeding to process API: get_user_details"
     begin
-      params.require(:user_id)
       msg = Hash.new
+      p params[:user_id]
       user = User.find_by_user_id(params[:user_id])
       msg[:user] = user
       render json: msg, status: 200
