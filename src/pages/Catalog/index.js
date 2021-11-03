@@ -134,7 +134,8 @@ export default class Catalog extends Component {
                 }
             }
         }
-        return this.updateColumns(filteredItems);
+        await this.updateColumns(filteredItems);
+        this.forceUpdate()
     }
 
     handleCheckRating = async (start) => {
@@ -171,7 +172,8 @@ export default class Catalog extends Component {
                 }
             }
         }
-        return this.updateColumns(filteredItems);
+        await this.updateColumns(filteredItems);
+        this.forceUpdate()
     }
 
     handleSearch = async (query) => {
