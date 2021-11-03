@@ -156,6 +156,11 @@ RSpec.describe ProductController do
       product_type_list = json_response["products"][0]["product_type"]
       expect(product_type_list[0]["product_type"]).to eq(product_type)
     end
+    
+    it 'return all products with the specific type' do
+      parsed_json = JSON.parse(response.body)
+      expect(parsed_json["products"].length).to eq(Product.where('product_type = ?',product_type).length)
+    end
   end
 
   describe 'Should get 403 error code for invalid session' do
@@ -166,6 +171,10 @@ RSpec.describe ProductController do
 
     it 'returns 403 for invalid session' do
       expect(response.status).to eq(403)
+    end
+    
+    it 'returns a json response' do
+      expect(response.content_type).to eq("application/json")
     end
 
     it 'returns not logged in resp_msg' do
