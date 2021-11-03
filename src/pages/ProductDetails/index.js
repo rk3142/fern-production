@@ -8,13 +8,13 @@ class ProductDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
+      product: [],
     };
   }
 
-  updateEmail(event) {
-    console.log(event)
-    this.setState({ value: event })
+  componentDidMount = async () => {
+    let product = await localStorage.getItem('recently_clicked')
+    this.setState({product: product})
   }
 
   handleLogIn() {

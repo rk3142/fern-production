@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { Navigation } from 'react-minimal-side-navigation';
-import { AiOutlineMenu } from "react-icons/ai";
 import StarRatings from "react-star-ratings";
-
+import axios from "axios"
 import logo from '../../assets/logo.png'
 import fern_text from '../../assets/fern_text.png'
 import search_icon from '../../assets/search_icon.png'
@@ -36,13 +33,27 @@ export default class Catalog extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         var items = this.getAllProducts();
         this.updateColumns(items)
+        let x = await this.test()
+        console.log(x)
+    }
+
+    async test() {
+        await axios.get("https://fern-development.herokuapp.com/products").then(resp => {
+
+            console.log(resp);
+        });
     }
 
     getAllProducts() {
         return apiMock()
+    }
+
+    goToDetails = async (item) => {
+        await localStorage.setItem('recently_clicked', JSON.stringify(item))
+        this.props.history.push("/productdetails");
     }
 
     updateColumns = async (items) => {
@@ -71,10 +82,6 @@ export default class Catalog extends Component {
         /*console.log(this.state.items_col1)
         console.log(this.state.items_col2)
         console.log(this.state.items_col3)*/
-    }
-
-    handleLogIn() {
-        this.props.history.push("/productdetails");
     }
 
     updateSearchQuery = async (query) => {
@@ -223,9 +230,8 @@ export default class Catalog extends Component {
             <ul>
                 {data.map(({ product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy }) => (
                     <div className="Item">
-                        
                         <ul className="ProductName" key={product_id}><a className="ProductName" href={link}>{product_name}</a></ul>
-                        <div className="ProductEcoStats">
+                        <div className="ProductEcoStats" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
                             <img className="EcoStatsIcon" src={co2_icon} />
                             <p className="EcoStatsText">{carbon} kg</p>
                             <img className="EcoStatsIcon" src={h2o_icon} />
@@ -233,8 +239,8 @@ export default class Catalog extends Component {
                             <img className="EcoStatsIcon" src={energy_icon} />
                             <p className="EcoStatsText">{energy} kWh</p>
                         </div>
-                        <img className="ProductImage" src={image_url} />
-                        <div className="ProductBody">
+                        <img className="ProductImage" src={image_url} onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}/>
+                        <div className="ProductBody" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
                             <ul className="ProductPrice" key={product_id}>${prices[0]["price"]}</ul>
                             <ul className="ProductSource" key={product_id}>Amazon</ul>
                             <ul className="ProductRatingText" key={product_id}>{rating}</ul>
@@ -250,7 +256,7 @@ export default class Catalog extends Component {
                             </ul>
                             <ul className="ProductRatings" key={product_id}>({ratings})</ul>
                         </div>
-                        <div className="ProductFooter">
+                        <div className="ProductFooter" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
                             <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
                             {this.renderButton(product_id)}
                         </div>
