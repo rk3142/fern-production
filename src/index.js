@@ -1,17 +1,17 @@
 import React from 'react';
 import axios from "axios";
 import ReactDOM from 'react-dom';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import {Route, Switch, BrowserRouter as Router, useHistory} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Catalog from './pages/Catalog';
-// import { store } from './app/store';
-// import { Provider } from 'react-redux';
+import { store } from './store';
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import ProductDetails from "./pages/ProductDetails";
-import { browserHistory } from "./common/utils";
 import Authentication from "./pages/Authentication";
 import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 axios.interceptors.request.use(
@@ -40,7 +40,8 @@ axios.interceptors.response.use(
   (error) => {
     if (error.response && 401 === error.response.status) {
       localStorage.removeItem("auth_token");
-      browserHistory.push("/auth/");
+      let history = useHistory()
+      history.push("/auth");
     }
 
     return Promise.reject(error);
@@ -49,22 +50,21 @@ axios.interceptors.response.use(
 
 ReactDOM.render(
   <React.StrictMode>
-    {/*<Provider store={store}>*/}
-        <Router history={browserHistory}>
+    <Provider store={store}>
+        <Router>
             <Switch>
                 <Route path="/auth" component={Authentication} />
 
                 <Route path={['/catalog', '/productdetails']}>
-                    {console.log('here')}
                     <Layout authenticated>
                         <Switch>
-                            <Route path="/catalog" component={Catalog} exact />
-                            <Route path="/productdetails" component={ProductDetails} />
+                            <ProtectedRoute path="/catalog" component={Catalog} exact />
+                            <ProtectedRoute path="/productdetails" component={ProductDetails} />
                         </Switch>
                     </Layout>
                 </Route>
 
-                {/*used for the root "/" and will be greedy*/}
+                {/*used for the root "/" and will be greedy so need it after everything*/}
                 <Route path={['/404', '/']}>
                     <Layout>
                         <Switch>
@@ -75,7 +75,7 @@ ReactDOM.render(
                 </Route>
             </Switch>
         </Router>
-    {/*</Provider>*/}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

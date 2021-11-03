@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { startFirebaseUI } from '../../common/firebase_utils'
+import 'firebaseui/dist/firebaseui.css'
 
-function Authentication(props) {
+
+function Authentication() {
+    let history = useHistory();
+
+    useEffect(() => {
+        startFirebaseUI('#firebaseui')
+    }, [])
+
+    useEffect(() => {
+        const token = localStorage.getItem("auth_token");
+        if (token && token.length > 0) {
+            history.push("/catalog");
+        }
+    }, []);
+
     return (
-        <div></div>
-    );
+        <div id="firebaseui"></div>
+    )
 }
-
 export default Authentication;
