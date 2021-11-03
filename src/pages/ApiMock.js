@@ -23,7 +23,7 @@ export default function apiMock() {
                 "product_link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A01297723T9ILEYH5725I&url=%2FT-Shirt-Super-Pima-Cotton-Size%2Fdp%2FB097NN6PZC%2Fref%3Dsr_1_1_sspa%3Fdchild%3D1%26keywords%3Dt-shirts%26qid%3D1635720544%26sr%3D8-1-spons%26psc%3D1&qualifier=1635720544&id=8195719190343937&widgetName=sp_atf",
                 "created_at": "2021-10-31T22:51:04.000Z",
                 "updated_at": "2021-10-31T22:51:04.000Z",
-                "price": 19.99
+                "price": 9.99
             }
         ]
 
@@ -51,7 +51,7 @@ export default function apiMock() {
                 "product_link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A01297723T9ILEYH5725I&url=%2FT-Shirt-Super-Pima-Cotton-Size%2Fdp%2FB097NN6PZC%2Fref%3Dsr_1_1_sspa%3Fdchild%3D1%26keywords%3Dt-shirts%26qid%3D1635720544%26sr%3D8-1-spons%26psc%3D1&qualifier=1635720544&id=8195719190343937&widgetName=sp_atf",
                 "created_at": "2021-10-31T22:51:04.000Z",
                 "updated_at": "2021-10-31T22:51:04.000Z",
-                "price": 19.99
+                "price": 29.99
             }
         ]
 

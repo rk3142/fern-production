@@ -5,7 +5,7 @@ export default class App extends Component {
   render() {
     return (
         <>
-          <div>Feeling Blue? Go GREEN</div>
+          <div id = "EntryText">Feeling Blue? Go GREEN</div>
         </>
     );
   }

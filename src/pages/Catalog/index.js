@@ -4,13 +4,15 @@ import { Navigation } from 'react-minimal-side-navigation';
 import { AiOutlineMenu } from "react-icons/ai";
 import StarRatings from "react-star-ratings";
 
-import logo from '../assets/logo.png'
-import fern_text from '../assets/fern_text.png'
-import search_icon from '../assets/search_icon.png'
-import co2_icon from '../assets/CO2.png'
-import h2o_icon from '../assets/h2o_icon.png'
-import energy_icon from '../assets/energy_icon.jpeg'
-import apiMock from "./ApiMock";
+import logo from '../../assets/logo.png'
+import fern_text from '../../assets/fern_text.png'
+import search_icon from '../../assets/search_icon.png'
+import co2_icon from '../../assets/CO2.png'
+import h2o_icon from '../../assets/h2o_icon.png'
+import energy_icon from '../../assets/energy_icon.jpeg'
+import cart_icon from '../../assets/cart_icon.png'
+import remove_cart_icon from '../../assets/remove_cart_icon.png'
+import apiMock from "../ApiMock";
 import './Catalog.css';
 
 export default class Catalog extends Component {
@@ -19,18 +21,31 @@ export default class Catalog extends Component {
         super(props);
         this.state = {
             date: new Date(),
-            cart_count: 0,
+            cart: [],
             search: '',
-            items: [],
             items_col1: [],
             items_col2: [],
             items_col3: [],
-            isGoing: true
+            isPrice1: false,
+            isPrice2: false,
+            isPrice3: false,
+            isPrice4: false,
+            isRating1: false,
+            isRating2: false,
+            isRating3: false
         };
     }
 
     componentDidMount() {
-        var items = apiMock();
+        var items = this.getAllProducts();
+        this.updateColumns(items)
+    }
+
+    getAllProducts() {
+        return apiMock()
+    }
+
+    updateColumns = async (items) => {
         var items1 = []
         var items2 = []
         var items3 = []
@@ -43,19 +58,26 @@ export default class Catalog extends Component {
                 items3.push(items[i])
             }
         }
-        this.setState({
+        await this.setState({
             items_col1: items1,
             items_col2: items2,
             items_col3: items3
         })
+        /*console.log(this.state.items_col1)
+        console.log(this.state.items_col2)
+        console.log(this.state.items_col3)*/
     }
 
     handleLogIn() {
         this.props.history.push("/productdetails");
     }
 
-    updateSearchQuery = (query) => {
-        this.setState({ search: query.target.value })
+    updateSearchQuery = async (query) => {
+        await this.setState({ search: query.target.value })
+        console.log(query.target.value + "|")
+        if (this.state.query == '') {
+            this.handleSearch('')
+        }
     }
 
     submitSearchQuery = () => {
@@ -67,6 +89,127 @@ export default class Catalog extends Component {
         var trimmedString = string.substr(0, maxLength);
         trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
         return trimmedString + " . . . "
+    }
+
+    handleCheckPrice = async (start) => {
+        var allItems = await this.getAllProducts()
+        if (start == 0) {
+            await this.setState({ isPrice1: !this.state.isPrice1 })
+        } else if (start == 10) {
+            await this.setState({ isPrice2: !this.state.isPrice2 })
+        } else if (start == 15) {
+            await this.setState({ isPrice3: !this.state.isPrice3 })
+        } else if (start == 20) {
+            await this.setState({ isPrice4: !this.state.isPrice4 })
+        }
+        if (!this.state.isPrice1 && !this.state.isPrice2 && !this.state.isPrice3 && !this.state.isPrice4) {
+            return this.updateColumns(allItems)
+        }
+        var filteredItems = []
+        if (this.state.isPrice1) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] < 10.00) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        if (this.state.isPrice2) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] >= 10.0 && allItems[i]["prices"][0]["price"] < 15.0) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        if (this.state.isPrice3) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] >= 15.0 && allItems[i]["prices"][0]["price"] < 20.0) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        if (this.state.isPrice4) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] >= 20.0) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        return this.updateColumns(filteredItems);
+    }
+
+    handleCheckRating = async (start) => {
+        var allItems = await this.getAllProducts()
+        if (start == 2) {
+            this.setState({ isRating1: !this.state.isRating1 })
+        } else if (start == 3) {
+            this.setState({ isRating2: !this.state.isRating2 })
+        } else if (start == 4) {
+            this.setState({ isRating3: !this.state.isRating3 })
+        }
+        if (!this.state.isPrice1 && !this.state.isPrice2 && !this.state.isPrice3 && !this.state.isPrice4) {
+            return this.updateColumns(allItems)
+        }
+        var filteredItems = []
+        if (this.state.isPrice1) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] < 10.00) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        if (this.state.isPrice2) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] >= 10.0 && allItems[i]["prices"][0]["price"] < 15.0) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        if (this.state.isPrice3) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] >= 15.0 && allItems[i]["prices"][0]["price"] < 20.0) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        if (this.state.isPrice4) {
+            for (var i in allItems) {
+                if (allItems[i]["prices"][0]["price"] >= 20.0) {
+                    filteredItems.push(allItems[i])
+                }
+            }
+        }
+        return this.updateColumns(filteredItems);
+    }
+
+    handleSearch = async (query) => {
+        //console.log(query)
+        var allItems = await this.getAllProducts()
+        var filteredItems = []
+        for (var i in allItems) {
+            if (allItems[i]["product_name"].includes(query)) {
+                filteredItems.push(allItems[i])
+            }
+        }
+        return this.updateColumns(filteredItems);
+    }
+
+    addToCart = async (product_id) => {
+        var cart = [...this.state.cart]
+        console.log(cart.includes(product_id))
+        if(cart.includes(product_id)) {
+            cart.splice(cart.indexOf(product_id), 1)
+        } else {
+            cart.push(product_id)
+        }
+        this.setState({cart: cart})
+    }
+
+    renderButton = (product_id) => {
+        if(this.state.cart.includes(product_id)) {
+            return (<img className="CartIcon" src={remove_cart_icon} onClick={() => this.addToCart(product_id)}/>)
+        } else {
+            return (<img className="CartIcon" src={cart_icon} onClick={() => this.addToCart(product_id)}/>)
+        }
     }
 
     renderColumn = (data) => {
@@ -100,7 +243,10 @@ export default class Catalog extends Component {
                             </ul>
                             <ul className="ProductRatings" key={product_id}>({ratings})</ul>
                         </div>
-                        <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
+                        <div className="ProductFooter">
+                            <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
+                            {this.renderButton(product_id)}
+                        </div>
                     </div>
                 ))}
             </ul>
@@ -111,37 +257,100 @@ export default class Catalog extends Component {
         return (
             <div className="App">
                 <div className="Header">
-                    <img className="Logo" src={logo} />
-                    <img className="Fern" src={fern_text} />
+                    <img className="Logo" src={logo} onClick={() => { this.handleSearch('') }} />
+                    <img className="Fern" src={fern_text} onClick={() => { this.handleSearch('') }} />
                     <div className="SearchBar">
                         <input className="SearchBar"
                             value={this.state.search}
                             onChange={(query) => { this.updateSearchQuery(query) }}
                             type="search"
+                            onSubmit={() => { this.handleSearch(this.state.search) }}
                         />
-                        <div className="SearchButton" onClick={() => this.submitSearchQuery()}>
+                        <div className="SearchButton" onClick={() => this.submitSearchQuery()} onClick={() => this.handleSearch(this.state.search)}>
                             <img className="SearchIcon" src={search_icon} />
                         </div>
                     </div>
 
                     <div className="CartCountContainer">
                         <div className="CartCount">
-                            <p className="CartCountText">{this.state.cart_count}</p>
+                            <p className="CartCountText">{this.state.cart.length}</p>
                             <p className="CartCountText2"> IN CART</p>
                         </div>
                     </div>
                 </div>
                 <div className="PageBody">
                     <div className="SideBarContainer">
-                        <div className="CheckBox">
-                            <input
-                                name="isGoing"
-                                type="checkbox"
-                                checked={this.state.isGoing}
-                                onChange={this.handleInputChange} />
-                            <p>test</p>
+                        <div className="FilterCriterion">
+                            <p className="FilterTitle">Price</p>
+                            <div className="CheckBox">
+                                <input
+                                    className="Check"
+                                    name="Price2"
+                                    type="checkbox"
+                                    checked={this.state.isPrice1}
+                                    onChange={async () => await this.handleCheckPrice(0)} />
+                                <p className="FilterItemText"> Up to $10.00</p>
+                            </div>
+                            <div className="CheckBox">
+                                <input
+                                    className="Check"
+                                    name="Price2"
+                                    type="checkbox"
+                                    checked={this.state.isPrice2}
+                                    onChange={async () => await this.handleCheckPrice(10)} />
+                                <p className="FilterItemText">$10.00 - $14.99</p>
+                            </div>
+                            <div className="CheckBox">
+                                <input
+                                    className="Check"
+                                    name="Price2"
+                                    type="checkbox"
+                                    checked={this.state.isPrice3}
+                                    onChange={async () => await this.handleCheckPrice(15)} />
+                                <p className="FilterItemText">$15.00 - $19.99</p>
+                            </div>
+                            <div className="CheckBox">
+                                <input
+                                    className="Check"
+                                    name="Price2"
+                                    type="checkbox"
+                                    checked={this.state.isPrice4}
+                                    onChange={async () => await this.handleCheckPrice(20)} />
+                                <p className="FilterItemText">$20.00 & above</p>
+                            </div>
+                        </div>
+                        <div className="FilterCriterionRating">
+                            <p className="FilterTitle">Rating</p>
+                            <div className="CheckBox">
+                                <input
+                                    className="Check"
+                                    name="Price2"
+                                    type="checkbox"
+                                    checked={this.state.isRating1}
+                                    onChange={async () => await this.handleCheckRating(2)} />
+                                <p className="FilterItemText"> 2 Stars and up</p>
+                            </div>
+                            <div className="CheckBox">
+                                <input
+                                    className="Check"
+                                    name="Price2"
+                                    type="checkbox"
+                                    checked={this.state.isRating2}
+                                    onChange={async () => await this.handleCheckRating(3)} />
+                                <p className="FilterItemText">3 Stars and up</p>
+                            </div>
+                            <div className="CheckBox">
+                                <input
+                                    className="Check"
+                                    name="Price2"
+                                    type="checkbox"
+                                    checked={this.state.isRating3}
+                                    onChange={async () => await this.handleCheckRating(4)} />
+                                <p className="FilterItemText">4 Stars and up</p>
+                            </div>
                         </div>
                     </div>
+
                     <div className="ItemsContainer">
                         {this.renderColumn(this.state.items_col1)}
                         {this.renderColumn(this.state.items_col2)}

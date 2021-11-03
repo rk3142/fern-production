@@ -11,5 +11,5 @@ test('renders learn react link', () => {
       <App />
   );
 
-  //expect(getByText(/ /i)).toBeInTheDocument();
+  expect(getByText(/Feeling Blue/)).toBeDefined();
 });

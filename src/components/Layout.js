@@ -5,7 +5,7 @@ function Layout({children, authenticated=false}) {
     return (
         <>
             <div>
-                <div>Fern</div>
+                <div></div>
                 {console.log(authenticated)}
                 {
                     authenticated ? (

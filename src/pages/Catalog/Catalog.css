@@ -261,9 +261,66 @@
     height: 500px;
     margin-top: 35px;
     margin-left: 15px;
+    align-items: center;
 }
 
 .CheckBox {
-    
+    display: flex;
+    flex-direction: row;
+    align-self: left;
+    margin-bottom: -20px;
+    margin-top: -15px;
 }
 
+.Check {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 13px;
+}
+
+.FilterCriterion {
+    height: 156px;
+    width: 300px;
+    border-style: double;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: #979797;
+    justify-content: left;
+    align-content: left;
+    margin-bottom: 10px;
+}
+
+.FilterTitle {
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.FilterItemText {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.FilterCriterionRating {
+    height: 136px;
+    width: 300px;
+    border-style: double;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: #979797;
+    justify-content: left;
+    align-content: left;
+    margin-bottom: 10px;
+}
+
+.ProductFooter {
+    display: flex;
+    flex-direction: row;
+}
+
+.CartIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 60px;
+    margin-top: 30px;
+}
