@@ -24,3 +24,18 @@ Scenario: I want to remove from my cart
   Given I am on the catalog page with an item in my cart
   When I remove an item from the cart
   Then I should have an empty cart
+
+Scenario: I want to filter by price 
+  Given I am on the catalog page
+  When I filter by price
+  Then I should have results filtered by price
+
+Scenario: I want to filter by rating 
+  Given I am on the catalog page
+  When I filter by rating
+  Then I should have results filtered by rating
+
+Scenario: I want to search for a color
+  Given I am on the catalog page
+  When I search for the brand Generic
+  Then I should see Generic shirts
