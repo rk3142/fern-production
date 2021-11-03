@@ -50,7 +50,7 @@ axios.interceptors.response.use(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    {/*<Provider store={store}>*/}
         <Router>
             <Switch>
                 <Route path="/auth" component={Authentication} />
@@ -75,7 +75,7 @@ ReactDOM.render(
                 </Route>
             </Switch>
         </Router>
-    </Provider>
+    {/*</Provider>*/}
   </React.StrictMode>,
   document.getElementById('root')
 );

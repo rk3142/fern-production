@@ -17,7 +17,7 @@ function Layout({children, authenticated=false}) {
                     authenticated ? (
                         <SearchBar />
                     ) : (
-                        <button onClick={onClick}>Login</button>
+                        <button className={'login_btn'} onClick={onClick}>Login</button>
                     )
                 }
             </div>
