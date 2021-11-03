@@ -22,6 +22,7 @@ class ProductDetails extends Component {
   componentDidMount = async () => {
     let product = await localStorage.getItem('recently_clicked')
     await this.setState({ product: JSON.parse(product) })
+    console.log('here!')
     console.log(this.state.product)
     let allItems = this.getAllProducts()
     let total = [0, 0, 0]
@@ -46,8 +47,8 @@ class ProductDetails extends Component {
     return (
       <div className="App">
         <div className="Header">
-          <img className="Logo" src={logo} onClick={() => { this.handleSearch('') }} />
-          <img className="Fern" src={fern_text} onClick={() => { this.handleSearch('') }} />
+          {/*<img className="Logo" src={logo} onClick={() => { this.handleSearch('') }} />*/}
+          {/*<img className="Fern" src={fern_text} onClick={() => { this.handleSearch('') }} />*/}
           <p className="PageTitle"><a className="ProductName" href={this.state.product[3]}>{this.state.product[1]}</a></p>
         </div>
         <div className="Body">
