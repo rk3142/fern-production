@@ -7,14 +7,22 @@ RSpec.describe "Product Renderer", :type => :request do
       get "/products/#{product_id}"
       expect(response.status).to eq(200)
       expect(response.content_type).to eq("application/json")
+      parsed_json = JSON.parse(response.body)
+#      parsed_json.each do |key, value|
+#        puts "#{key}:#{value}"
+#      end
+      expect(parsed_json.length).to eq(Product.find_by_product_id(product_id).attribute_names.length+1)
     end
   end
 
   describe 'GET product by product type' do
     it 'returns list of products identifed by product id' do
-      get "/product_type/1"
+      target_type = 1
+      get "/product_type/#{target_type}"
       expect(response.status).to eq(200)
       expect(response.content_type).to eq("application/json")
+      parsed_json = JSON.parse(response.body)
+      expect(parsed_json["products"].length).to eq(Product.where('product_type = ?',target_type).length)
     end
   end
 
