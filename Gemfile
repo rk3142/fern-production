@@ -29,6 +29,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 
+gem 'rack-cors'
 gem 'sass-rails', '~> 5.0.3'
 gem 'uglifier', '>= 2.7.1'
 gem 'jquery-rails'
