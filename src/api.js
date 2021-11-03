@@ -18,5 +18,6 @@ const GET_OPTIONS = {
 // TODO
 export const getList = async function () {
     const response = await fetch(BASE_URL + "/catalog", GET_OPTIONS);
+    console.log(GET_OPTIONS)
     return response.json();
 }

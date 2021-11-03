@@ -36,8 +36,7 @@ export default class Catalog extends Component {
     async componentDidMount() {
         var items = this.getAllProducts();
         this.updateColumns(items)
-        let x = await this.test()
-        console.log(x)
+        console.log(items)
     }
 
     async test() {
