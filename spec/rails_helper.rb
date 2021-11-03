@@ -42,13 +42,16 @@ def generate_firebase_token email
   firebase_call = HTTParty.post(firebase_url, headers: {
     'Content-Type' => 'application/json'}, body: request_body.to_json)
   response = JSON.parse(firebase_call.body)
+  # p response.inspect
   return response['idToken']
 end
 
 def get_user_id_from_token token
   firebase_response, error_code = FirebaseHelper.validate_token(token)
   firebase_response = JSON.parse(firebase_response)
+  # p firebase_response.inspect
   user_id = firebase_response["users"][0]['localId']
+
   return user_id
 end
 

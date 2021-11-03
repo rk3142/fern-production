@@ -3,9 +3,13 @@ require 'rails_helper'
 RSpec.describe UserController do
     describe "create user" do
         describe "valid user creation" do
+            idToken = generate_firebase_token "rk3142@columbia.edu"
+            user_id = get_user_id_from_token idToken
             before do
-                request.headers["idToken"] = generate_firebase_token "rk3142@columbia.edu"
-                post 'login'
+              "Before all of valid user creation"
+              request.headers["idToken"] = idToken
+              User.delete(user_id)
+              post 'login'
             end
 
             it "has a 200 status code" do
