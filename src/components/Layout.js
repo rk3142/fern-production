@@ -1,6 +1,8 @@
 import React from 'react';
 import SearchBar from "./SearchBar";
 import {useHistory} from "react-router-dom";
+import './Layout.css'
+import logo from '../assets/logo.png'
 
 function Layout({children, authenticated=false}) {
     let history = useHistory()
@@ -10,9 +12,12 @@ function Layout({children, authenticated=false}) {
     }
 
     return (
-        <>
-            <div>
-                <div>Fern</div>
+        <div className={'page'}>
+            <div className="page__header">
+                <div className={'page__header__logo'}>
+                    <img className={'page__header__logo__img'} src={logo} alt={'logo'}></img>
+                    <div className={'page__header__logo__text'}>Fern</div>
+                </div>
                 {
                     authenticated ? (
                         <SearchBar />
@@ -22,8 +27,8 @@ function Layout({children, authenticated=false}) {
                 }
             </div>
 
-            <main>{children}</main>
-        </>
+            <main className={'page__content'}>{children}</main>
+        </div>
     );
 }
 

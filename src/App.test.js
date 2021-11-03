@@ -11,5 +11,5 @@ test('renders text', () => {
       <App />
   );
 
-  expect(getByText(/Feeling Blue/)).toBeDefined();
+  expect(getByText(/Feeling/i)).toBeDefined();
 });
