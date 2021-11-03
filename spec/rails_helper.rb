@@ -49,7 +49,6 @@ def get_user_id_from_token token
   firebase_response, error_code = FirebaseHelper.validate_token(token)
   firebase_response = JSON.parse(firebase_response)
   user_id = firebase_response["users"][0]['localId']
-  p user_id
   return user_id
 end
 

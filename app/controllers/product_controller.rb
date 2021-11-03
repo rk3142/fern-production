@@ -18,7 +18,6 @@ class ProductController < ApplicationController
       Rails.logger.info "Response sent to client #{resp.inspect}"
       render json: resp, status: 200
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing API: get_all_products"
       Rails.logger.error e.message
       render :nothing => true, status: 500
     end
@@ -34,7 +33,6 @@ class ProductController < ApplicationController
       end
       render json: product_resp, status: 200
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing API: get_product_by_id"
       Rails.logger.error e.message
       render :nothing => true, status: 500
     end
@@ -48,7 +46,6 @@ class ProductController < ApplicationController
       resp['product_types'] = @product_type
       render json: resp, status: 200
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing API: all_product_types"
       Rails.logger.error e.message
       render :nothing => true, status: 500
     end
@@ -68,7 +65,6 @@ class ProductController < ApplicationController
       resp[:products] = product_list
       render json: resp, status: 200
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing API: get_products_by_type"
       Rails.logger.error e.message
       render :nothing => true, status: 500
     end

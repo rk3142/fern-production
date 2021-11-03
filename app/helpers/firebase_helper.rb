@@ -28,7 +28,6 @@ module FirebaseHelper
       response = firebase_call.body
       return response, firebase_call.code
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing function: validate_token"
       Rails.logger.error e.message
       raise Exception.new "Generic Exception"
     end

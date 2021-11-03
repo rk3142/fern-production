@@ -23,7 +23,6 @@ class UserController < ApplicationController
       msg['user'] = user
       render json: msg, status: 200
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing API: get_products_by_type"
       Rails.logger.error e.message
       render :nothing => true, status: 500
     end
@@ -33,12 +32,10 @@ class UserController < ApplicationController
     Rails.logger.info "Proceeding to process API: get_user_details"
     begin
       msg = Hash.new
-      p params[:user_id]
       user = User.find_by_user_id(params[:user_id])
       msg[:user] = user
       render json: msg, status: 200
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing API: get_user_details"
       Rails.logger.error e.message
       render :nothing => true, status: 500
     end
@@ -67,7 +64,6 @@ class UserController < ApplicationController
       end
       return user
     rescue Exception => e
-      Rails.logger.error "Exception occurred while processing function: save_user_data"
       Rails.logger.error e.message
       raise Exception.new "Generic Exception"
     end
