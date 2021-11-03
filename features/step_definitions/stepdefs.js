@@ -26,6 +26,12 @@ Given('I am on the catalog page with an item in my cart', async function (){
     add_buttons[0].click()
 })
 
+Given('I am on the product details page', async function (){
+    await driver.get("http://localhost:3000/productdetails");
+    let shirts = await driver.findElements(By.className("ProductImage"))
+    assert.equal(await shirts.length == 1, true)
+})
+
 When('I go to the website link', async function (){
     await driver.get("http://localhost:3000/");
 })
@@ -63,6 +69,58 @@ When('I remove an item from the cart', async function() {
     add_buttons[0].click()
 })
 
+When('I filter by price', async function() {
+    let filter_buttons = await driver.findElements(By.className("Check"))
+    filter_buttons[0].click()
+})
+
+When('I filter by rating', async function() {
+    let filter_buttons = await driver.findElements(By.className("Check"))
+    filter_buttons[6].click()
+})
+
+When('I search for the brand Generic', async function() {
+    let filter_buttons = await driver.findElements(By.className("SearchBar"))
+    filter_buttons[1].sendKeys("Generic")
+    let search_button = await driver.findElements(By.className("SearchIcon"))
+    search_button[0].click()
+})
+
+When('I click on product image', async function() {
+    let products = await driver.findElements(By.className("ProductImage"))
+    products[1].click()
+})
+
 Then('I should have 1 item in the cart', async function() {
     assert.equal(await driver.findElement(By.className("CartCountText")).getText(), "1")
+})
+
+Then('I should have results filtered by price', async function() {
+    let shirts = await driver.findElements(By.className("Item"))
+    assert.equal(await shirts.length < 20, true)
+})
+
+Then('I should have results filtered by rating', async function() {
+    let shirts = await driver.findElements(By.className("Item"))
+    assert.equal(await shirts.length < 15, true)
+})
+
+Then('I should see Generic shirts', async function() {
+    let shirts = await driver.findElements(By.className("ProductName"))
+    assert.equal(await shirts.length < 15, true)
+})
+
+Then('I should be on product details page', async function() {
+    let shirts = await driver.findElements(By.className("ProductImage"))
+    assert.equal(await shirts.length == 1, true)
+})
+
+Then('I should see environmental details', async function() {
+    let details = await driver.findElements(By.className("EcoStatsText"))
+    assert.equal(await details.length >= 3, true)
+})
+
+Then('I should see product description', async function() {
+    let details = await driver.findElements(By.className("ProductDescription"))
+    assert.equal(await details.length >= 1, true)
 })

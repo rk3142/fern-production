@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { Navigation } from 'react-minimal-side-navigation';
-import { AiOutlineMenu } from "react-icons/ai";
 import StarRatings from "react-star-ratings";
-
+import axios from "axios"
 import logo from '../../assets/logo.png'
 import fern_text from '../../assets/fern_text.png'
 import search_icon from '../../assets/search_icon.png'
@@ -36,19 +33,37 @@ export default class Catalog extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         var items = this.getAllProducts();
         this.updateColumns(items)
+        console.log(items)
+    }
+
+    async test() {
+        await axios.get("https://fern-development.herokuapp.com/products").then(resp => {
+
+            console.log(resp);
+        });
     }
 
     getAllProducts() {
         return apiMock()
     }
 
+    goToDetails = async (item) => {
+        await localStorage.setItem('recently_clicked', JSON.stringify(item))
+        this.props.history.push("/productdetails");
+    }
+
     updateColumns = async (items) => {
         var items1 = []
         var items2 = []
         var items3 = []
+        await this.setState({
+            items_col1: [],
+            items_col2: [],
+            items_col3: []
+        })
         for (var i in items) {
             if (i % 3 == 0) {
                 items1.push(items[i])
@@ -89,11 +104,6 @@ export default class Catalog extends Component {
 
     handleCheckPrice = async (start) => {
         var allItems = await this.getAllProducts()
-        await this.setState({
-            items_col1: [],
-            items_col2: [],
-            items_col3: []
-        })
         if (start == 0) {
             await this.setState({ isPrice1: !this.state.isPrice1 })
         } else if (start == 10) {
@@ -103,8 +113,13 @@ export default class Catalog extends Component {
         } else if (start == 20) {
             await this.setState({ isPrice4: !this.state.isPrice4 })
         }
+        this.updateByPrice(allItems)
+    }
+
+    updateByPrice = async (allItems) => {
         if (!this.state.isPrice1 && !this.state.isPrice2 && !this.state.isPrice3 && !this.state.isPrice4) {
-            return this.updateColumns(allItems)
+            await this.updateColumns(allItems)
+            return allItems
         }
         var filteredItems = []
         if (this.state.isPrice1) {
@@ -136,16 +151,13 @@ export default class Catalog extends Component {
             }
         }
         await this.updateColumns(filteredItems);
-        this.forceUpdate()
+        return filteredItems
     }
 
     handleCheckRating = async (start) => {
-        await this.setState({
-            items_col1: [],
-            items_col2: [],
-            items_col3: []
-        })
-        var allItems = await this.getAllProducts()
+        var allItemsOld = await this.getAllProducts()
+        var allItems = await this.updateByPrice(allItemsOld)
+        console.log(allItems)
         if (start == 2) {
             this.setState({ isRating1: !this.state.isRating1 })
         } else if (start == 3) {
@@ -179,7 +191,6 @@ export default class Catalog extends Component {
             }
         }
         await this.updateColumns(filteredItems);
-        this.forceUpdate()
     }
 
     handleSearch = async (query) => {
@@ -216,10 +227,10 @@ export default class Catalog extends Component {
     renderColumn = (data) => {
         return (
             <ul>
-                {data.map(({ product_id, product_name, image_url, prices, rating, ratings, product_description, carbon, water, energy }) => (
+                {data.map(({ product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy }) => (
                     <div className="Item">
-                        <ul className="ProductName" key={product_id}>{product_name}</ul>
-                        <div className="ProductEcoStats">
+                        <ul className="ProductName" key={product_id}><a className="ProductName" href={link}>{product_name}</a></ul>
+                        <div className="ProductEcoStats" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
                             <img className="EcoStatsIcon" src={co2_icon} />
                             <p className="EcoStatsText">{carbon} kg</p>
                             <img className="EcoStatsIcon" src={h2o_icon} />
@@ -227,8 +238,8 @@ export default class Catalog extends Component {
                             <img className="EcoStatsIcon" src={energy_icon} />
                             <p className="EcoStatsText">{energy} kWh</p>
                         </div>
-                        <img className="ProductImage" src={image_url} />
-                        <div className="ProductBody">
+                        <img className="ProductImage" src={image_url} onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}/>
+                        <div className="ProductBody" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
                             <ul className="ProductPrice" key={product_id}>${prices[0]["price"]}</ul>
                             <ul className="ProductSource" key={product_id}>Amazon</ul>
                             <ul className="ProductRatingText" key={product_id}>{rating}</ul>
@@ -244,7 +255,7 @@ export default class Catalog extends Component {
                             </ul>
                             <ul className="ProductRatings" key={product_id}>({ratings})</ul>
                         </div>
-                        <div className="ProductFooter">
+                        <div className="ProductFooter" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
                             <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
                             {this.renderButton(product_id)}
                         </div>

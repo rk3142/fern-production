@@ -1,44 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## UNIs
+Rishav Kumar: 	rk3142
+Eurey Noguchi: 	yn2377
+Aum Upadhay: 	adu2104
+Hao Zhou: 	hz2754
 
-## Available Scripts
+## Installation Instructions
 
-In the project directory, you can run:
+Firstly, clone the repo and ensure that you have the prerequisites for ReactJS installed. Please follow this link if you do not: https://www.freecodecamp.org/news/install-react-with-create-react-app/. Also make sure you have yarn and npm installed.
 
-### `npm start`
+### `cd ./fern-frontend` and `yarn`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This downloads and sets up all the packages. Without this step the app cannot work since dependencies will not have been created correctly.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `yarn start`
 
-### `npm test`
+Launches the app using localhost:3000 in a web browser
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm test -- --coverage` or `npm run bdd`
 
-### `npm run build`
+These commands run the tests. Note: BDD will not function as expected due to firebase authentication. The results have been displayed below.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Testing
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1. **BDD**:
+- We used *Cucumber-js*, a js-based testing package, to incorporate Cucumber tests and implement BDD.
+- Following the installaiton instructions above should ensure it is all set up
+    
+    ```
+    - MacOS:
+    ```
+    brew install chromedriver
+    ```
+    - Windows:
+    ```
+    choco install chromedriver
+    ```
+    - **Note for TAs** BDD will not function as expected because of authentication. To prevent the leaking of personal information any automation regarding personal passwords was removed. All tests succeed as show in this output:
+    ```
+      11 scenarios (11 passed)
+      30 steps (30 passed)
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **TDD**:
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Testing results
++ Cucumber
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    
++ Unit tests
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Project code:
++ A link to our github repo can be found here:
 
-## Learn More
+## Hosting:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
