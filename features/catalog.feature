@@ -29,3 +29,13 @@ Scenario: I want to filter by price
   Given I am on the catalog page
   When I filter by price
   Then I should have results filtered by price
+
+Scenario: I want to filter by rating 
+  Given I am on the catalog page
+  When I filter by rating
+  Then I should have results filtered by rating
+
+Scenario: I want to search for a color
+  Given I am on the catalog page
+  When I search for the brand Generic
+  Then I should see Generic shirts
