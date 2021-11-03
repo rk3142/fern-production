@@ -146,34 +146,27 @@ export default class Catalog extends Component {
         } else if (start == 4) {
             this.setState({ isRating3: !this.state.isRating3 })
         }
-        if (!this.state.isPrice1 && !this.state.isPrice2 && !this.state.isPrice3 && !this.state.isPrice4) {
+        if (!this.state.isRating1 && !this.state.isRating2 && !this.state.isRating3) {
             return this.updateColumns(allItems)
         }
         var filteredItems = []
-        if (this.state.isPrice1) {
+        if (this.state.isRating1) {
             for (var i in allItems) {
-                if (allItems[i]["prices"][0]["price"] < 10.00) {
+                if (allItems[i]["rating"] > 2.00) {
                     filteredItems.push(allItems[i])
                 }
             }
         }
-        if (this.state.isPrice2) {
+        if (this.state.isRating2) {
             for (var i in allItems) {
-                if (allItems[i]["prices"][0]["price"] >= 10.0 && allItems[i]["prices"][0]["price"] < 15.0) {
+                if (allItems[i]["rating"] > 3.00) {
                     filteredItems.push(allItems[i])
                 }
             }
         }
-        if (this.state.isPrice3) {
+        if (this.state.isRating3) {
             for (var i in allItems) {
-                if (allItems[i]["prices"][0]["price"] >= 15.0 && allItems[i]["prices"][0]["price"] < 20.0) {
-                    filteredItems.push(allItems[i])
-                }
-            }
-        }
-        if (this.state.isPrice4) {
-            for (var i in allItems) {
-                if (allItems[i]["prices"][0]["price"] >= 20.0) {
+                if (allItems[i]["rating"] > 4.00) {
                     filteredItems.push(allItems[i])
                 }
             }
