@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post '/user/signin', to: 'user#login'
   get '/user/:user_id', to: 'user#show'
   delete '/user/logout', to: 'session#destroy'
+  root :controller => 'static', :action => '/'
 end

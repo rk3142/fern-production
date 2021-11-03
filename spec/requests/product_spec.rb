@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Product Renderer", :type => :request do
+RSpec.describe "Data Renderer", :type => :request do
 
   # describe 'GET product_by_id' do
   #   product_id = "B097NN6PZC"
