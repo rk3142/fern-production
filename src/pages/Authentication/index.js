@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { startFirebaseUI } from '../../common/firebase_utils'
+import { startFirebaseUI } from '../../common/firebaseUtils'
 import 'firebaseui/dist/firebaseui.css'
 
 
