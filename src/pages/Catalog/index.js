@@ -221,9 +221,10 @@ export default class Catalog extends Component {
     renderColumn = (data) => {
         return (
             <ul>
-                {data.map(({ product_id, product_name, image_url, prices, rating, ratings, product_description, carbon, water, energy }) => (
+                {data.map(({ product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy }) => (
                     <div className="Item">
-                        <ul className="ProductName" key={product_id}>{product_name}</ul>
+                        
+                        <ul className="ProductName" key={product_id}><a className="ProductName" href={link}>{product_name}</a></ul>
                         <div className="ProductEcoStats">
                             <img className="EcoStatsIcon" src={co2_icon} />
                             <p className="EcoStatsText">{carbon} kg</p>
