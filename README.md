@@ -23,12 +23,12 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8 should be installed in the system
 `bundle exec rake db:seed RAILS_ENV=development`
 
 3. Run the rails server
-`rails s -b 0.0.0.0 -p 3000`
-\
-\
-\
+`rails s -b 0.0.0.0 -p 3000`  
+  
+  <br/>
+  <br/>
+
 * Setting up your TET environment
-Pre-requisite: Ruby v2.6.6 or v2.6.8 should be installed in the system
 
 1. Install Bundle
 `gem install bundle`
