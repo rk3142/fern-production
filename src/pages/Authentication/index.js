@@ -19,7 +19,10 @@ function Authentication() {
     }, []);
 
     return (
-        <div id="firebaseui"></div>
+        <>
+            <div>Sign In</div>
+            <div id="firebaseui"></div>
+        </>
     )
 }
 export default Authentication;

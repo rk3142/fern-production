@@ -68,14 +68,10 @@ export default class Catalog extends Component {
         console.log(this.state.items_col3)*/
     }
 
-    handleLogIn() {
-        this.props.history.push("/productdetails");
-    }
-
     updateSearchQuery = async (query) => {
         await this.setState({ search: query.target.value })
         console.log(query.target.value + "|")
-        if (this.state.query == '') {
+        if (this.state.search == '') {
             this.handleSearch('')
         }
     }
@@ -99,7 +95,9 @@ export default class Catalog extends Component {
             items_col3: []
         })
         if (start == 0) {
+            console.log(this.state.isPrice1)
             await this.setState({ isPrice1: !this.state.isPrice1 })
+            console.log(this.state.isPrice1)
         } else if (start == 10) {
             await this.setState({ isPrice2: !this.state.isPrice2 })
         } else if (start == 15) {

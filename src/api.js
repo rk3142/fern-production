@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // const BASE_URL = "http://localhost:5000";
 const BASE_URL = "https://fern-development.herokuapp.com";
 
@@ -16,7 +18,7 @@ const GET_OPTIONS = {
 }
 
 // TODO
-export const getList = async function () {
-    const response = await fetch(BASE_URL + "/catalog", GET_OPTIONS);
-    return response.json();
+export const getAllProducts = async function () {
+    const response = await axios.get(BASE_URL + "/products", GET_OPTIONS);
+    return response.data.products;
 }
