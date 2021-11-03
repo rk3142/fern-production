@@ -2,7 +2,7 @@ import React from 'react';
 
 function SearchBar(props) {
     return (
-        <div></div>
+        <div>A placeholder search bar</div>
     );
 }
 

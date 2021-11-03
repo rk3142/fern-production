@@ -95,9 +95,7 @@ export default class Catalog extends Component {
             items_col3: []
         })
         if (start == 0) {
-            console.log(this.state.isPrice1)
             await this.setState({ isPrice1: !this.state.isPrice1 })
-            console.log(this.state.isPrice1)
         } else if (start == 10) {
             await this.setState({ isPrice2: !this.state.isPrice2 })
         } else if (start == 15) {
@@ -288,6 +286,7 @@ export default class Catalog extends Component {
                             <div className="CheckBox">
                                 <input
                                     className="Check"
+                                    id="price0"
                                     name="Price2"
                                     type="checkbox"
                                     checked={this.state.isPrice1}
@@ -297,6 +296,7 @@ export default class Catalog extends Component {
                             <div className="CheckBox">
                                 <input
                                     className="Check"
+                                    id="price10"
                                     name="Price2"
                                     type="checkbox"
                                     checked={this.state.isPrice2}
@@ -307,6 +307,7 @@ export default class Catalog extends Component {
                                 <input
                                     className="Check"
                                     name="Price2"
+                                    id="price15"
                                     type="checkbox"
                                     checked={this.state.isPrice3}
                                     onChange={async () => await this.handleCheckPrice(15)} />
@@ -316,6 +317,7 @@ export default class Catalog extends Component {
                                 <input
                                     className="Check"
                                     name="Price2"
+                                    id="price20"
                                     type="checkbox"
                                     checked={this.state.isPrice4}
                                     onChange={async () => await this.handleCheckPrice(20)} />
@@ -328,6 +330,7 @@ export default class Catalog extends Component {
                                 <input
                                     className="Check"
                                     name="Price2"
+                                    id="rating2"
                                     type="checkbox"
                                     checked={this.state.isRating1}
                                     onChange={async () => await this.handleCheckRating(2)} />
@@ -337,6 +340,7 @@ export default class Catalog extends Component {
                                 <input
                                     className="Check"
                                     name="Price2"
+                                    id="rating3"
                                     type="checkbox"
                                     checked={this.state.isRating2}
                                     onChange={async () => await this.handleCheckRating(3)} />
@@ -346,6 +350,7 @@ export default class Catalog extends Component {
                                 <input
                                     className="Check"
                                     name="Price2"
+                                    id="rating4"
                                     type="checkbox"
                                     checked={this.state.isRating3}
                                     onChange={async () => await this.handleCheckRating(4)} />

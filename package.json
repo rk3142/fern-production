@@ -90,7 +90,10 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!src/index.js",
+      "!**/babel.config.js",
+      "!**/serviceWorker.js"
     ],
     "setupFilesAfterEnv": [
       "./src/setupTests.js"
