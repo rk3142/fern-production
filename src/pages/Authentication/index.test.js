@@ -4,7 +4,7 @@ import {createMemoryHistory} from 'history'
 import Authentication from "./index";
 import {Router} from "react-router-dom";
 
-jest.mock("../../common/firebase_utils", () => ({
+jest.mock("../../common/firebaseUtils", () => ({
     startFirebaseUI: () => <div>Mock</div>
 }))
 

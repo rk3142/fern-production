@@ -22,6 +22,7 @@ class ProductDetails extends Component {
   componentDidMount = async () => {
     let product = await localStorage.getItem('recently_clicked')
     await this.setState({ product: JSON.parse(product) })
+    console.log('here!')
     console.log(this.state.product)
     let allItems = this.getAllProducts()
     let total = [0, 0, 0]
