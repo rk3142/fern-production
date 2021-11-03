@@ -48,6 +48,8 @@ axios.interceptors.response.use(
   }
 );
 
+console.log(process.env.REACT_APP_FIREBASE_APP_ID)
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
