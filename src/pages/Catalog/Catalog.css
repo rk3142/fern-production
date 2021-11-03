@@ -150,7 +150,7 @@
 }
 
 .Item {
-    height: 546px;
+    height: 556px;
     width: 300px;
     border-style: double;
     border-radius: 25px;
@@ -235,20 +235,19 @@
     flex-direction: row;
     display: flex;
     text-align: left;
-    margin-top: 20px;
-    height: 50px
+    margin-top: 10px;
+    height: 40px;
+    margin-left: auto;
+    justify-content: left;
 }
 
 .EcoStatsIcon {
-    height: 25px;
+    height: 20px;
     width: 30px;
-    margin-left: 20px;
-    margin-top: 10px;
 }
 
 .EcoStatsText {
     font-size: 14px;
-    margin-left: 5px;
 }
 
 .PageBody {
@@ -323,10 +322,4 @@
     height: 20px;
     margin-left: 60px;
     margin-top: 30px;
-}
-
-.ItemList {
-    columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
 }

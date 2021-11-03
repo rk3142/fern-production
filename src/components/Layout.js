@@ -12,7 +12,7 @@ function Layout({children, authenticated=false}) {
     return (
         <>
             <div>
-                <div>Fern</div>
+                <div></div>
                 {
                     authenticated ? (
                         <SearchBar />

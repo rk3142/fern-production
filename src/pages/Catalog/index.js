@@ -231,10 +231,10 @@ export default class Catalog extends Component {
                     <div className="Item">
                         <ul className="ProductName" key={product_id}><a className="ProductName" href={link}>{product_name}</a></ul>
                         <div className="ProductEcoStats" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
-                            <img className="EcoStatsIcon" src={co2_icon} />
+                        <img className="EcoStatsIcon" src={co2_icon} />
                             <p className="EcoStatsText">{carbon} kg</p>
                             <img className="EcoStatsIcon" src={h2o_icon} />
-                            <p className="EcoStatsText">{water} k Liters</p>
+                            <p className="EcoStatsText">{water}k Liters</p>
                             <img className="EcoStatsIcon" src={energy_icon} />
                             <p className="EcoStatsText">{energy} kWh</p>
                         </div>
@@ -255,8 +255,8 @@ export default class Catalog extends Component {
                             </ul>
                             <ul className="ProductRatings" key={product_id}>({ratings})</ul>
                         </div>
-                        <div className="ProductFooter" onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>
-                            <ul className="ProductDescription" key={product_id}>{this.truncateString(product_description)}</ul>
+                        <div className="ProductFooter">
+                            <ul className="ProductDescription" key={product_id} onClick={() => {this.goToDetails([product_id, product_name, image_url, link, prices, rating, ratings, product_description, carbon, water, energy ])}}>{this.truncateString(product_description)}</ul>
                             {this.renderButton(product_id)}
                         </div>
                     </div>

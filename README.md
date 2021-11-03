@@ -12,7 +12,7 @@ Firstly, clone the repo and ensure that you have the prerequisites for ReactJS i
 
 This downloads and sets up all the packages. Without this step the app cannot work since dependencies will not have been created correctly.
 
-### `yarn start`
+### `npm start`
 
 Launches the app using localhost:3000 in a web browser
 
