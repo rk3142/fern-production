@@ -1,32 +1,39 @@
+# Fern
 ## UNIs
-Rishav Kumar: 	rk3142
-Eurey Noguchi: 	yn2377
-Aum Upadhay: 	adu2104
-Hao Zhou: 	hz2754
+- Rishav Kumar: 	rk3142
+- Eurey Noguchi: 	yn2377
+- Aum Upadhay: 	adu2104
+- Hao Zhou: 	hz2754
 
 ## Installation Instructions
+### Clone this repo
+```commandline
+git clone https://github.com/eureyuri/fern-frontend.git
+```
 
-Firstly, clone the repo and ensure that you have the prerequisites for ReactJS installed. Please follow this link if you do not: https://www.freecodecamp.org/news/install-react-with-create-react-app/. Also make sure you have yarn and npm installed.
-
-### `cd ./fern-frontend` and `yarn`
-
+### Install dependencies
+Make sure you have npm installed. Then run
+```commandline
+cd ./fern-frontend
+npm install
+```
 This downloads and sets up all the packages. Without this step the app cannot work since dependencies will not have been created correctly.
 
-### `yarn start`
-
+## Start the app
+### `npm start`
 Launches the app using localhost:3000 in a web browser
 
-### `npm test -- --coverage` or `npm run bdd`
+### `npm test`
+Runs the unit tests. The coverage will be outputted to `/coverage` in the root 
 
-These commands run the tests. Note: BDD will not function as expected due to firebase authentication. The results have been displayed below.
+### `npm run bdd`
+Runs cucumber for BDD. Note: BDD will not function as expected due to firebase authentication. The results have been displayed below.
 
 ## Testing
 
 1. **BDD**:
 - We used *Cucumber-js*, a js-based testing package, to incorporate Cucumber tests and implement BDD.
-- Following the installaiton instructions above should ensure it is all set up
-    
-    ```
+- Following the installation instructions above should ensure it is all set up
     - MacOS:
     ```
     brew install chromedriver
