@@ -3,11 +3,14 @@ import SearchBar from "./SearchBar";
 import {useHistory} from "react-router-dom";
 import './Layout.css'
 import logo from '../assets/logo.png'
+import {signIn} from "../api";
 
 function Layout({children, authenticated=false}) {
     let history = useHistory()
 
     const onClick = () => {
+        const accessToken = localStorage.getItem("auth_token");
+        if (accessToken != null) signIn()
         history.push("/auth")
     }
 
