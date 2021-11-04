@@ -42,7 +42,8 @@ Runs cucumber for BDD. Note: BDD will not function as expected due to firebase a
 
 # Backend Deployment
 Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the system
-* Setting up your DEVELOPMENT environment
+
+### Setting up your DEVELOPMENT environment
 1. Install Bundle
 `gem install bundle`
 2. Checkout the code from the git repo and follow the below steps
@@ -58,7 +59,7 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
   <br/>
   <br/>
 
-* Setting up your TEST environment
+### Setting up your TEST environment
 
 1. Install Bundle
 `gem install bundle`
