@@ -120,3 +120,5 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 - Frontend
   - ![alt text](https://github.com/rk3142/fern-production/blob/main/BDD.png)
   - ![alt text](https://github.com/rk3142/fern-production/blob/main/frontend_coverage.png)
+- Backend
+  - ![alt text](https://github.com/rk3142/fern-production/blob/main/backend_coverage.png)
