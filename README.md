@@ -80,8 +80,7 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 4. The code coverage report should be available at `{path_to_application_directory}/coverage/index.html`
 
 
-## Testing
-
+# Testing the frontend
 1. **BDD**:
 - We used *Cucumber-js*, a js-based testing package, to incorporate Cucumber tests and implement BDD.
 - Following the installation instructions above should ensure it is all set up
@@ -100,18 +99,5 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
     ```
 
 2. **TDD**:
-
-
-## Testing results
-+ Cucumber
-
-    
-+ Unit tests
-
-
-## Project code:
-+ A link to our github repo can be found here:
-
-## Hosting:
-
-
+- We used *jest* for unit testing 
+- Each <name>.js file is accompanied by the corresponding <name>.test.js file
