@@ -25,7 +25,7 @@ git clone https://github.com/rk3142/fern-production.git
 ### Install dependencies
 Make sure you have npm installed. Then run
 ```commandline
-cd ./fern-frontend
+cd ./fern-production/frontend
 npm install
 ```
 This downloads and sets up all the packages. Without this step the app cannot work since dependencies will not have been created correctly.
