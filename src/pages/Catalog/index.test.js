@@ -1,13 +1,23 @@
 import React from "react";
 import Catalog from "./index";
 import {shallow} from 'enzyme';
+import axios from "axios";
+import apiMock from "../ApiMock";
+
+const mockHistoryPush = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}));
 
 describe('Catalog', () => {
-  it('Shallow rendering', () => {
+  it('Shallow rendering', async () => {
     const wrapper = shallow(<Catalog />);
     const componentInstance = wrapper.instance();
     //Accessing react lifecyle methods
-    componentInstance.componentDidMount();
+    await componentInstance.componentDidMount();
 
     //Accessing component state
     expect(wrapper.state('search')).toEqual('');
@@ -15,7 +25,7 @@ describe('Catalog', () => {
     // expect(componentInstance.counter(1)).toEqual(2);
   });
 
-  it('Update search query', () => {
+  it('Update search query', async () => {
     const wrapper = shallow(<Catalog />);
     const componentInstance = wrapper.instance();
     const query = {
@@ -23,11 +33,11 @@ describe('Catalog', () => {
         'value': 'test query'
       }
     }
-    componentInstance.updateSearchQuery(query)
+    await componentInstance.updateSearchQuery(query)
     expect(wrapper.state('search')).toEqual('test query');
   });
 
-  it('search empty query', () => {
+  it('search empty query', async () => {
     const wrapper = shallow(<Catalog />);
     const componentInstance = wrapper.instance();
     const query = {
@@ -35,15 +45,15 @@ describe('Catalog', () => {
         'value': ''
       }
     }
-    componentInstance.updateSearchQuery(query)
+    await componentInstance.updateSearchQuery(query)
     expect(wrapper.state('search')).toEqual('');
   });
 
-  it('submit search query', () => {
+  it('submit search query', async () => {
     const wrapper = shallow(<Catalog />);
     const componentInstance = wrapper.instance();
 
-    componentInstance.submitSearchQuery()
+    await componentInstance.submitSearchQuery()
     expect(wrapper.state('search')).toEqual('');
   });
 
@@ -233,5 +243,74 @@ describe('Catalog', () => {
     componentInstance.handleCheckRating = jest.fn()
     wrapper.find('#rating4').props().onChange()
     expect(componentInstance.handleCheckRating).toHaveBeenCalled();
+  });
+
+  it('gets all products', async () => {
+    axios.get = jest.fn().mockResolvedValue(apiMock());
+    const wrapper = shallow(<Catalog />);
+    const componentInstance = wrapper.instance();
+
+    await componentInstance.getAllProducts()
+    expect(axios.get).toBeCalled()
+  });
+
+  it('updates Columns', async () => {
+    const wrapper = shallow(<Catalog />);
+    const componentInstance = wrapper.instance();
+
+    await componentInstance.updateColumns(apiMock())
+    expect(wrapper.state('items_col1').length).toBe(2);
+  });
+
+  it('does not truncate null string', async () => {
+    const wrapper = shallow(<Catalog />);
+    const componentInstance = wrapper.instance();
+
+    const out = await componentInstance.truncateString(null)
+    expect(out).toBe('');
+  });
+
+  // it('truncate 1000', async () => {
+  //   const wrapper = shallow(<Catalog />);
+  //   const componentInstance = wrapper.instance();
+  //
+  //   const out = await componentInstance.truncateRatings(1100)
+  //   expect(out).toBe('1.1k');
+  // });
+
+  it('filters isPrice1', async () => {
+    const wrapper = shallow(<Catalog />);
+    const componentInstance = wrapper.instance();
+
+    wrapper.setState({isPrice1: true})
+    const out = await componentInstance.updateByPrice(apiMock())
+    expect(out.length).toBe(1);
+  });
+
+  it('filters isPrice2', async () => {
+    const wrapper = shallow(<Catalog />);
+    const componentInstance = wrapper.instance();
+
+    wrapper.setState({isPrice2: true})
+    const out = await componentInstance.updateByPrice(apiMock())
+    expect(out.length).toBe(1);
+  });
+
+  it('filters isPrice3', async () => {
+    const wrapper = shallow(<Catalog />);
+    const componentInstance = wrapper.instance();
+
+    wrapper.setState({isPrice3: true})
+    const out = await componentInstance.updateByPrice(apiMock())
+    expect(out.length).toBe(2);
+  });
+
+  it('filters isPrice4', async () => {
+    const wrapper = shallow(<Catalog />);
+    const componentInstance = wrapper.instance();
+
+    wrapper.setState({isPrice4: true})
+    const out = await componentInstance.updateByPrice(apiMock())
+    expect(out.length).toBe(1);
   });
 });

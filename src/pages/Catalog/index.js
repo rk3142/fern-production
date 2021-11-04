@@ -39,16 +39,13 @@ export default class Catalog extends Component {
         this.updateColumns(this.state.allItems)
     }
 
-    async test() {
-        
-    }
-
     async getAllProducts() {
         await axios.get("https://fern-development.herokuapp.com/products")
-        .then(response => (
-            this.setState({ allItems: response["data"]["products"]}))
-            )
-        .catch(error => {
+        .then(response => {
+            console.log(response)
+            this.setState({allItems: response["data"]["products"]})
+        }).catch(error => {
+            console.log(error)
             alert("Error getting data please try again")
         });;
     }

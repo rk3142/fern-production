@@ -1,9 +1,9 @@
-import {getAllProducts} from "./api";
+import {getAllProducts, signIn} from "./api";
 import axios from "axios";
 
 jest.mock('axios');
 
-it('returns the title of the first album', async () => {
+it('returns all products', async () => {
   axios.get.mockResolvedValue({
     "data": {
       "products": [
@@ -41,3 +41,7 @@ it('returns the title of the first album', async () => {
   expect(products[0].product_name).toEqual("Generic BLM T-Shirt, 100% Super 210 GSM Pima Cotton");
 });
 
+it('sign in user', async () => {
+  await signIn();
+  expect(axios.post).toBeCalled();
+});
