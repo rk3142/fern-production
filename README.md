@@ -47,7 +47,7 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8 should be installed in the system
 `gem install bundle`
 2. Checkout the code from the git repo and follow the below steps
 
-`cd fern`\
+`cd fern-production/backend/`\
 `bundle install --without production --path vendor/` \
 `bundle exec rake db:migrate RAILS_ENV=development`\
 `bundle exec rake db:seed RAILS_ENV=development`
@@ -64,7 +64,7 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8 should be installed in the system
 `gem install bundle`
 2. Checkout the code from the git repo and follow the below steps
 
-`cd fern` \
+`cd fern-production/backend/` \
 `bundle install --without production --path vendor/` \
 `bundle exec rake db:migrate RAILS_ENV=test`\
 `bundle exec rake db:seed RAILS_ENV=test`
