@@ -8,7 +8,7 @@
 ## Installation Instructions
 ### Clone this repo
 ```commandline
-git clone https://github.com/eureyuri/fern-frontend.git
+git clone git@github.com:eureyuri/fern-frontend.git
 ```
 
 ### Install dependencies
