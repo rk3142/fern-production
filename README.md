@@ -35,10 +35,10 @@ This downloads and sets up all the packages. Without this step the app cannot wo
 Launches the app using localhost:3000 in a web browser
 
 ### `npm test`
-Runs the unit tests. The coverage will be outputted to `/coverage` in the root 
+Runs the unit tests. The coverage will be outputted to `/coverage` in the root of the frontend
 
 ### `npm run bdd`
-Runs cucumber for BDD. Note: BDD will not function as expected due to firebase authentication. The results have been displayed below.
+Runs cucumber for BDD. Note: BDD will not function as expected due to firebase authentication. The results have been displayed below and more detailed instructions will follow later.
 
 # Backend Deployment
 Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the system
@@ -97,6 +97,18 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
       11 scenarios (11 passed)
       30 steps (30 passed)
     ```
+    To run the tests, some code must be hacked to bypass firebase auth (cucumber doesn't support mocking so bypassing is the best option.) Here are the steps:
+    - Start the server `npm start`
+    - Login using the google authentication using your email and wait to be on the catalog screen
+    - Inspect the page (inspect elements for windows) and click on the `<<` to see more optionss. Within the dropdown click on application
+    - On the left of the sidebar click on the option below localStorage to see current storage state. Copy the value stored with the key `auth_token`
+    - In App.js in the frontend folder add a function of the form below:
+    ``` componentDidMount() {
+    		localStorage.setItem('auth_token', <INSET_COPIED_TOKEN_HERE>);
+    	}
+    ```
+    - Save the file
+    - Create a new console window and cd into the frontend directory again. Do `npm run bdd` and the cucumber tests will run.
 
 2. **TDD**:
 - We used *jest* for unit testing 
