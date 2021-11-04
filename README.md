@@ -7,7 +7,7 @@ application up and running.
 
 
 
-* Application URL(Heroku): https://fern-development.herokuapp.com/
+* Application URL(Heroku): https://fern-environment.herokuapp.com/
 
 ## Installation Instructions
 ### Clone this repo
