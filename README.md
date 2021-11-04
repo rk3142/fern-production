@@ -102,8 +102,9 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
     - Login using the google authentication using your email and wait to be on the catalog screen
     - Inspect the page (inspect elements for windows) and click on the `<<` to see more optionss. Within the dropdown click on application
     - On the left of the sidebar click on the option below localStorage to see current storage state. Copy the value stored with the key `auth_token`
-    - In App.js in the frontend folder add a function of the form below:
-    ``` componentDidMount() {
+    - In App.js in the frontend folder add a function of the form below, outside the render function:
+    ``` 
+    	componentDidMount() {
     		localStorage.setItem('auth_token', <INSET_COPIED_TOKEN_HERE>);
     	}
     ```
