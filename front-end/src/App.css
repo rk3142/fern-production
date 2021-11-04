@@ -1,0 +1,17 @@
+.entry-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 5rem;
+  font-weight: 800;
+  margin-top: 5rem;
+}
+
+.entry-text__block--blue {
+  color: #2A6CD0;
+}
+
+.entry-text__block--green {
+  color: #43AC3A;
+}
