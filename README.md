@@ -41,7 +41,7 @@ Runs the unit tests. The coverage will be outputted to `/coverage` in the root
 Runs cucumber for BDD. Note: BDD will not function as expected due to firebase authentication. The results have been displayed below.
 
 # Backend Deployment
-Pre-requisite: Ruby v2.6.6 or v2.6.8 should be installed in the system
+Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the system
 * Setting up your DEVELOPMENT environment
 1. Install Bundle
 `gem install bundle`
