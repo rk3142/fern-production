@@ -118,5 +118,5 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 	
 3. **Coverage Reports**
 - Frontend
-	![alt text](https://github.com/rk3142/fern-production/blob/main/BDD.png)
-	![alt text](https://github.com/rk3142/fern-production/blob/main/frontend_coverage.png)
+  - ![alt text](https://github.com/rk3142/fern-production/blob/main/BDD.png)
+  - ![alt text](https://github.com/rk3142/fern-production/blob/main/frontend_coverage.png)
