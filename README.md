@@ -101,3 +101,4 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 2. **TDD**:
 - We used *jest* for unit testing 
 - Each <name>.js file is accompanied by the corresponding <name>.test.js file
+- After runinng `npm test` in the frontend directory, the coverage will be available at `frontend/coverage/lcov-report/index.html`
