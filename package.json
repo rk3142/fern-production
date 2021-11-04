@@ -35,7 +35,8 @@
     "build": "react-scripts build",
     "test": "jest --coverage --watchAll",
     "eject": "react-scripts eject",
-    "bdd": "cucumber-js"
+    "bdd": "cucumber-js",
+    "coverage": "nyc npm run bdd"
   },
   "eslintConfig": {
     "extends": "react-app"
