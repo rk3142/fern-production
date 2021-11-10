@@ -280,20 +280,6 @@ export default class Catalog extends Component {
         return (
             <div className="App">
                 <div className="Header">
-                    <img className="Logo" src={logo} onClick={() => { this.handleSearch('') }} />
-                    <img className="Fern" src={fern_text} onClick={() => { this.handleSearch('') }} />
-                    <div className="SearchBar">
-                        <input className="SearchBar"
-                            value={this.state.search}
-                            onChange={(query) => { this.updateSearchQuery(query) }}
-                            type="search"
-                            onSubmit={() => { this.handleSearch(this.state.search) }}
-                        />
-                        <div className="SearchButton" onClick={() => this.submitSearchQuery()} onClick={() => this.handleSearch(this.state.search)}>
-                            <img className="SearchIcon" src={search_icon} />
-                        </div>
-                    </div>
-
                     <div className="CartCountContainer">
                         <div className="CartCount">
                             <p className="CartCountText">{this.state.cart.length}</p>

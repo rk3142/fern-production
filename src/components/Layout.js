@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom";
 import './Layout.css'
 import logo from '../assets/logo.png'
 import {authenticateAccess} from "../common/utils";
+import UserActions from "./UserActions";
 
 function Layout({children, authenticated=false}) {
     let history = useHistory()
@@ -21,7 +22,10 @@ function Layout({children, authenticated=false}) {
                 </div>
                 {
                     authenticated ? (
-                        <SearchBar />
+                        <>
+                            <SearchBar />
+                            <UserActions />
+                        </>
                     ) : (
                         <button className={'login_btn'} onClick={onClick}>Login</button>
                     )
