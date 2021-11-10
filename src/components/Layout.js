@@ -14,10 +14,16 @@ function Layout({children, authenticated=false}) {
         history.push("/auth")
     }
 
+    const backToHome = () => {
+        const accessToken = localStorage.getItem("auth_token");
+        if (accessToken != null) history.push("/catalog")
+        else history.push("/auth")
+    }
+
     return (
         <div className={'page'}>
             <div className="page__header">
-                <div className={'page__header__logo'}>
+                <div className={'page__header__logo'} onClick={backToHome} role='button'>
                     <img className={'page__header__logo__img'} src={logo} alt={'logo'}></img>
                     <div className={'page__header__logo__text'}>Fern</div>
                 </div>

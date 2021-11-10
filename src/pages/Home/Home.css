@@ -6,12 +6,25 @@
   font-size: 5rem;
   font-weight: 800;
   margin-top: 5rem;
+  padding: 0 6rem;
 }
 
 .entry-text__block--blue {
-  color: #2A6CD0;
+  color: var(--secondary-color);
 }
 
 .entry-text__block--green {
-  color: #43AC3A;
+  color: var(--primary-color);
+}
+
+.entry-text__btn {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 20px;
+  padding: 1rem 2.8rem;
+  color: var(--white-color);
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
 }

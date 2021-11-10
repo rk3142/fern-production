@@ -3,6 +3,7 @@ import axios from "axios";
 import ReactDOM from 'react-dom';
 import {useHistory} from 'react-router-dom';
 import './index.css';
+import './variables.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

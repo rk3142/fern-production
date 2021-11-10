@@ -1,3 +1,15 @@
+.login_btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--secondary-text-color);
+}
+
+.page__header__logo {
+    cursor: pointer;
+}
+
 .page {
     width: 100vw;
     height: 100vh;
@@ -8,7 +20,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5rem;
+    padding: 0 6rem;
     font-size: 2rem;
     color: #ABD02A;
     font-weight: bold;
