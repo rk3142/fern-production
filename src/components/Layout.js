@@ -1,30 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import SearchBar from "./SearchBar";
 import {useHistory} from "react-router-dom";
 import './Layout.css'
 import logo from '../assets/logo.png'
-import {signIn} from "../api";
+import {authenticateAccess} from "../common/utils";
 
 function Layout({children, authenticated=false}) {
     let history = useHistory()
 
-    const onClick = () => {
-        const accessToken = localStorage.getItem("auth_token");
-        if (accessToken != null) signIn()
-        history.push("/auth")
-    }
+    useEffect(() => authenticated && authenticateAccess(history, '/catalog'), [])
 
-    const backToHome = () => {
-        const accessToken = localStorage.getItem("auth_token");
-        if (accessToken != null) history.push("/catalog")
-        else history.push("/auth")
-    }
+    const onClick = () => authenticateAccess(history, '/catalog')
 
     return (
         <div className={'page'}>
             <div className="page__header">
-                <div className={'page__header__logo'} onClick={backToHome} role='button'>
-                    <img className={'page__header__logo__img'} src={logo} alt={'logo'}></img>
+                <div className={'page__header__logo'} onClick={onClick} role='button'>
+                    <img className={'page__header__logo__img'} src={logo} alt={'logo'} />
                     <div className={'page__header__logo__text'}>Fern</div>
                 </div>
                 {
