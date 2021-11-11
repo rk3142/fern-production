@@ -1,0 +1,24 @@
+{
+  "Price": {
+    "type": "range",
+    "filter": {
+      "Up to $10.00": {
+        "min": 0,
+        "max": 9.99
+      },
+      "$10.00 - $14.99": {
+        "min": 10,
+        "max": 14.99
+      }
+    }
+  },
+  "Rating": {
+    "type": "range",
+    "filter": {
+      "3": {
+        "min": 3,
+        "max": 3.9
+      }
+    }
+  }
+}
