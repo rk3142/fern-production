@@ -11,7 +11,7 @@ function SideBarCard({title, filter}) {
             <CardContent>
                 <FormGroup>
                     {title}
-                    {Object.keys(filter).map(f => <FormControlLabel control={<Checkbox/>} label={f}/>)}
+                    {Object.keys(filter).map(f => <FormControlLabel key={f} control={<Checkbox/>} label={f}/>)}
                 </FormGroup>
             </CardContent>
         </Card>

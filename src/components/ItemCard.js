@@ -10,6 +10,7 @@ import co2_icon from "../assets/CO2.png";
 import h2o_icon from "../assets/h2o_icon.png";
 import energy_icon from "../assets/energy_icon.jpeg";
 import StarRatings from "react-star-ratings";
+import {useHistory} from "react-router-dom";
 
 function ItemCard({item}) {
     const { product_id,
@@ -24,9 +25,16 @@ function ItemCard({item}) {
             water,
             energy } = item
 
+    let history = useHistory()
+
+    const goToDetails = async () => {
+        localStorage.setItem('recently_clicked', JSON.stringify(item))
+        history.push("/productdetails");
+    }
+
     return (
         <Card>
-            <CardContent onClick={() => console.log('card')}>
+            <CardContent onClick={goToDetails}>
                 <div className="item__name">{product_name}</div>
 
                 <div className="item__eco_status">

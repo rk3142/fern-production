@@ -10,6 +10,7 @@ function SideBar({filters}) {
             {
                 Object.keys(filters).map(filterName =>
                     <SideBarCard
+                        key={filterName}
                         title={filterName}
                         filter={filters[filterName]["filter"]}
                     />
