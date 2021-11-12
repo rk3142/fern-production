@@ -6,6 +6,8 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Catalog from "./pages/Catalog";
 import ProductDetails from "./pages/ProductDetails";
+import Saved from "./pages/Saved";
+import UserProfile from "./pages/UserProfile";
 
 export default class App extends Component {
   render() {
@@ -14,11 +16,13 @@ export default class App extends Component {
             <Switch>
                 <Route path="/auth" component={Authentication} />
 
-                <Route path={['/catalog', '/productdetails']}>
+                <Route path={['/catalog', '/productdetails', '/saved', '/profile']}>
                     <Layout authenticated>
                         <Switch>
                             <ProtectedRoute path="/catalog" component={Catalog} exact />
                             <ProtectedRoute path="/productdetails" component={ProductDetails} />
+                            <ProtectedRoute path="/saved" component={Saved} />
+                            <ProtectedRoute path="/profile" component={UserProfile} />
                         </Switch>
                     </Layout>
                 </Route>

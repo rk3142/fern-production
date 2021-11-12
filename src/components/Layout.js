@@ -12,12 +12,12 @@ function Layout({children, authenticated=false}) {
 
     useEffect(() => authenticated && authenticateAccess(history, location['pathname']), [])
 
-    const onClick = () => authenticateAccess(history, '/catalog')
+    const onClickLogo = () => authenticateAccess(history, '/catalog')
 
     return (
         <div className={'page'}>
             <div className="page__header">
-                <div className={'page__header__logo'} onClick={onClick} role='button'>
+                <div className={'page__header__logo'} onClick={onClickLogo} role='button'>
                     <img className={'page__header__logo__img'} src={logo} alt={'logo'} />
                     <div className={'page__header__logo__text'}>Fern</div>
                 </div>

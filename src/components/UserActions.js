@@ -2,22 +2,19 @@ import React from 'react';
 import './UserActions.css'
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import PersonIcon from '@mui/icons-material/Person';
+import {authenticateAccess} from "../common/utils";
+import {useHistory} from "react-router-dom";
 
-function UserActions(props) {
-    // TODO
-    const handleSaved = () => {
-        console.log('favorited items')
-    }
+function UserActions() {
+    let history = useHistory()
 
-    // TODO
-    const handleUserProfile = () => {
-        console.log('handles user profile')
-    }
+    const onClickSaved = () => authenticateAccess(history, '/saved')
+    const onClickProfile = () => authenticateAccess(history, '/profile')
 
     return (
         <div className='user_actions'>
-            <BookmarksIcon onClick={handleSaved} />
-            <PersonIcon onClick={handleUserProfile} />
+            <BookmarksIcon onClick={onClickSaved} />
+            <PersonIcon onClick={onClickProfile} />
         </div>
     );
 }
