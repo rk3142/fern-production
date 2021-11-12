@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import SearchBar from "./SearchBar";
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import './Layout.css'
 import logo from '../assets/logo.png'
 import {authenticateAccess} from "../common/utils";
@@ -8,8 +8,9 @@ import UserActions from "./UserActions";
 
 function Layout({children, authenticated=false}) {
     let history = useHistory()
+    let location = useLocation()
 
-    useEffect(() => authenticated && authenticateAccess(history, '/catalog'), [])
+    useEffect(() => authenticated && authenticateAccess(history, location['pathname']), [])
 
     const onClick = () => authenticateAccess(history, '/catalog')
 

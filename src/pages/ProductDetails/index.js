@@ -6,6 +6,11 @@ import energy_icon from '../../assets/energy_icon.jpeg'
 import './ProductDetails.css';
 import {Button} from "@mui/material";
 
+const goToLink = (link) => {
+    window.location.href = link
+    return null
+}
+
 class ProductDetails extends Component {
 
   constructor(props) {
@@ -66,7 +71,12 @@ class ProductDetails extends Component {
 
                         <div className="details__info__more__actions__buttons">
                             <Button variant='contained' className={'details__info__more__actions__buttons-save'}>Save</Button>
-                            <Button variant='contained' className={'details__info__more__actions__buttons-buy'}>Buy</Button>
+                            <Button variant='contained'
+                                    className={'details__info__more__actions__buttons-buy'}
+                                    onClick={() => goToLink(this.state.product['link'])}
+                            >
+                                Buy
+                            </Button>
                         </div>
                     </div>
 

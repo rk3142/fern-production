@@ -13,8 +13,7 @@ import StarRatings from "react-star-ratings";
 import {useHistory} from "react-router-dom";
 
 function ItemCard({item}) {
-    const { product_id,
-            product_name,
+    const { product_name,
             image_url,
             link,
             prices,
@@ -32,9 +31,14 @@ function ItemCard({item}) {
         history.push("/productdetails");
     }
 
+    const goToLink = (link) => {
+        window.location.href = link
+        return null
+    }
+
     return (
         <Card>
-            <CardContent onClick={goToDetails}>
+            <CardContent onClick={goToDetails} className={'card'}>
                 <div className="item__name">{product_name}</div>
 
                 <div className="item__eco_status">
@@ -90,8 +94,11 @@ function ItemCard({item}) {
                     />
                 </div>
                 <div className="product_action">
-                    <BookmarkBorderIcon style={{marginRight: '0.6rem'}} onClick={() => console.log('bookmark')} />
-                    <LaunchOutlined />
+                    <BookmarkBorderIcon
+                        style={{marginRight: '0.6rem'}}
+                        onClick={() => console.log('bookmark')}
+                    />
+                    <LaunchOutlined onClick={() => goToLink(link)} />
                 </div>
             </CardActions>
         </Card>
