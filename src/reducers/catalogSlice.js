@@ -51,7 +51,7 @@ export const catalogSlice = createSlice({
                           filterDetails = filters[filterCategory]['filter'][filterValue]
                           filterMin = filterDetails['min']
                           filterMax = filterDetails['max']
-                          isInclude = filterMin < productDetail && productDetail < filterMax
+                          isInclude = filterMin <= productDetail && productDetail <= filterMax
                           if (isInclude) throw BreakException;
                       })
                   } catch (e) {
