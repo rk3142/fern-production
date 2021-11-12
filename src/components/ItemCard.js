@@ -3,7 +3,7 @@ import {Card, CardActions, CardContent} from "@mui/material";
 import NumberFormat from 'react-number-format';
 import LinesEllipsis from 'react-lines-ellipsis'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import {LaunchOutlined} from "@mui/icons-material";
 
 import './ItemCard.css'
 import co2_icon from "../assets/CO2.png";
@@ -91,7 +91,7 @@ function ItemCard({item}) {
                 </div>
                 <div className="product_action">
                     <BookmarkBorderIcon style={{marginRight: '0.6rem'}} onClick={() => console.log('bookmark')} />
-                    <AddShoppingCartIcon />
+                    <LaunchOutlined />
                 </div>
             </CardActions>
         </Card>

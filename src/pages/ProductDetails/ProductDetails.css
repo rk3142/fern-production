@@ -1,73 +1,94 @@
-.App {
-  text-align: left;
+.details_page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.Logo {
-  width: 60px;
-  height: 60px;
-  margin-top: 5px;
-  margin-left: 5px;
+.details {
+  width: 100%;
+  display: flex;
+  margin-bottom: 2rem;
 }
 
-.Fern {
-  width: 71px;
-  height: 28px;
-  margin-top: 20px;
-  margin-left: 10px;
+.details__image {
+  width: 25%;
+  margin-right: 2rem;
 }
 
-.Header {
-  height: fit-content;
-  
+.details__info {
+  width: 70%;
 }
 
-.PageTitle {
-  font-size: 22px;
-  font-weight: bold;
-  margin-left: 280px;
+.details__info__name {
+  line-height: 2rem;
+  margin-top: 0;
 }
 
-.Body {
-  height: 400px;
-  width: 50%;
-  margin-left: 30px;
-  margin-top: 20px;
+.details__info__body {
+  display: flex;
 }
 
 .EcoDetsIcon {
-  height: 30px;
+  height: 20px;
   margin-top: 10px;
 }
 
-.DetailsBody {
-  flex-direction: row;
-  display: flex;
-  width: 1080px;
-  margin-left: 40px;
-}
-
 .EcoDetsText {
-  font-size: 16px;
+  font-size: 0.8rem;
   margin-left: 5px;
   margin-right: 25px;
 }
 
-.SourceText {
-  font-size: 16px;
-  color: #7d7d7d;
-  margin-top: 16px;
-  font-weight: bold;
-  margin-right: 20px;
-  margin-left: -20px;
-}
-
-.Source {
-  flex-direction: row;
+.details__info__more {
   display: flex;
-  width: 308px;
-  margin-left: 40px;
+  margin-top: 1rem;
 }
 
-.DescriptionBody {
-  width: 800px;
+.details__info__more__actions {
+  width: 50%;
+}
+
+.details__info__more__description {
+  width: 50%;
+  color: var(--third-text-color);
+}
+
+.details__info__more__actions__ratings {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.details__info__more__actions__ratings__stars {
+  margin-right: 1rem;
+}
+
+.details__info__more__actions__ratings__stars__source {
+  color: var(--third-text-color);
+  margin-left: 0.5rem;
+}
+
+.details__info__more__actions__price {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.details__info__more__actions__buttons > button {
+  border-radius: 20px;
+  padding: 0.7rem 2.8rem;
+  box-shadow: none;
+  margin-right: 0.5rem;
+}
+
+.details__info__more__actions__buttons-save, .details__info__more__actions__buttons-save:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+.details__info__more__actions__buttons-buy, .details__info__more__actions__buttons-buy:hover {
+  background-color: var(--primary-color) !important;
+}
+
+
+/* Similar products */
+.similar_products__title {
+  font-size: 1.5rem;
 }
