@@ -1,18 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import './Catalog.css';
 import SideBar from "../../components/SideBar";
 import ItemCard from "../../components/ItemCard";
 import filters from '../../filters.json'
-import {getAllProducts} from "../../api";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllCatalog, selectProducts} from "../../reducers/catalogSlice";
+import {CircularProgress} from "@mui/material";
 
 function Catalog() {
-    const [searchCriteria, setSearchCriteria] = useState([]);
-    const [items, setItems] = useState([])
+    const dispatch = useDispatch();
+    const items = useSelector(selectProducts).filteredProducts
+    const status = useSelector(selectProducts).status
 
     useEffect(() => {
-        getAllProducts().then(res => {
-            res ? setItems([...items, ...res]) : alert("Error getting data please try again")
-        })
+        dispatch(getAllCatalog())
     }, [])
 
     return (
@@ -20,7 +21,9 @@ function Catalog() {
             <SideBar filters={filters} />
             <div className={'catalog__list'}>
                 {
-                    items.map(item => <ItemCard item={item} key={item.product_id} />)
+                    status === 'success' ?
+                        items.map(item => <ItemCard item={item} key={item.product_id} />)
+                        : <CircularProgress />
                 }
             </div>
         </>
@@ -29,78 +32,6 @@ function Catalog() {
 
 export default Catalog;
 
-// export default class Catalog extends Component {
-//
-//
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             date: new Date(),
-//             cart: [],
-//             search: '',
-//             items_col1: [],
-//             items_col2: [],
-//             items_col3: [],
-//             allItems:[],
-//             isPrice1: false,
-//             isPrice2: false,
-//             isPrice3: false,
-//             isPrice4: false,
-//             isRating1: false,
-//             isRating2: false,
-//             isRating3: false
-//         };
-//     }
-//
-//     async componentDidMount() {
-//         await this.getAllProducts();
-//         this.updateColumns(this.state.allItems)
-//     }
-//
-//     async getAllProducts() {
-//         await axios.get("https://fern-development.herokuapp.com/products")
-//         .then(response => {
-//             console.log(response)
-//             this.setState({allItems: response["data"]["products"]})
-//         }).catch(error => {
-//             console.log(error)
-//             alert("Error getting data please try again")
-//         });;
-//     }
-//
-//     goToDetails = async (item) => {
-//         await localStorage.setItem('recently_clicked', JSON.stringify(item))
-//         this.props.history.push("/productdetails");
-//     }
-//
-//     updateColumns = async (items) => {
-//         var items1 = []
-//         var items2 = []
-//         var items3 = []
-//         await this.setState({
-//             items_col1: [],
-//             items_col2: [],
-//             items_col3: []
-//         })
-//         for (var i in items) {
-//             if (i % 3 == 0) {
-//                 items1.push(items[i])
-//             } else if (i % 3 == 1) {
-//                 items2.push(items[i])
-//             } else {
-//                 items3.push(items[i])
-//             }
-//         }
-//         await this.setState({
-//             items_col1: items1,
-//             items_col2: items2,
-//             items_col3: items3
-//         })
-//         /*console.log(this.state.items_col1)
-//         console.log(this.state.items_col2)
-//         console.log(this.state.items_col3)*/
-//     }
-//
 //     updateSearchQuery = async (query) => {
 //         await this.setState({ search: query.target.value })
 //         console.log(query.target.value + "|")

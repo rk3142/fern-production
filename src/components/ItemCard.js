@@ -68,7 +68,7 @@ function ItemCard({item}) {
                                 starSpacing="5"
                             />
                         </div>
-                        {/*<div className="ProductRatings"></div>*/}
+
                         <NumberFormat value={ratings}
                                       className="ProductRatings"
                                       displayType={'text'}

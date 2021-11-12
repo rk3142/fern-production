@@ -8,10 +8,6 @@ export const getAllProducts = async function () {
         .then(response => {
             return response["data"]["products"]
         })
-        .catch(error => {
-            console.error(error)
-            return false
-        });
 }
 
 export const signIn = async function () {

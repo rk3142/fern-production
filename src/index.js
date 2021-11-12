@@ -6,6 +6,8 @@ import './index.css';
 import './variables.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {Provider} from "react-redux";
+import {store} from "./store";
 
 
 axios.interceptors.request.use(
@@ -45,9 +47,9 @@ axios.interceptors.response.use(
 
 ReactDOM.render(
   <React.StrictMode>
-    {/*<Provider store={store}>*/}
+    <Provider store={store}>
         <App />
-    {/*</Provider>*/}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

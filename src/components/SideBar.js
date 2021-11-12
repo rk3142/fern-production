@@ -2,8 +2,6 @@ import React from 'react';
 import './SideBar.css'
 import SideBarCard from "./SideBarCard";
 
-const priceFilter = ['Up to $10.00', '$10.00 - $14.99', '$15.00 - $19.99', '$20.00 & above']
-
 function SideBar({filters}) {
     return (
         <div className='sidebar'>
