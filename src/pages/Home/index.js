@@ -14,7 +14,7 @@ function Home() {
           <div className="entry-text">
               <div className="entry-text__block">Feeling <span className="entry-text__block--blue">Blue</span>?</div>
               <div className="entry-text__block">Go <span className="entry-text__block--green">GREEN</span></div>
-              <button className="entry-text__btn" onClick={signIn}>Sign Up</button>
+              <button className="entry-text__btn" onClick={signIn}>Log In</button>
           </div>
         </>
     );

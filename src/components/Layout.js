@@ -21,13 +21,11 @@ function Layout({children, authenticated=false}) {
                     <div className={'page__header__logo__text'}>Fern</div>
                 </div>
                 {
-                    authenticated ? (
+                    authenticated && (
                         <>
                             <SearchBar />
                             <UserActions />
                         </>
-                    ) : (
-                        <button className={'login_btn'} onClick={onClick}>Login</button>
                     )
                 }
             </div>
