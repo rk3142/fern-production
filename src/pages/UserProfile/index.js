@@ -15,6 +15,7 @@ function UserProfile(props) {
     const items = useSelector(selectProducts).filteredProducts
     const status = useSelector(selectProducts).status
     const [user, setUser] = useState({})
+    const [spores, setSpores] = useState(0)
     const [verifyImage, setVerifyImage] = useState(true)
     const [image, setImage] = useState("")
 
@@ -27,15 +28,14 @@ function UserProfile(props) {
     }
 
     const updateSporesCount = async (purchase) => {
-        let sporeCount = 0
-        sporeCount -= purchase
-        let user_new = user
-        user_new["spores"] = sporeCount
-        setUser(user_new)
+        if (purchase <= spores) {
+            setSpores(spores - purchase)
+        }
     }
 
     useEffect(() => {
         getUserData()
+        setSpores(500) //change this for the iteration
     }, [])
 
     const uploadImage = () => {
@@ -72,7 +72,7 @@ function UserProfile(props) {
                     Hi {user["first_name"]}
                 </p>
                 <p className="User_Subtitle">
-                    500 spores
+                    {spores} spores
                 </p>
             </div>
             <div className="Token_Spend">
