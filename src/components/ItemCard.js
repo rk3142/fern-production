@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Card, CardActions, CardContent} from "@mui/material";
 import NumberFormat from 'react-number-format';
 import LinesEllipsis from 'react-lines-ellipsis'
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import {LaunchOutlined} from "@mui/icons-material";
 
@@ -13,6 +14,9 @@ import StarRatings from "react-star-ratings";
 import {useHistory} from "react-router-dom";
 
 function ItemCard({item}) {
+    const [hover, setHover] = useState(false)
+    const [saved, setSaved] = useState(false)
+
     const { product_name,
             image_url,
             link,
@@ -34,6 +38,14 @@ function ItemCard({item}) {
     const goToLink = (link) => {
         window.location.href = link
         return null
+    }
+
+    const handleHostSaved = () => setHover(!hover)
+
+    const handleSaved = () => {
+        if (!saved) console.log('saved')
+        else console.log('removed')
+        setSaved(!saved)
     }
 
     return (
@@ -94,10 +106,21 @@ function ItemCard({item}) {
                     />
                 </div>
                 <div className="product_action">
-                    <BookmarkBorderIcon
-                        style={{marginRight: '0.6rem'}}
-                        onClick={() => console.log('bookmark')}
-                    />
+                    {
+                        saved || hover ? (
+                            <BookmarkIcon
+                                style={{marginRight: '0.6rem'}}
+                                onMouseLeave={handleHostSaved}
+                                onClick={handleSaved}
+                            />
+                        ) : (
+                            <BookmarkBorderIcon
+                                style={{marginRight: '0.6rem'}}
+                                onMouseEnter={handleHostSaved}
+                            />
+                        )
+                    }
+
                     <LaunchOutlined onClick={() => goToLink(link)} />
                 </div>
             </CardActions>
