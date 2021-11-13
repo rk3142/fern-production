@@ -31,6 +31,7 @@ function SimilarItemCard({ item }) {
     const goToDetails = async () => {
         localStorage.setItem('recently_clicked', JSON.stringify(item))
         history.push("/productdetails");
+        window.location.reload(false);
     }
 
     return (
@@ -50,7 +51,7 @@ function SimilarItemCard({ item }) {
                         <div className="EcoStats">
                             <img className="EcoStatsIcon" src={energy_icon} />
                             <p className="EcoStatsText">{energy} kWh</p>
-                        </div>
+                        </div>s
                     </div>
 
                     <div className="product_image">

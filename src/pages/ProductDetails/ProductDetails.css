@@ -93,7 +93,7 @@
   font-size: 1.5rem;
 }
 
-.catalog__list {
+.similar_catalog__list {
   width: 80%;
   height: fit-content;
   margin-left: 1rem;
@@ -101,7 +101,7 @@
   flex-wrap: wrap;
 }
 
-.catalog__list > div {
+.similar_catalog__list > div {
   /*height: 600px;*/
   border-radius: 20px;
   margin-right: 1rem;
@@ -109,6 +109,6 @@
   flex-basis: calc(33.333333% - 0.7rem);
 }
 
-.catalog__list > div:nth-child(3n) {
+.similar_catalog__list > div:nth-child(3n) {
   margin-right: 0;
 }

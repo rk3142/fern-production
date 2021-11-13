@@ -25,8 +25,6 @@ function ProductDetails() {
     useEffect(() => {
         dispatch(getAllCatalog())
         setSimilarProducts(getSimilarProducts())
-        console.log(items)
-        console.log(similarProducts)
     }, [])
 
     const getSimilarProducts = () => {
@@ -102,7 +100,7 @@ function ProductDetails() {
 
             <div className="similar_products">
                 <div className="similar_products__title">Similar Products</div>
-                <div className={'catalog__list'}>
+                <div className={'similar_catalog__list'}>
                 {
                     status === 'success' ?
                         similarProducts.map(item => <SimilarItemCard item={item} key={item.product_id} />)
