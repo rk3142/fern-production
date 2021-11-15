@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { By, Key, Builder } = require("selenium-webdriver");
-const auth_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWUyOTRlZWRjMTY3Y2Q5N2JiNWE4MTliYmY3OTA2MzZmMTIzN2UiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQXVtIERpdnlhbmcgVXBhZGh5YXkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUFUWEFKem5DMTVVMG9MYklqTDkzVGg1Q3NYYXRBbXJSUUVMd1NUR282a0c9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZmVybi1kZWE0ZCIsImF1ZCI6ImZlcm4tZGVhNGQiLCJhdXRoX3RpbWUiOjE2MzY5ODQ5MjksInVzZXJfaWQiOiJ4NFZvRnJMUENsUE53dmx3N1FVYjdlSlE0TWkxIiwic3ViIjoieDRWb0ZyTFBDbFBOd3ZsdzdRVWI3ZUpRNE1pMSIsImlhdCI6MTYzNjk4NDkyOSwiZXhwIjoxNjM2OTg4NTI5LCJlbWFpbCI6ImFkdTIxMDRAY29sdW1iaWEuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTUyMjk5NjUwOTcwNzkzMTQzMzciXSwiZW1haWwiOlsiYWR1MjEwNEBjb2x1bWJpYS5lZHUiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.C7_tjcLHcFyre4e2eloGCxPTAyhy7nSsi1B73PHmyderlUeyJm0hOqsWfyCbM-jQJP8w0HnVOUQll-g2dhEzhxdm5JSQVEyT8IzDf1-6Ys0IMj73l7UKQEdBV4eqo5WF90I1uqCkmWENUIaMcBCYlP9UEb1Vz_ErumUXjLR6EkwTjtygRcz6u_uSc9aV-se57pkCLqhDMLAm_5eMuEAtYlxzMNewwfj4BF6Zh001vgVQ4y4tUvjBWcEFNP8jb-2uhY7nGdyZ485MTBFw6727vCrVmuoZwvu-pzKGifH9VP84JZyKeiUgRXlVqcxzAbniNrYwA1fRkFfLRPfmbTNHlg';
+const auth_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWUyOTRlZWRjMTY3Y2Q5N2JiNWE4MTliYmY3OTA2MzZmMTIzN2UiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQXVtIERpdnlhbmcgVXBhZGh5YXkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUFUWEFKem5DMTVVMG9MYklqTDkzVGg1Q3NYYXRBbXJSUUVMd1NUR282a0c9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZmVybi1kZWE0ZCIsImF1ZCI6ImZlcm4tZGVhNGQiLCJhdXRoX3RpbWUiOjE2MzY5OTA5NDksInVzZXJfaWQiOiJ4NFZvRnJMUENsUE53dmx3N1FVYjdlSlE0TWkxIiwic3ViIjoieDRWb0ZyTFBDbFBOd3ZsdzdRVWI3ZUpRNE1pMSIsImlhdCI6MTYzNjk5MDk0OSwiZXhwIjoxNjM2OTk0NTQ5LCJlbWFpbCI6ImFkdTIxMDRAY29sdW1iaWEuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTUyMjk5NjUwOTcwNzkzMTQzMzciXSwiZW1haWwiOlsiYWR1MjEwNEBjb2x1bWJpYS5lZHUiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.VH4_xyQlBeoLbYmL_qLGWuLUoMzCTOfhVLzcBpOShBBgmKVD5DGbhK3u8mFnuwzGfHLYU0zneKexY9gEeQm7jFlZCu7YVA8Px713_ACnn9_jyJlp_3ryxHq2AfMIiYrraAjD5geZgAMhAgweb9yNtYcDoShnie9msK2bC9UmuMDeblV7j7Api8oPWEuP9OwYDE_4l0BnFjOq4OjxXPLjRP6OGHewanKqfjkDpoSd68xT5HvuqBAhmQtsMa6OIXGbQcuLer7Z2uNe2TKjtzMS0v7mRyNXJd3wX0aV9uTLjZRL5s4uerh1vZqHMm2oyWA9_O6f5bemsH8AJdHrbBnC2g';
 let driver = require("chromedriver");
 
 driver = new Builder().forBrowser("chrome").build();
@@ -14,13 +14,11 @@ Given('I am on the login page', async function () {
 })
 
 Given('I am on the catalog page', async function () {
-    await driver.get("http://localhost:3000/catalog");
     setTimeout(async function () {
-        let filters = await driver.findElements(By.className("FilterTitle"))
+        await driver.get("http://localhost:3000/catalog");
+        let filters = await driver.findElements(By.className("MuiFormGroup-root css-dmmspl-MuiFormGroup-root"))
         assert.equal(await filters[0].getText(), "Price")
-        assert.equal(await filters[1].getText(), "Rating")
-    }, 5000);
-
+    }, 6000);
 })
 
 Given('I am on the catalog page with an item in my cart', async function () {
@@ -45,6 +43,12 @@ Given('I am on the product details page', async function () {
     }, 3000);
 })
 
+Given('I am on the user profile page', async function () {
+    setTimeout(async function () {
+        await driver.get("http://localhost:3000/profile");
+    }, 5000);
+})
+
 When('I go to the website link', async function () {
     await driver.get("http://localhost:3000/");
 })
@@ -56,7 +60,17 @@ When('I go to the auth link', async function () {
 When('I go to the catalog', async function () {
     await driver.get("http://localhost:3000/catalog");
     let buttons = await driver.findElements(By.className("firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button"))
-    //buttons[0].click()
+})
+
+When('I go to the user profile page', async function () {
+    await driver.get("http://localhost:3000/profile");
+})
+
+When('I click on verify image button', async function () {
+    setTimeout(async function () {
+        let add_buttons = await driver.findElements(By.className("Verify_Text"))
+        add_buttons[0].click()
+    }, 5000);
 })
 
 Then('I should see the welcome text', async function () {
@@ -80,7 +94,7 @@ Then('I should see the filters', async function () {
 Then('I should see all the shirts', async function () {
     setTimeout(async function () {
         let shirts = await driver.findElements(By.className("Item"))
-        assert.equal(await shirts.length > 3, true)
+        assert.equal(await shirts.length != 0, true)
     }, 3000);
 
 })
@@ -140,6 +154,27 @@ When('I click on product image', async function () {
     }, 3000);
 })
 
+When('I click on plant a tree button', async function () {
+    setTimeout(async function () {
+        let button = await driver.findElements(By.className("MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root details__info__more__actions__buttons-spend css-sghohy-MuiButtonBase-root-MuiButton-root"))
+        button[0].click()
+    }, 3000);
+})
+
+When('I click on collect trash button', async function () {
+    setTimeout(async function () {
+        let button = await driver.findElements(By.className("MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root details__info__more__actions__buttons-spend css-sghohy-MuiButtonBase-root-MuiButton-root"))
+        button[1].click()
+    }, 3000);
+})
+
+When('I click on capture carbon button', async function () {
+    setTimeout(async function () {
+        let button = await driver.findElements(By.className("MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root details__info__more__actions__buttons-spend css-sghohy-MuiButtonBase-root-MuiButton-root"))
+        button[2].click()
+    }, 3000);
+})
+
 Then('I should have 1 item in the cart', async function () {
     setTimeout(async function () {
         let el = await driver.findElement(By.className("CartCountText"))
@@ -183,4 +218,60 @@ Then('I should see product description', async function () {
         let details = await driver.findElements(By.className("ProductDescription"))
         assert.equal(details != null, true)
     }, 3000);
+})
+
+Then('I should see similar products', async function () {
+    setTimeout(async function () {
+        let shirts = await driver.findElements(By.className("similar_products__title"))
+        let text = await shirts[0].getText()
+        assert.equal(text.includes("Similar Products", true))
+    }, 5000);
+})
+
+Then('I should be on user profile page', async function () {
+    setTimeout(async function () {
+        let filters = await driver.findElements(By.className("User_Subtitle"))
+        let text = await filters[0].getText()
+        assert.equal(text.includes("spores"), true)
+    }, 5000);
+})
+
+Then('I should see my spore count', async function () {
+    setTimeout(async function () {
+        let spores = await driver.findElements(By.className("User_Subtitle"))
+        let text = await spores[0].getText()
+        assert.equal(text.includes("spores"), true)
+    }, 5000);
+})
+
+Then('I should see 200 spores', async function () {
+    setTimeout(async function () {
+        let spores = await driver.findElements(By.className("User_Subtitle"))
+        let text = await spores[0].getText()
+        assert.equal(text.includes("200"), true)
+    }, 5000);
+})
+
+Then('I should see 100 spores', async function () {
+    setTimeout(async function () {
+        let spores = await driver.findElements(By.className("User_Subtitle"))
+        let text = await spores[0].getText()
+        assert.equal(text.includes("100"), true)
+    }, 5000);
+})
+
+Then('I should see 450 spores', async function () {
+    setTimeout(async function () {
+        let spores = await driver.findElements(By.className("User_Subtitle"))
+        let text = await spores[0].getText()
+        assert.equal(text.includes("100"), true)
+    }, 5000);
+})
+
+Then('I should see upload', async function () {
+    setTimeout(async function () {
+        let spores = await driver.findElements(By.className("MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"))
+        let text = await spores[0].getText()
+        assert.equal(text.includes("Upload"), true)
+    }, 5000);
 })
