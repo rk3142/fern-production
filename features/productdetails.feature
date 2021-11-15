@@ -17,3 +17,7 @@ Scenario: I want to see more detailed statistics about environmental impact
 Scenario: I want to see more detailed product description
   Given I am on the product details page
   Then I should see product description
+
+Scenario: I want to see similar products
+  Given I am on the product details page
+  Then I should see similar products
