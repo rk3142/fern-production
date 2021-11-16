@@ -54,13 +54,13 @@
   },
   "RSpec": {
     "coverage": {
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/helpers/application_helper.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/helpers/firebase_helper.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/helpers/firebase_helper.rb": {
         "lines": [
           null,
           1,
@@ -105,7 +105,7 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/helpers/product_helper.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/helpers/product_helper.rb": {
         "lines": [
           1,
           null,
@@ -133,7 +133,7 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/helpers/session_helper.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/helpers/session_helper.rb": {
         "lines": [
           1,
           null,
@@ -147,13 +147,13 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/helpers/user_helper.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/helpers/user_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/controllers/product_controller.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/controllers/product_controller.rb": {
         "lines": [
           1,
           1,
@@ -210,7 +210,7 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/controllers/application_controller.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/controllers/application_controller.rb": {
         "lines": [
           1,
           null,
@@ -254,16 +254,17 @@
           3,
           null,
           23,
-          23,
           null,
           null,
-          23,
+          null,
+          null,
+          null,
           null,
           null,
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/controllers/session_controller.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/controllers/session_controller.rb": {
         "lines": [
           1,
           null,
@@ -276,7 +277,7 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/controllers/user_controller.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/controllers/user_controller.rb": {
         "lines": [
           1,
           1,
@@ -329,7 +330,7 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/models/product.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/models/product.rb": {
         "lines": [
           1,
           1,
@@ -341,14 +342,14 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/models/application_record.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/models/product_type.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/models/product_type.rb": {
         "lines": [
           1,
           1,
@@ -356,14 +357,14 @@
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/models/product_price_mapper.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/models/product_price_mapper.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/WillardZhou/Documents/CU/SaaS/homework/fern/app/models/user.rb": {
+      "/Users/rishavkumar/Desktop/Columbia/Fall-2021/ESaaS/Project/development_code/fern/app/models/user.rb": {
         "lines": [
           1,
           1,
@@ -372,6 +373,6 @@
         ]
       }
     },
-    "timestamp": 1635960206
+    "timestamp": 1635974607
   }
 }
