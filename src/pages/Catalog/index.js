@@ -22,8 +22,13 @@ function Catalog() {
             <div className={'catalog__list'}>
                 {
                     status === 'success' ?
-                        items.map(item => <ItemCard item={item} key={item.product_id} />)
-                        : <CircularProgress />
+                        (
+                            items.map(item => <ItemCard item={item} key={item.product_id} />)
+                        ) : (
+                            <div className="catalog__list__load">
+                                <CircularProgress />
+                            </div>
+                        )
                 }
             </div>
         </>

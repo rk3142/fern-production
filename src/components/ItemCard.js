@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Card, CardActions, CardContent} from "@mui/material";
 import NumberFormat from 'react-number-format';
 import LinesEllipsis from 'react-lines-ellipsis'
@@ -12,10 +12,17 @@ import h2o_icon from "../assets/h2o_icon.png";
 import energy_icon from "../assets/energy_icon.jpeg";
 import StarRatings from "react-star-ratings";
 import {useHistory} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {addSaved, removeSaved, selectSaved} from "../reducers/savedSlice";
+import _ from "lodash";
 
 function ItemCard({item}) {
     const [hover, setHover] = useState(false)
     const [saved, setSaved] = useState(false)
+
+    const dispatch = useDispatch();
+    const savedItems = useSelector(selectSaved)
+    let history = useHistory()
 
     const { product_name,
             image_url,
@@ -27,8 +34,6 @@ function ItemCard({item}) {
             carbon,
             water,
             energy } = item
-
-    let history = useHistory()
 
     const goToDetails = async () => {
         localStorage.setItem('recently_clicked', JSON.stringify(item))
@@ -42,11 +47,24 @@ function ItemCard({item}) {
 
     const handleHostSaved = () => setHover(!hover)
 
-    const handleSaved = () => {
-        if (!saved) console.log('saved')
-        else console.log('removed')
+    const handleSaved = (item) => {
+        if (!saved) dispatch(addSaved(item))
+        else dispatch(removeSaved(item))
         setSaved(!saved)
     }
+
+    useEffect(() => {
+        let savedState = false
+        savedItems.forEach(i => {
+            if (_.isEqual(i, item)) {
+                setSaved(true)
+                savedState = true
+                return true
+            }
+        })
+
+        if (!savedState) setSaved(false)
+    }, [])
 
     return (
         <Card>
@@ -111,7 +129,7 @@ function ItemCard({item}) {
                             <BookmarkIcon
                                 style={{marginRight: '0.6rem'}}
                                 onMouseLeave={handleHostSaved}
-                                onClick={handleSaved}
+                                onClick={() => handleSaved(item)}
                             />
                         ) : (
                             <BookmarkBorderIcon
