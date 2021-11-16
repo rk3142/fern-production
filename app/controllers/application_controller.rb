@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def get_limit_value limit
+  def get_limit_value(limit)
     if limit.nil?
       return 50
     else
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def get_offset_value offset
+  def get_offset_value(offset)
     if offset.nil?
       return 0
     else
@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
       msg = {:resp_msg => "You are not logged in"}
       render json: msg, status: 403
       return
+    end
+  end
+
+
+  def set_session_id_if_empty
+    p session[:user_id]
+    if Rails.env.to_s.equal?"development" && session[:user_id].nil?
+      session[:user_id] = "QdC1mAbrsvX22Ba05n4tvnvuwd63"
     end
   end
 
