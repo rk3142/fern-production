@@ -79,7 +79,7 @@ class ProductController < ApplicationController
     begin
       Rails.logger.info "Proceeding to process API: similar_products"
       bookmarked_products = BookmarksHelper.get_bookmarked_products(session[:user_id])
-      if Product.exists?(:product_id => params[:product])
+      if Product.exists?(:product_id => params[:product_id])
         products = Product.get_random_products(5, params[:product_id])
         product_list = []
         if products.present?
