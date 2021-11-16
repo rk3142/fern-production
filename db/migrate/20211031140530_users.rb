@@ -47,7 +47,7 @@ class Users < ActiveRecord::Migration
       t.string  "type_description", limit: 128
     end
 
-    add_index "spores_milestone_mapper", ["type_id"], name: "sqlite_autoindex_spores_milestone_mapper_1", unique: true
+    add_index "spores_milestone_mapper", ["type_id"], name: "spores_milestone_mapper_1", unique: true
     add_index "spores_milestone_mapper", ["type_key"], name: "spores_milestones_mapper_type_key_uindex", unique: true
 
     create_table "user", primary_key: "user_id", force: :cascade do |t|
@@ -61,7 +61,7 @@ class Users < ActiveRecord::Migration
     end
 
     add_index "user", ["email_address"], name: "user_email_address_uindex", unique: true
-    add_index "user", ["user_id"], name: "sqlite_autoindex_user_1", unique: true
+    add_index "user", ["user_id"], name: "index_user_1", unique: true
     add_index "user", ["user_id"], name: "user_user_id", unique: true
 
     create_table "user_favorite", id: false, force: :cascade do |t|
@@ -77,7 +77,7 @@ class Users < ActiveRecord::Migration
       t.datetime "modified_at"
     end
 
-    add_index "user_spores_count", ["user_id"], name: "sqlite_autoindex_user_spores_count_1", unique: true
+    add_index "user_spores_count", ["user_id"], name: "index_user_spores_count_1", unique: true
     add_index "user_spores_count", ["user_id"], name: "user_spores_count_user_id_uindex", unique: true
 
     create_table "website_mapper", id: false, force: :cascade do |t|
