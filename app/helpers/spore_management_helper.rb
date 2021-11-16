@@ -11,10 +11,14 @@ module SporeManagementHelper
           amount = [amount, max_product_price].min
           spores_claimed = SporeManagementHelper.convert_amount_to_spores amount
           @current_user_spore = User.select("current_spore_count").where(:user_id => user_id).first
-          @current_user_spore.current_spore_count += spores_claimed
-          User.where(:user_id => user_id).update_all(:current_spore_count => @current_user_spore.current_spore_count)
-          SporeManagementHelper.save_spore_history(user_id, "claim", spores_claimed, "", product_id, invoice_id)
-          claim_processed = true
+          if @current_user_spore.present?
+            @current_user_spore.current_spore_count += spores_claimed
+            User.where(:user_id => user_id).update_all(:current_spore_count => @current_user_spore.current_spore_count)
+            SporeManagementHelper.save_spore_history(user_id, "claim", spores_claimed, "", product_id, invoice_id)
+            claim_processed = true
+          else
+            response = "User not found"
+          end
         else
           response = "Invoice already redeemed"
         end
