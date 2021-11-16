@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCatalog, selectProducts } from "../../reducers/catalogSlice";
 import { Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
+import {addSaved, removeSaved, selectSaved} from "../../reducers/savedSlice";
+import _ from "lodash";
 
 const goToLink = (link) => {
     window.location.href = link
@@ -19,12 +21,26 @@ function ProductDetails() {
     const dispatch = useDispatch();
     const [product, setProduct] = useState(JSON.parse(localStorage.getItem('recently_clicked')))
     const [similarProducts, setSimilarProducts] = useState([])
+    const [isSaved, setIsSaved] = useState(false)
     const items = useSelector(selectProducts).filteredProducts
     const status = useSelector(selectProducts).status
+    const savedItems = useSelector(selectSaved)
 
     useEffect(() => {
-        dispatch(getAllCatalog())
         setSimilarProducts(getSimilarProducts())
+    }, [])
+
+    useEffect(() => {
+        let savedState = false
+        savedItems.forEach(i => {
+            if (_.isEqual(i, product)) {
+                setIsSaved(true)
+                savedState = true
+                return true
+            }
+        })
+
+        if (!savedState) setIsSaved(false)
     }, [])
 
     const getSimilarProducts = () => {
@@ -35,6 +51,16 @@ function ProductDetails() {
             }
         }
         return similar_items;
+    }
+
+    const saveItem = item => {
+        dispatch(addSaved(item))
+        setIsSaved(true)
+    }
+
+    const removeItem = item => {
+        dispatch(removeSaved(item))
+        setIsSaved(false)
     }
 
     return (
@@ -81,7 +107,24 @@ function ProductDetails() {
                             </div>
 
                             <div className="details__info__more__actions__buttons">
-                                <Button variant='contained' className={'details__info__more__actions__buttons-save'}>Save</Button>
+                                {
+                                    isSaved ? (
+                                        <Button variant='contained'
+                                            className={'details__info__more__actions__buttons-unsave'}
+                                            onClick={() => removeItem(product)}
+                                        >
+                                            Unsave
+                                        </Button>
+                                    ) : (
+                                        <Button variant='contained'
+                                            className={'details__info__more__actions__buttons-save'}
+                                            onClick={() => saveItem(product)}
+                                        >
+                                            Save
+                                        </Button>
+                                    )
+                                }
+
                                 <Button variant='contained'
                                     className={'details__info__more__actions__buttons-buy'}
                                     onClick={() => goToLink(product['link'])}

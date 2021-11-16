@@ -83,6 +83,10 @@
   background-color: var(--secondary-color) !important;
 }
 
+.details__info__more__actions__buttons-unsave, .details__info__more__actions__buttons-unsave:hover {
+  background-color: var(--third-text-color) !important;
+}
+
 .details__info__more__actions__buttons-buy, .details__info__more__actions__buttons-buy:hover {
   background-color: var(--primary-color) !important;
 }
