@@ -3,17 +3,22 @@ class SporeManagementController < ApplicationController
   # before_action :require_login
 
   def claim_spores
-    user_id = session[:user_id]
-    claim_params = params[:claim]
-    amount = claim_params[:amount]
-    product_id = claim_params[:product_id]
-    invoice_id = claim_params[:invoice_id]
-    is_claimed, response = SporeManagementHelper.process_claim_request amount, product_id, user_id, invoice_id
-    resp_msg = {:msg => response}
-    if is_claimed
-      render json: resp_msg, status: :accepted
-    else
-      render json: resp_msg, status: :not_acceptable
+    begin
+      user_id = session[:user_id]
+      claim_params = params[:claim]
+      amount = claim_params[:amount]
+      product_id = claim_params[:product_id]
+      invoice_id = claim_params[:invoice_id]
+      is_claimed, response = SporeManagementHelper.process_claim_request amount, product_id, user_id, invoice_id
+      resp_msg = {:msg => response}
+      if is_claimed
+        render json: resp_msg, status: :accepted
+      else
+        render json: resp_msg, status: :not_acceptable
+      end
+    rescue Exception => e
+      p e.message
+      raise Exception.new "Generic Exception"
     end
   end
 
