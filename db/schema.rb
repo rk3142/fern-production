@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(version: 20211031140530) do
     t.string   "transaction_type", limit: 16
     t.integer  "amount"
     t.datetime "created_at"
-    t.integer  "milestone_type"
+    t.string   "milestone_type",   limit: 32
     t.string   "product_id",       limit: 32
+    t.string   "invoice_id",       limit: 64
   end
 
   create_table "spores_milestone_mapper", primary_key: "type_id", force: :cascade do |t|
@@ -63,12 +64,13 @@ ActiveRecord::Schema.define(version: 20211031140530) do
   add_index "spores_milestone_mapper", ["type_key"], name: "spores_milestones_mapper_type_key_uindex", unique: true
 
   create_table "user", primary_key: "user_id", force: :cascade do |t|
-    t.string   "first_name",    limit: 128
-    t.string   "last_name",     limit: 128
-    t.string   "profile_image", limit: 256
-    t.string   "email_address", limit: 256, null: false
+    t.string   "first_name",          limit: 128
+    t.string   "last_name",           limit: 128
+    t.string   "profile_image",       limit: 256
+    t.string   "email_address",       limit: 256,               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "current_spore_count",             default: 0.0
   end
 
   add_index "user", ["email_address"], name: "user_email_address_uindex", unique: true
