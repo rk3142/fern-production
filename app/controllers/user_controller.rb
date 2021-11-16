@@ -27,7 +27,10 @@ class UserController < ApplicationController
     Rails.logger.info "Proceeding to process API: get_user_details"
     msg = Hash.new
     user = User.find_by_user_id(params[:user_id])
+    trees_planted = UserHelper.get_trees_planted(params[:user_id])
+    p user.inspect
     msg[:user] = user
+    msg[:trees_planted] = trees_planted
     render json: msg, status: 200
   end
 
@@ -42,6 +45,7 @@ class UserController < ApplicationController
       user.email_address = user_obj['email']
       user.created_at = Time.now
       user.updated_at = Time.now
+      user.current_spore_count = 0
       user.save
     end
     return user
