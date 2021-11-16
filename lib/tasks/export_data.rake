@@ -19,5 +19,16 @@ namespace :export do
       serialized = prices.serializable_hash.delete_if{|key,value| excluded_keys.include?(key)}
       puts "ProductPriceMapper.create(#{serialized})"
     end
+
+    ProductPriceMapper.all.each do |prices|
+      excluded_keys = ['created_at', 'updated_at', 'id']
+      serialized = prices.serializable_hash.delete_if{|key,value| excluded_keys.include?(key)}
+      puts "ProductPriceMapper.create(#{serialized})"
+    end
+
+    SporesMilestoneMapper.all.each do |milestone|
+      serialized = milestone.serializable_hash
+      puts "SporesMilestoneMapper.create(#{serialized})"
+    end
   end
 end
