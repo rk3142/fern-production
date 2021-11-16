@@ -28,7 +28,7 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8 should be installed in the system
   <br/>
   <br/>
 
-* Setting up your TET environment
+* Setting up your TEST environment
 
 1. Install Bundle
 `gem install bundle`
@@ -41,7 +41,7 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8 should be installed in the system
 
 
 # Runing rails RSPEC cases
-1. Follow the steps in the section BACKEND DEPLOYMENT - SETTING UP YOUR TEST ENVIRONMENT to create the test environment.
+1. Follow the steps in the section SETTING UP YOUR TEST ENVIRONMENT to create the test environment.
 2. Run the below command to run the test suite.
 		`bundle exec rake spec SPEC_OPTS="--format documentation"`
 
