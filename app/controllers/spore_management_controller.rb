@@ -32,7 +32,7 @@ class SporeManagementController < ApplicationController
       p spores.inspect
       render json: SporesSerializer.get_spores_history(spores), status: :ok
     else
-      render json: { error: 'not found' }, status: :not_found
+      render json: { error: 'user not found' }, status: :not_found
     end
   end
 
