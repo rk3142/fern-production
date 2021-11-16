@@ -72,16 +72,16 @@ function ItemCard({item}) {
                 <div className="item__name">{product_name}</div>
 
                 <div className="item__eco_status">
-                    <img className="EcoStatsIcon" src={co2_icon} />
+                    <img className="EcoStatsIcon" src={co2_icon} alt='CO2 icon' />
                     <p className="EcoStatsText">{carbon} kg</p>
-                    <img className="EcoStatsIcon" src={h2o_icon} />
+                    <img className="EcoStatsIcon" src={h2o_icon} alt='H2O icon' />
                     <p className="EcoStatsText">{water}k Liters</p>
-                    <img className="EcoStatsIcon" src={energy_icon} />
+                    <img className="EcoStatsIcon" src={energy_icon} alt='Electricity icon' />
                     <p className="EcoStatsText">{energy} kWh</p>
                 </div>
 
                 <div className="product_image">
-                    <img className="product_image__img" src={image_url} />
+                    <img className="product_image__img" src={image_url} alt={product_name} />
                 </div>
 
                 <div className="product_details">

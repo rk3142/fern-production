@@ -6,7 +6,7 @@ import energy_icon from '../../assets/energy_icon.jpeg'
 import './ProductDetails.css';
 import SimilarItemCard from "../../components/SimilarItemCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCatalog, selectProducts } from "../../reducers/catalogSlice";
+import { selectProducts } from "../../reducers/catalogSlice";
 import { Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import {addSaved, removeSaved, selectSaved} from "../../reducers/savedSlice";
@@ -46,7 +46,7 @@ function ProductDetails() {
     const getSimilarProducts = () => {
         let similar_items = []
         for(var i in items) {
-            if(product["product_id"] != items[i]["product_id"] && product["brand"] == items[i]["brand"]) {
+            if(product["product_id"] !== items[i]["product_id"] && product["brand"] === items[i]["brand"]) {
                 similar_items.push(items[i])
             }
         }
@@ -66,17 +66,17 @@ function ProductDetails() {
     return (
         <div className='details_page'>
             <div className="details">
-                <img className="details__image" src={product['image_url']} />
+                <img className="details__image" src={product['image_url']} alt={product['product_name']} />
 
                 <div className="details__info">
                     <h1 className="details__info__name">{product['product_name']}</h1>
 
                     <div className="details__info__body">
-                        <img className="EcoDetsIcon" src={co2_icon} />
+                        <img className="EcoDetsIcon" src={co2_icon} alt='CO2 icon' />
                         <p className="EcoDetsText">{product['carbon']}kg of carbon released into the atmosphere</p>
-                        <img className="EcoDetsIcon" src={h2o_icon} />
+                        <img className="EcoDetsIcon" src={h2o_icon} alt='H2O icon' />
                         <p className="EcoDetsText">{product['water']}k liters of water used in manufacturing</p>
-                        <img className="EcoDetsIcon" src={energy_icon} />
+                        <img className="EcoDetsIcon" src={energy_icon} alt='Electricity icon' />
                         <p className="EcoDetsText">{product['energy']}kWh of energy used in production</p>
                     </div>
 

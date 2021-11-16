@@ -1,19 +1,9 @@
 import React, { useEffect, useState } from "react";
-import StarRatings from "react-star-ratings";
-import co2_icon from '../../assets/CO2.png'
-import h2o_icon from '../../assets/h2o_icon.png'
-import energy_icon from '../../assets/energy_icon.jpeg'
 import './UserProfile.css';
-import SimilarItemCard from "../../components/SimilarItemCard";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCatalog, selectProducts } from "../../reducers/catalogSlice";
 import { getUserDetails } from "../../api.js"
-import { Button, CircularProgress } from "@mui/material";
+import { Button } from "@mui/material";
 
 function UserProfile(props) {
-    const dispatch = useDispatch();
-    const items = useSelector(selectProducts).filteredProducts
-    const status = useSelector(selectProducts).status
     const [user, setUser] = useState({})
     const [spores, setSpores] = useState(0)
     const [verifyImage, setVerifyImage] = useState(true)
@@ -39,7 +29,7 @@ function UserProfile(props) {
     }, [])
 
     const uploadImage = () => {
-        if (image.length == 0) { 
+        if (image.length === 0) {
             alert("Please choose an image")
             return 
         }

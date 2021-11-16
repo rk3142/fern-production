@@ -1,6 +1,5 @@
 import React from 'react';
 import './Home.css'
-import {signIn} from "../../api";
 import {useHistory} from "react-router-dom";
 import {authenticateAccess} from "../../common/utils";
 
