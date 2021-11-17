@@ -20,43 +20,4 @@ describe('catalog slice', () => {
             saved: []
         })
     })
-
-    // test('no filter', () => {
-    //     const previousState = {
-    //         currentFilter: [],
-    //         products: ['test'],
-    //         filteredProducts: ['test']
-    //     }
-    //     expect(reducer(previousState, filterProducts())).toEqual({
-    //         currentFilter: [],
-    //         products: ['test'],
-    //         filteredProducts: ['test']
-    //     })
-    // })
-    //
-    // test('filter price', () => {
-    //     const previousState = {
-    //         currentFilter: [{[mockFilter.title]: mockFilter.label}],
-    //         products: [apiMock()[0]],
-    //         filteredProducts: []
-    //     }
-    //     expect(reducer(previousState, filterProducts())).toEqual({
-    //         currentFilter: [{[mockFilter.title]: mockFilter.label}],
-    //         products: [apiMock()[0]],
-    //         filteredProducts: [apiMock()[0]]
-    //     })
-    // })
-    //
-    // test('filter rating', () => {
-    //     const previousState = {
-    //         currentFilter: [{[mockFilterRating.title]: mockFilterRating.label}],
-    //         products: [apiMock()[0]],
-    //         filteredProducts: []
-    //     }
-    //     expect(reducer(previousState, filterProducts())).toEqual({
-    //         currentFilter: [{[mockFilterRating.title]: mockFilterRating.label}],
-    //         products: [apiMock()[0]],
-    //         filteredProducts: [apiMock()[0]]
-    //     })
-    // })
 })
