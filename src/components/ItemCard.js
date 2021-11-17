@@ -17,7 +17,6 @@ import {addSaved, addSavedItem, removeSaved, removeSavedItem, selectSaved} from 
 
 function ItemCard({item}) {
     const dispatch = useDispatch();
-    const savedItems = useSelector(selectSaved)
     let history = useHistory()
 
     const { product_id,
