@@ -1,11 +1,16 @@
-import React from 'react';
-import {useSelector} from "react-redux";
-import {selectSaved} from "../../reducers/savedSlice";
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {getAllSavedItem, selectSaved} from "../../reducers/savedSlice";
 import ItemCard from "../../components/ItemCard";
 import './Saved.css'
 
 function Saved(props) {
+    const dispatch = useDispatch()
     const saved = useSelector(selectSaved)
+
+    useEffect(() => {
+        dispatch(getAllSavedItem())
+    }, [])
 
     return (
         <div className="saved__list">
