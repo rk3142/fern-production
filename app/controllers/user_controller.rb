@@ -45,7 +45,7 @@ class UserController < ApplicationController
       user.email_address = user_obj['email']
       user.created_at = Time.now
       user.updated_at = Time.now
-      user.current_spore_count = 0
+      user.current_spore_count = 1000
       user.save
     end
     return user
