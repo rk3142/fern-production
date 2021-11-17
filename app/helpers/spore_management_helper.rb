@@ -8,7 +8,7 @@ module SporeManagementHelper
         unless SporeRedemptionHistory.exists?(:invoice_id => invoice_id, :transaction_type => 'claim')
           max_product_price = ProductPriceMapper.get_max_price_of_product product_id
           p max_product_price
-          amount = [amount, max_product_price].min
+          amount = [amount.to_f, max_product_price].min
           spores_claimed = SporeManagementHelper.convert_amount_to_spores amount
           @current_user_spore = User.select("current_spore_count").where(:user_id => user_id).first
           if @current_user_spore.present?
@@ -32,14 +32,14 @@ module SporeManagementHelper
   end
 
   def self.process_redemption_request(user_id, redemption_type_key, quantity)
-    redemption_processed = true
+    redemption_processed = false
     reason = ""
     @user_spores = User.select("current_spore_count").where(:user_id => user_id).first
     if @user_spores.present?
       user_current_spores = @user_spores.current_spore_count
       @spores_types = SporesMilestoneMapper.select('type_key, amount, type_key').where(:type_key => redemption_type_key).first
       if @spores_types.present?
-        spore_amount = @spores_types.amount*quantity
+        spore_amount = @spores_types.amount*quantity.to_i
         if user_current_spores > spore_amount
           SporeManagementHelper.save_spore_history(user_id, "redeem", spore_amount, @spores_types.type_key)
           user_current_spores -= spore_amount

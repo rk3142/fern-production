@@ -1,6 +1,6 @@
 class ProductController < ApplicationController
 
-  #before_action :require_login
+  before_action :require_login
 
   def index
     resp = Hash.new
@@ -76,26 +76,21 @@ class ProductController < ApplicationController
 
   def similar_products
     resp = Hash.new
-    begin
-      Rails.logger.info "Proceeding to process API: similar_products"
-      bookmarked_products = BookmarksHelper.get_bookmarked_products(session[:user_id])
-      if Product.exists?(:product_id => params[:product_id])
-        products = Product.get_random_products(5, params[:product_id])
-        product_list = []
-        if products.present?
-          products.each do |product|
-            is_bookmarked = BookmarksHelper.is_bookmarked?(product.product_id, bookmarked_products)
-            product_list.push(ProductHelper.get_product_list(product))
-          end
+    Rails.logger.info "Proceeding to process API: similar_products"
+    bookmarked_products = BookmarksHelper.get_bookmarked_products(session[:user_id])
+    if Product.exists?(:product_id => params[:product_id])
+      products = Product.get_random_products(5, params[:product_id])
+      product_list = []
+      if products.present?
+        products.each do |product|
+          is_bookmarked = BookmarksHelper.is_bookmarked?(product.product_id, bookmarked_products)
+          product_list.push(ProductHelper.get_product_list(product))
         end
       end
-      resp[:products] = product_list
-      Rails.logger.info "Response sent to client #{resp.inspect}"
-      render json: resp, status: :ok
-    rescue Exception::ActionControllerError::BadRequest
-      Rails.logger.error "Invalid Query Paramters received "
-      render nothing: true, status: :bad_request
     end
+    resp[:products] = product_list
+    Rails.logger.info "Response sent to client #{resp.inspect}"
+    render json: resp, status: :ok
   end
 
 end

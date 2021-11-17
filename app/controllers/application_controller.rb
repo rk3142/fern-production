@@ -29,12 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def set_session_id_if_empty
-    p session[:user_id]
-    if Rails.env.to_s.equal?"development" && session[:user_id].nil?
-      session[:user_id] = "QdC1mAbrsvX22Ba05n4tvnvuwd63"
-    end
-  end
+
 
 
 
@@ -46,6 +41,10 @@ class ApplicationController < ActionController::Base
     # p firebase_response.inspect
     unless error_code.to_s == "200"
       return false
+    end
+    if session[:user_id].nil?
+      firebase_response = JSON.parse(firebase_response)
+      session[:user_id] = firebase_response["users"][0]['localId']
     end
     return true
     # firebase_response = JSON.parse(firebase_response)

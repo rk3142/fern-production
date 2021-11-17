@@ -1,29 +1,24 @@
 class SporeManagementController < ApplicationController
 
-  # before_action :require_login
+  before_action :require_login
 
   def claim_spores
-    begin
-      user_id = params[:user_id]
-      claim_params = params[:claim]
-      amount = claim_params[:amount]
-      product_id = claim_params[:product_id]
-      invoice_id = claim_params[:invoice_id]
-      is_claimed, response = SporeManagementHelper.process_claim_request amount, product_id, user_id, invoice_id
-      resp_msg = {:msg => response}
-      if is_claimed
-        render json: resp_msg, status: :accepted
-      else
-        render json: resp_msg, status: :not_acceptable
-      end
-    rescue Exception => e
-      p e.message
-      raise Exception.new "Generic Exception"
+    user_id = session[:user_id]
+    claim_params = params[:claim]
+    amount = claim_params[:amount]
+    product_id = claim_params[:product_id]
+    invoice_id = claim_params[:invoice_id]
+    is_claimed, response = SporeManagementHelper.process_claim_request amount, product_id, user_id, invoice_id
+    resp_msg = {:msg => response}
+    if is_claimed
+      render json: resp_msg, status: :accepted
+    else
+      render json: resp_msg, status: :not_acceptable
     end
   end
 
   def redeem_spores
-    user_id = params[:user_id]
+    user_id = session[:user_id]
     claim_params = params[:redeem]
     quantity = claim_params[:quantity]
     type = claim_params[:type_key]
@@ -37,7 +32,7 @@ class SporeManagementController < ApplicationController
   end
 
   def show_history
-    user_id = params[:user_id]
+    user_id = session[:user_id]
     if User.exists?(user_id)
       spores = SporeRedemptionHistory.get_history(user_id)
       render json: SporesSerializer.get_spores_history(spores), status: :ok
@@ -52,9 +47,9 @@ class SporeManagementController < ApplicationController
   end
 
 
-  private
-
-  def spores_param
-    params.require(:movie).permit(:title, :rating, :description, :release_date, :director)
-  end
+  # private
+  #
+  # def spores_param
+  #   params.require(:r).permit(:title, :rating, :description, :release_date, :director)
+  # end
 end

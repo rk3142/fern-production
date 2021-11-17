@@ -61,4 +61,6 @@ Fern::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  config.action_dispatch.cookies_same_site_protection = :None
+
 end

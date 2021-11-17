@@ -28,4 +28,6 @@ Fern::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  config.action_dispatch.cookies_same_site_protection = :None
+
 end
