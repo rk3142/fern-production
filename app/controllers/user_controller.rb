@@ -10,17 +10,22 @@ class UserController < ApplicationController
   # end
 
   def login
-    msg = Hash.new
-    Rails.logger.info "Proceeding to log in user"
-    firebase_response, error_code = FirebaseHelper.validate_token(request.headers[:idToken])
-    unless error_code.to_s == "200"
-      render json: firebase_response, status: error_code
-      return
+    begin
+      msg = Hash.new
+      Rails.logger.info "Proceeding to log in user"
+      firebase_response, error_code = FirebaseHelper.validate_token(request.headers[:idToken])
+      unless error_code.to_s == "200"
+        render json: firebase_response, status: error_code
+        return
+      end
+      user = save_user_data JSON.parse(firebase_response)
+      log_in user
+      msg['user'] = user
+      render json: msg, status: 200
+    rescue Exception => e
+      p e.message
+      p e.backtrace
     end
-    user = save_user_data JSON.parse(firebase_response)
-    log_in user
-    msg['user'] = user
-    render json: msg, status: 200
   end
 
   def show
