@@ -2,7 +2,7 @@ import React from "react";
 import Catalog from "./index";
 import {shallow} from 'enzyme';
 import axios from "axios";
-import apiMock from "../ApiMock";
+import apiMock from "../../common/ApiMock";
 
 const mockHistoryPush = jest.fn();
 jest.mock('react-router-dom', () => ({

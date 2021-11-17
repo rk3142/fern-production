@@ -6,7 +6,7 @@ export default function apiMock() {
         "link": "https://m.media-amazon.com/images/I/61IOdAl8bAS._AC_UL320_.jpg",
         "image_url": "https://m.media-amazon.com/images/I/61IOdAl8bAS._AC_UL320_.jpg",
         "brand": "Generic",
-        "rating": 2,
+        "rating": 3,
         "ratings": 2,
         "carbon":3.0,
         "water":2.0,
