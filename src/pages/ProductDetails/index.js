@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectProducts } from "../../reducers/catalogSlice";
 import { Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
-import {addSaved, removeSaved, selectSaved} from "../../reducers/savedSlice";
+import {addSaved, addSavedItem, removeSaved, removeSavedItem, selectSaved} from "../../reducers/savedSlice";
 import _ from "lodash";
+import {getProductById} from "../../api";
 
 const goToLink = (link) => {
     window.location.href = link
@@ -30,18 +31,9 @@ function ProductDetails() {
         setSimilarProducts(getSimilarProducts())
     }, [])
 
-    useEffect(() => {
-        let savedState = false
-        savedItems.forEach(i => {
-            if (_.isEqual(i, product)) {
-                setIsSaved(true)
-                savedState = true
-                return true
-            }
-        })
-
-        if (!savedState) setIsSaved(false)
-    }, [])
+    useEffect( () => {
+        getProductById(product['product_id']).then(res => setIsSaved(res['is_bookmarked']))
+    }, [product])
 
     const getSimilarProducts = () => {
         let similar_items = []
@@ -55,11 +47,13 @@ function ProductDetails() {
 
     const saveItem = item => {
         dispatch(addSaved(item))
+        dispatch(addSavedItem(item['product_id']))
         setIsSaved(true)
     }
 
     const removeItem = item => {
         dispatch(removeSaved(item))
+        dispatch(removeSavedItem(item['product_id']))
         setIsSaved(false)
     }
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Card, CardActions, CardContent} from "@mui/material";
 import NumberFormat from 'react-number-format';
 import LinesEllipsis from 'react-lines-ellipsis'
@@ -13,18 +13,16 @@ import energy_icon from "../assets/energy_icon.jpeg";
 import StarRatings from "react-star-ratings";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addSaved, removeSaved, selectSaved} from "../reducers/savedSlice";
-import _ from "lodash";
+import {addSaved, addSavedItem, removeSaved, removeSavedItem, selectSaved} from "../reducers/savedSlice";
 
 function ItemCard({item}) {
-    const [hover, setHover] = useState(false)
-    const [saved, setSaved] = useState(false)
-
     const dispatch = useDispatch();
     const savedItems = useSelector(selectSaved)
     let history = useHistory()
 
-    const { product_name,
+    const { product_id,
+            product_name,
+            is_bookmarked,
             image_url,
             link,
             prices,
@@ -34,6 +32,9 @@ function ItemCard({item}) {
             carbon,
             water,
             energy } = item
+
+    const [hover, setHover] = useState(false)
+    const [saved, setSaved] = useState(is_bookmarked)
 
     const goToDetails = async () => {
         localStorage.setItem('recently_clicked', JSON.stringify(item))
@@ -48,23 +49,16 @@ function ItemCard({item}) {
     const handleHostSaved = () => setHover(!hover)
 
     const handleSaved = (item) => {
-        if (!saved) dispatch(addSaved(item))
-        else dispatch(removeSaved(item))
+        if (!saved) {
+            dispatch(addSaved(item))
+            dispatch(addSavedItem(product_id))
+        }
+        else {
+            dispatch(removeSaved(item))
+            dispatch(removeSavedItem(product_id))
+        }
         setSaved(!saved)
     }
-
-    useEffect(() => {
-        let savedState = false
-        savedItems.forEach(i => {
-            if (_.isEqual(i, item)) {
-                setSaved(true)
-                savedState = true
-                return true
-            }
-        })
-
-        if (!savedState) setSaved(false)
-    }, [])
 
     return (
         <Card>
