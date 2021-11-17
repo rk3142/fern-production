@@ -1,6 +1,6 @@
 class ProductController < ApplicationController
 
-  before_action :require_login
+  #before_action :require_login
 
   def index
     resp = Hash.new

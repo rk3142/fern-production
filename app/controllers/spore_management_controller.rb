@@ -4,7 +4,7 @@ class SporeManagementController < ApplicationController
 
   def claim_spores
     begin
-      user_id = session[:user_id]
+      user_id = params[:user_id]
       claim_params = params[:claim]
       amount = claim_params[:amount]
       product_id = claim_params[:product_id]
@@ -23,7 +23,7 @@ class SporeManagementController < ApplicationController
   end
 
   def redeem_spores
-    user_id = session[:user_id]
+    user_id = params[:user_id]
     claim_params = params[:redeem]
     quantity = claim_params[:quantity]
     type = claim_params[:type_key]
@@ -37,7 +37,7 @@ class SporeManagementController < ApplicationController
   end
 
   def show_history
-    user_id = session[:user_id]
+    user_id = params[:user_id]
     if User.exists?(user_id)
       spores = SporeRedemptionHistory.get_history(user_id)
       render json: SporesSerializer.get_spores_history(spores), status: :ok

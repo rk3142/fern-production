@@ -31,8 +31,8 @@ class UserController < ApplicationController
   def show
     Rails.logger.info "Proceeding to process API: get_user_details"
     msg = Hash.new
-    user = User.find_by_user_id(session[:user_id])
-    trees_planted = UserHelper.get_trees_planted(session[:user_id])
+    user = User.find_by_user_id(params[:user_id])
+    trees_planted = UserHelper.get_trees_planted(params[:user_id])
     p user.inspect
     msg[:user] = user
     msg[:trees_planted] = trees_planted
