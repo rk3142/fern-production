@@ -50,7 +50,8 @@ class Users < ActiveRecord::Migration
     add_index "spores_milestone_mapper", ["type_id"], name: "spores_milestone_mapper_1", unique: true
     add_index "spores_milestone_mapper", ["type_key"], name: "spores_milestones_mapper_type_key_uindex", unique: true
 
-    create_table "user", primary_key: "user_id", force: :cascade do |t|
+    create_table "user",  id: false, force: :cascade do |t|
+      t.string   "user_id",          limit: 32
       t.string   "first_name",          limit: 128
       t.string   "last_name",           limit: 128
       t.string   "profile_image",       limit: 256
