@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useHistory, useLocation} from "react-router-dom";
 import './Layout.css'
+// import SearchBar from "./SearchBar";
 import logo from '../assets/logo.png'
 import {authenticateAccess} from "../common/utils";
 import UserActions from "./UserActions";
@@ -23,6 +24,7 @@ function Layout({children, authenticated=false}) {
                 {
                     authenticated && (
                         <>
+                            {/*<SearchBar />*/}
                             <UserActions />
                         </>
                     )
