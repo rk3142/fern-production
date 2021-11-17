@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
-  # before_action :require_login
-  before_action :set_session_id_if_empty
+  before_action :require_login
+  #before_action :set_session_id_if_empty
 
   def create
     Rails.logger.info "Proceeding to process API: add_new_bookmark"
