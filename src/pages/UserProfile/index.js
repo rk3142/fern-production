@@ -52,21 +52,6 @@ function UserProfile(props) {
         setImage(event.target.files[0])
     }
 
-    const renderImageVerification = () => {
-        if (verifyImage) {
-            return (
-                <p className="Verify_Text" onClick={() => setVerifyImage(!verifyImage)}>Verify Image</p>
-            )
-        } else {
-            return (
-                <div>
-                    <input type="file" onChange={changeImage}></input>
-                    <Button onClick = {() => uploadImage()}>Upload</Button>
-                </div>
-            )
-        }
-    }
-
     return (
         <div className="User_Info">
             <div className="User_Account_Info">
@@ -86,9 +71,6 @@ function UserProfile(props) {
                 </div>
                 <div className="Collect_Trash">
                     <Button variant='contained' className={'details__info__more__actions__buttons-spend'} onClick={() => updateSporesCount(50)}>Capture a pound of carbon!</Button>
-                </div>
-                <div className="Collect_Trash">
-                    {renderImageVerification()}
                 </div>
             </div>
         </div>
