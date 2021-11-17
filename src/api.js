@@ -3,6 +3,7 @@ import axios from "axios";
 // const BASE_URL = "http://localhost:5000";
 // const BASE_URL = "https://fern-development.herokuapp.com";
 const BASE_URL = "https://fern-iteration-2.herokuapp.com";
+// const BASE_URL = "http://ac28-71-104-49-45.ngrok.io";
 
 export const getAllProducts = async function () {
     return await axios.get(BASE_URL + "/products")
@@ -12,8 +13,9 @@ export const getAllProducts = async function () {
 }
 
 export const getUserDetails = async function () {
-    return await axios.get(BASE_URL + "/user/QdC1mAbrsvX22Ba05n4tvnvuwd63")
+    return await axios.get(BASE_URL + "/user/kSlylzoV8KbTbvSFLUjHxjc1qbo1")
         .then(response => {
+            //console.log(response)
             return response
         })
 }
@@ -41,5 +43,19 @@ export const removeBookmark = async function (productId) {
 }
 
 export const signIn = async function () {
-    await axios.post(BASE_URL + "/user/signin");
+    const header = {"Access-Control-Allow-Origin": "*" }
+    await axios.post(BASE_URL + "/user/signin", {}, header);
+}
+
+export const spendSpores = async function () {
+    const body = {
+        "redeem": {
+            "type_key": "TREE",
+            "quantity": "4"
+        }
+    }
+    const header = {
+        "content-type": "application/json",
+    }
+    await axios.put(BASE_URL + "/spores/claim?user_id=kSlylzoV8KbTbvSFLUjHxjc1qbo1", body, header)
 }

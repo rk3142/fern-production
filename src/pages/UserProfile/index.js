@@ -1,31 +1,43 @@
 import React, { useEffect, useState } from "react";
 import './UserProfile.css';
-import { getUserDetails } from "../../api.js"
+import { getUserDetails, spendSpores } from "../../api.js"
 import { Button } from "@mui/material";
 
 function UserProfile(props) {
-    const [user, setUser] = useState({})
-    const [spores, setSpores] = useState(0)
-    const [verifyImage, setVerifyImage] = useState(true)
-    const [image, setImage] = useState("")
-
     const getUserData = async () => {
-        return getUserDetails().then(res => {
+        return await getUserDetails().then(res => {
             if (!res) return null
-            const user = res["data"]["user"]
-            setUser(user)
+            //console.log(res)
+            let user = res["data"]["user"]
+            //console.log(user)
+            return user;
         })
     }
 
+    const [user, setUser] = useState(getUserData())
+    const [spores, setSpores] = useState(100)
+    const [verifyImage, setVerifyImage] = useState(true)
+    const [image, setImage] = useState("")
+
     const updateSporesCount = async (purchase) => {
         if (purchase <= spores) {
-            setSpores(spores - purchase)
+            await setSpores(spores - purchase)
+        } else {
+            alert("Not enough spores")
+            return;
         }
+        console.log(spores)
+        console.log(user)
+        return spendSpores().then(res => {
+            if (!res) return null
+            //console.log(res)
+        })
     }
 
-    useEffect(() => {
-        getUserData()
-        setSpores(500) //change this for the iteration
+    useEffect(async () => {
+        let spore = (await getUserData())["current_spore_count"]
+        await setUser(await getUserData())
+        setSpores(spore)
     }, [])
 
     const uploadImage = () => {
