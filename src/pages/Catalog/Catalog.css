@@ -31,3 +31,15 @@
     align-items: center;
     font-size: 2rem;
 }
+
+.catalog__main {
+    display: flex;
+    flex-direction: row;
+}
+
+.catalog__search {
+    margin-left: auto;
+    margin-right: auto;
+    width: 410px;
+    height: 70px;
+}
