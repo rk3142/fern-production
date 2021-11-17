@@ -1,6 +1,4 @@
-import {store} from '../store'
 import reducer, {addFilter, removeFilter, filterProducts} from "./catalogSlice";
-import filter from '../filters.json'
 import apiMock from "../common/ApiMock";
 
 const mockFilter = {title: 'Price', label: 'Up to $10.00'}
