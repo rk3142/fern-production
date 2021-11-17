@@ -4,19 +4,23 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import {useDispatch} from "react-redux";
 
 function SearchBar(props) {
+    const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState('')
+    
 
-    const submitSearch = event => {
+    const SubmitSearch = event => {
         event.preventDefault()
-        console.log(searchTerm)
+        props.goToCatalog(searchTerm)
+        setSearchTerm("")
     }
 
     return (
         <Paper
             component="form"
-            onSubmit={submitSearch}
+            onSubmit={SubmitSearch}
             sx={{ p: '2px 6px', display: 'flex', alignItems: 'center', width: 400, borderRadius: '1rem' }}
         >
             <InputBase
@@ -24,6 +28,7 @@ function SearchBar(props) {
                 placeholder="Search"
                 inputProps={{ 'aria-label': 'search fern' }}
                 onChange={e => setSearchTerm(e.target.value)}
+                value={searchTerm}
             />
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
             <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">

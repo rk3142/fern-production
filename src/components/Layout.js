@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import SearchBar from "./SearchBar";
 import {useHistory, useLocation} from "react-router-dom";
 import './Layout.css'
 import logo from '../assets/logo.png'
@@ -24,7 +23,6 @@ function Layout({children, authenticated=false}) {
                 {
                     authenticated && (
                         <>
-                            <SearchBar />
                             <UserActions />
                         </>
                     )
