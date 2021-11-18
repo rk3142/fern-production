@@ -191,7 +191,6 @@ RSpec.describe SporeManagementController do
       request.headers[:idToken]= idToken
       previous_spore_count = User.select('current_spore_count').where(:user_id => user_id).first
       previous_spore_count = previous_spore_count.current_spore_count
-      p previous_spore_count
       put :redeem_spores, {:redeem => redeem_params}
     end
 

@@ -32,10 +32,21 @@ RSpec.describe "Data Renderer", :type => :request do
   #   end
   # end
 
-  describe "GET user details" do
-    user_id = ''
+
+  idToken = ""
+  user_id = ""
+
+  before(:context) do
     idToken = generate_firebase_token "rk3142@columbia.edu"
     user_id = get_user_id_from_token idToken
+    User.where(:user_id => user_id).delete_all
+    User.create(:user_id => user_id,
+                :email_address => "rk3142@columbia.edu",
+                :current_spore_count => 0)
+  end
+
+
+  describe "GET user details" do
     before do
       get "/user/#{user_id}", headers: {'idToken' => idToken}, session: {'user_id' => user_id}
     end
@@ -48,10 +59,6 @@ RSpec.describe "Data Renderer", :type => :request do
       expect(response.content_type).to eq("application/json")
     end
 
-    it "has user object in body" do
-      json = JSON.parse(response.body)
-      expect(json["user"]["user_id"]).to eql(user_id)
-    end
   end
 
 end

@@ -29,7 +29,6 @@ class UserController < ApplicationController
     logged_in?
     user = User.find_by_user_id(session[:user_id])
     trees_planted = UserHelper.get_trees_planted(session[:user_id])
-    p user.inspect
     msg[:user] = user
     msg[:trees_planted] = trees_planted
     render json: msg, status: 200

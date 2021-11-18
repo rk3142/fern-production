@@ -7,7 +7,6 @@ module SporeManagementHelper
       unless SporeRedemptionHistory.exists?(:product_id => product_id, :user_id => user_id, :transaction_type => 'claim')
         unless SporeRedemptionHistory.exists?(:invoice_id => invoice_id, :transaction_type => 'claim')
           max_product_price = ProductPriceMapper.get_max_price_of_product product_id
-          p max_product_price
           amount = [amount.to_f, max_product_price].min
           spores_claimed = SporeManagementHelper.convert_amount_to_spores amount
           @current_user_spore = User.select("current_spore_count").where(:user_id => user_id).first

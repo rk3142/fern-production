@@ -36,7 +36,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 def generate_firebase_token email
   begin
-    p "Inside generate_firebase_token"
     firebase_url ="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=#{Fern::Application.config.firebase_api_key}"
     request_body = Hash.new
     request_body['email'] = email
