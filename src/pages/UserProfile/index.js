@@ -14,43 +14,27 @@ function UserProfile(props) {
         })
     }
 
-    const [user, setUser] = useState(getUserData())
+    const [user, setUser] = useState({})
     const [spores, setSpores] = useState(100)
-    const [verifyImage, setVerifyImage] = useState(true)
-    const [image, setImage] = useState("")
 
     const updateSporesCount = async (purchase) => {
         if (purchase <= spores) {
             await setSpores(spores - purchase)
-        } else {
-            alert("Not enough spores")
-            return;
         }
         console.log(spores)
         console.log(user)
         return spendSpores().then(res => {
             if (!res) return null
-            //console.log(res)
+            console.log(res)
         })
     }
 
     useEffect(async () => {
         let spore = (await getUserData())["current_spore_count"]
         await setUser(await getUserData())
+        console.log(user)
         setSpores(spore)
     }, [])
-
-    const uploadImage = () => {
-        if (image.length === 0) {
-            alert("Please choose an image")
-            return 
-        }
-        alert("Image uploaded")
-    }
-
-    const changeImage = (event) => {
-        setImage(event.target.files[0])
-    }
 
     return (
         <div className="User_Info">
