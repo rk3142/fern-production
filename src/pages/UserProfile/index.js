@@ -4,36 +4,29 @@ import { getUserDetails, spendSpores } from "../../api.js"
 import { Button } from "@mui/material";
 
 function UserProfile(props) {
-    const getUserData = async () => {
-        return await getUserDetails().then(res => {
-            if (!res) return null
-            //console.log(res)
-            let user = res["data"]["user"]
-            //console.log(user)
-            return user;
-        })
-    }
-
     const [user, setUser] = useState({})
     const [spores, setSpores] = useState(100)
 
     const updateSporesCount = async (purchase) => {
         if (purchase <= spores) {
-            await setSpores(spores - purchase)
+            setSpores(spores - purchase)
+        } else {
+            window.alert('Not enough spores!');
         }
-        // console.log(spores)
-        // console.log(user)
-        return spendSpores().then(res => {
-            if (!res) return null
-            console.log(res)
-        })
+
+        // return spendSpores().then(res => {
+        //     if (!res) return null
+        //     console.log(res)
+        // })
     }
 
-    useEffect(async () => {
-        let spore = (await getUserData())["current_spore_count"]
-        await setUser(await getUserData())
-        console.log(user)
-        setSpores(spore)
+    useEffect( () => {
+        getUserDetails().then(response => {
+            if (!response) return null
+            let res = response["data"]["user"]
+            setUser(res)
+            setSpores(res['current_spore_count'])
+        })
     }, [])
 
     return (

@@ -5,13 +5,11 @@ import { render, fireEvent, screen } from '../../common/test-utils'
 import UserProfile from "./index";
 
 export const handlers = [
-  rest.get('/user/kSlylzoV8KbTbvSFLUjHxjc1qbo1', (req, res, ctx) => {
+  rest.get('https://fern-iteration-2.herokuapp.com/user/kSlylzoV8KbTbvSFLUjHxjc1qbo1', (req, res, ctx) => {
     return res(ctx.json({
-        'data': {
-            'user': {
-                'first_name': 'testUser'
-            },
-            'current_spore_count': 1000
+        'user': {
+            'first_name': 'testUser',
+            'current_spore_count': 0
         }
     }), ctx.delay(100))
   })
@@ -34,8 +32,8 @@ describe('User profile', () => {
 
     it('plant tree', async () => {
         const alertMock = jest.spyOn(window,'alert').mockImplementation()
-        const {container} = render(<UserProfile />)
-        const plantBtn = container.firstChild.getElementsByClassName('details__info__more__actions__buttons-spend')[0]
+        const {container} = await render(<UserProfile />)
+        const plantBtn = await container.firstChild.getElementsByClassName('details__info__more__actions__buttons-spend')[0]
         fireEvent.click(plantBtn)
         expect(alertMock).toHaveBeenCalled()
     });
@@ -43,7 +41,7 @@ describe('User profile', () => {
     it('collect trash', async () => {
         const alertMock = jest.spyOn(window,'alert').mockImplementation()
         const {container} = render(<UserProfile />)
-        const plantBtn = container.firstChild.getElementsByClassName('details__info__more__actions__buttons-spend')[1]
+        const plantBtn = await container.firstChild.getElementsByClassName('details__info__more__actions__buttons-spend')[1]
         fireEvent.click(plantBtn)
         expect(alertMock).toHaveBeenCalled()
     });
@@ -51,7 +49,7 @@ describe('User profile', () => {
     it('collect carbon', async () => {
         const alertMock = jest.spyOn(window,'alert').mockImplementation()
         const {container} = render(<UserProfile />)
-        const plantBtn = container.firstChild.getElementsByClassName('details__info__more__actions__buttons-spend')[2]
+        const plantBtn = await container.firstChild.getElementsByClassName('details__info__more__actions__buttons-spend')[2]
         fireEvent.click(plantBtn)
         expect(alertMock).toHaveBeenCalled()
     });

@@ -6,8 +6,8 @@ import { setupServer } from 'msw/node'
 import { render, fireEvent, screen } from '../../common/test-utils'
 
 export const handlers = [
-  rest.get('/products', (req, res, ctx) => {
-    return res(ctx.json(apiMock()), ctx.delay(100))
+  rest.get('https://fern-iteration-2.herokuapp.com/products', (req, res, ctx) => {
+    return res(ctx.json({products: apiMock()}), ctx.delay(100))
   })
 ]
 
@@ -22,8 +22,8 @@ afterEach(() => server.resetHandlers())
 describe('Catalog', () => {
   it('Show catalog', async () => {
     render(<Catalog />);
-    const myElement = await screen.findByText(/Generic/i)
-    expect(myElement).toBeInTheDocument()
+    const myElement = await screen.findAllByText(/Generic/i)
+    expect(myElement.length).toBe(apiMock().length)
   });
 
 });

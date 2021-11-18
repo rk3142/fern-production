@@ -6,8 +6,11 @@ import { setupServer } from 'msw/node'
 import { render, fireEvent, screen } from '../../common/test-utils'
 
 export const handlers = [
-  rest.get('/products', (req, res, ctx) => {
-    return res(ctx.json(apiMock()), ctx.delay(100))
+  rest.get('https://fern-iteration-2.herokuapp.com/products', (req, res, ctx) => {
+    return res(ctx.json({products: apiMock()}), ctx.delay(100))
+  }),
+  rest.get('https://fern-iteration-2.herokuapp.com/products/' + apiMock()[0], (req, res, ctx) => {
+    return res(ctx.json(apiMock()[0]), ctx.delay(100))
   })
 ]
 

@@ -7,8 +7,10 @@ import { render, fireEvent, screen } from '../../common/test-utils'
 
 
 export const handlers = [
-    rest.get('/bookmarks', (req, res, ctx) => {
-      return res(ctx.json(apiMock()), ctx.delay(100))
+    rest.get('https://fern-iteration-2.herokuapp.com/bookmarks', (req, res, ctx) => {
+      return res(ctx.json({
+        products: apiMock()
+      }), ctx.delay(100))
     })
   ]
   
@@ -23,14 +25,14 @@ export const handlers = [
   describe('Saved', () => {
     it('Show Saved', async () => {
       render(<Saved />);
-      const myElement = await screen.findByText(/yet/i)
-      expect(myElement).toBeInTheDocument()
+      const myElement = await screen.findAllByText(/generic/i)
+      expect(myElement.length).toBe(apiMock().length)
     });
 
-    it('Show no Saved', async () => {
-        render(<Saved />);
-        const myElement = await screen.findByText(/yet/i)
-        expect(myElement).toBeInTheDocument()
-      });
+    // it('Show no Saved', async () => {
+    //     render(<Saved />);
+    //     const myElement = await screen.findByText(/yet/i)
+    //     expect(myElement).toBeInTheDocument()
+    //   });
 
   });
