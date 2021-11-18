@@ -26,8 +26,9 @@ class UserController < ApplicationController
   def show
     Rails.logger.info "Proceeding to process API: get_user_details"
     msg = Hash.new
-    user = User.find_by_user_id(params[:user_id])
-    trees_planted = UserHelper.get_trees_planted(params[:user_id])
+    logged_in?
+    user = User.find_by_user_id(session[:user_id])
+    trees_planted = UserHelper.get_trees_planted(session[:user_id])
     p user.inspect
     msg[:user] = user
     msg[:trees_planted] = trees_planted
@@ -38,6 +39,7 @@ class UserController < ApplicationController
 
   def save_user_data(firebase_response)
     user_obj = firebase_response["users"][0]
+
     user = User.find_by_email_address(user_obj['email'])
     unless user.present?
       user = User.new
