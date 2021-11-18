@@ -1,0 +1,118 @@
+.details_page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.details__image {
+  width: 25%;
+  margin-right: 2rem;
+}
+
+.details__info {
+  width: 70%;
+}
+
+.details__info__name {
+  line-height: 2rem;
+  margin-top: 0;
+}
+
+.details__info__body {
+  display: flex;
+}
+
+.EcoDetsIcon {
+  height: 20px;
+  margin-top: 10px;
+}
+
+.EcoDetsText {
+  font-size: 0.8rem;
+  margin-left: 5px;
+  margin-right: 25px;
+}
+
+.details__info__more {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.details__info__more__actions {
+  width: 50%;
+}
+
+.details__info__more__description {
+  width: 50%;
+  color: var(--third-text-color);
+}
+
+.details__info__more__actions__ratings {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.details__info__more__actions__ratings__stars {
+  margin-right: 1rem;
+}
+
+.details__info__more__actions__ratings__stars__source {
+  color: var(--third-text-color);
+  margin-left: 0.5rem;
+}
+
+.details__info__more__actions__price {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.details__info__more__actions__buttons > button {
+  border-radius: 20px;
+  padding: 0.7rem 2.8rem;
+  box-shadow: none;
+  margin-right: 0.5rem;
+}
+
+.details__info__more__actions__buttons-save, .details__info__more__actions__buttons-save:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+.details__info__more__actions__buttons-unsave, .details__info__more__actions__buttons-unsave:hover {
+  background-color: var(--third-text-color) !important;
+}
+
+.details__info__more__actions__buttons-buy, .details__info__more__actions__buttons-buy:hover {
+  background-color: var(--primary-color) !important;
+}
+
+
+/* Similar products */
+.similar_products__title {
+  font-size: 1.5rem;
+}
+
+.similar_catalog__list {
+  width: 80%;
+  height: fit-content;
+  margin-left: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.similar_catalog__list > div {
+  /*height: 600px;*/
+  border-radius: 20px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  flex-basis: calc(33.333333% - 0.7rem);
+}
+
+.similar_catalog__list > div:nth-child(3n) {
+  margin-right: 0;
+}
