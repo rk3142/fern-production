@@ -7,12 +7,13 @@ application up and running.
 
 
 
-* Application URL(Heroku): https://fern-environment.herokuapp.com/
+* Application URL(Heroku): http://fern-environment-2.herokuapp.com/
 * Code Repo URL(GitHub): https://github.com/rk3142/fern-production
 ## Installation Instructions
 ### Clone this repo
 ```commandline
-git clone git@github.com:rk3142/fern-production.git
+git clone -b iteration_2 git@github.com:rk3142/fern-production.git
+
 ```
 
 * Versions of Package
@@ -54,7 +55,7 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 `bundle exec rake db:seed RAILS_ENV=development`
 
 3. Run the rails server
-`rails s -b 0.0.0.0 -p 3000`  
+`bundle exec rails s -b 0.0.0.0 -p 3000`  
   
   <br/>
   <br/>
