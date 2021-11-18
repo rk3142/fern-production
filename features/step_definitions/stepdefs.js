@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { By, Key, Builder } = require("selenium-webdriver");
-const auth_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWUyOTRlZWRjMTY3Y2Q5N2JiNWE4MTliYmY3OTA2MzZmMTIzN2UiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiYXNkYWZhc2YiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZmVybi1kZWE0ZCIsImF1ZCI6ImZlcm4tZGVhNGQiLCJhdXRoX3RpbWUiOjE2MzcxNjEzNDUsInVzZXJfaWQiOiJrU2x5bHpvVjhLYlRidlNGTFVqSHhqYzFxYm8xIiwic3ViIjoia1NseWx6b1Y4S2JUYnZTRkxVakh4amMxcWJvMSIsImlhdCI6MTYzNzE2MTM0NSwiZXhwIjoxNjM3MTY0OTQ1LCJlbWFpbCI6ImF1bS51cGFkaHlheUBjb2x1bWJpYS5lZHUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsiYXVtLnVwYWRoeWF5QGNvbHVtYmlhLmVkdSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.Msp__GRp0QwZzmYGSFcNu1xIMgZgw2dsFlAQQBYDxmOv9T98UMvhqGN5s4HesaUjE8lI06Aqv4ZIFQblw6C0SxnhDdwbHxXShTdMlc0EKyQ_-GehhO9g_Z9DPkGq0KYHFt4xUlmWOD6jZry7UbvU9WdPc_uXWXPoPRWHHiXeVRZf4xYknDkD98BS9aVFEVvrJ5T-3XiCJb19nET7VyFKxy1gapDF74QO23ozL4rhBLSB2i1IV-Gd9tuOW6ReWlVIAiIlDRk2BtsgNvmmvyYC_Sa9VDhK8Nk1Hgh3rPAbODArRTF5yuEqwk8eRdJLFrobdbsOmXUWqT4Am0B4a6ea7Q';
+const auth_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWUyOTRlZWRjMTY3Y2Q5N2JiNWE4MTliYmY3OTA2MzZmMTIzN2UiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQXVtIFVwYWRoeWF5IiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBVFhBSnpRWnpJWnFxd3hRRWJCdk1jQ25VendpYW9DQmJNdkdnUGg2VnlJPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2Zlcm4tZGVhNGQiLCJhdWQiOiJmZXJuLWRlYTRkIiwiYXV0aF90aW1lIjoxNjM3MjAwOTgxLCJ1c2VyX2lkIjoiUWRDMW1BYnJzdlgyMkJhMDVuNHR2bnZ1d2Q2MyIsInN1YiI6IlFkQzFtQWJyc3ZYMjJCYTA1bjR0dm52dXdkNjMiLCJpYXQiOjE2MzcyMDA5ODEsImV4cCI6MTYzNzIwNDU4MSwiZW1haWwiOiJhdW1zcGVha3NAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDA5NzkwNjEyMTA4NDY4MDM4MDIiXSwiZW1haWwiOlsiYXVtc3BlYWtzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.I7dicGx39rypC3rLjeo_9W6PdcafftaS0D7oyvOek1AWUHaKLbtCeGu_e5_hUXz4w7R3Mu2pjUSXikTRNnYo6rrNbPBFAfik42w_PmxnVK4BnzbQff5cy0abs8krX7QthJQgm40Luv738_4SA4M3preIWBJHhWWWO-7P5tUsMterOrjKS0NLKfsQ8QTQgzY3eBe_olIsaZhClWewA6nOuW3Btiy_MHNwSNH2aoNYBGmsjYWEMbw5Iy-EA-mu5VrhtOcPmRANbXXc59W6HGwiusrOIlWn5Ozkey3fXk2JXye944dEs5Jq3AyNSNaPoHq1_pY3jLxPBs7VXdC-hyHTrQ';
 let driver = require("chromedriver");
 
 driver = new Builder().forBrowser("chrome").build();
@@ -47,6 +47,12 @@ Given('I am on the user profile page', async function () {
     setTimeout(async function () {
         await driver.get("http://localhost:3000/profile");
     }, 5000);
+})
+
+Given('I am on the bookmark page', async function () {
+    setTimeout(async function () {
+        await driver.get("http://localhost:3000/saved");
+    }, 6000);
 })
 
 When('I go to the website link', async function () {
@@ -175,6 +181,20 @@ When('I click on capture carbon button', async function () {
     }, 3000);
 })
 
+When('I click on bookmarks', async function () {
+    setTimeout(async function () {
+        let button = await driver.findElements(By.className("MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"))
+        button[0].click()
+    }, 3000);
+})
+
+When('I click on logo', async function () {
+    setTimeout(async function () {
+        let button = await driver.findElements(By.className("page__header__logo"))
+        button[0].click()
+    }, 3000);
+})
+
 Then('I should have 1 item in the cart', async function () {
     setTimeout(async function () {
         let el = await driver.findElement(By.className("CartCountText"))
@@ -273,5 +293,21 @@ Then('I should see upload', async function () {
         let spores = await driver.findElements(By.className("MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"))
         let text = await spores[0].getText()
         assert.equal(text.includes("Upload"), true)
+    }, 5000);
+})
+
+Then('I should be on the bookmarks page', async function () {
+    setTimeout(async function () {
+        let bookmarks = await driver.findElements(By.className("saved__list__empty"))
+        let text = await bookmarks[0].getText()
+        assert.equal(text.includes("saved"), true)
+    }, 5000);
+})
+
+Then('I should be on the catalog page', async function () {
+    setTimeout(async function () {
+        let filters = await driver.findElements(By.className("MuiFormGroup-root css-dmmspl-MuiFormGroup-root"))
+        let text = await filters[0].getText()
+        assert.equal(text.includes("Price"), true)
     }, 5000);
 })
