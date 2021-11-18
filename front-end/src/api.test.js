@@ -42,6 +42,9 @@ it('returns all products', async () => {
 });
 
 it('sign in user', async () => {
+  axios.post.mockResolvedValue({
+    'data': 'test'
+  })
   await signIn();
   expect(axios.post).toBeCalled();
 });

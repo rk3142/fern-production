@@ -1,31 +1,32 @@
-import React from 'react';
-import SearchBar from "./SearchBar";
-import {useHistory} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {useHistory, useLocation} from "react-router-dom";
 import './Layout.css'
+// import SearchBar from "./SearchBar";
 import logo from '../assets/logo.png'
-import {signIn} from "../api";
+import {authenticateAccess} from "../common/utils";
+import UserActions from "./UserActions";
 
 function Layout({children, authenticated=false}) {
     let history = useHistory()
+    let location = useLocation()
 
-    const onClick = () => {
-        const accessToken = localStorage.getItem("auth_token");
-        if (accessToken != null) signIn()
-        history.push("/auth")
-    }
+    useEffect(() => authenticated && authenticateAccess(history, location['pathname']), [])
+
+    const onClickLogo = () => authenticateAccess(history, '/catalog')
 
     return (
         <div className={'page'}>
             <div className="page__header">
-                <div className={'page__header__logo'}>
-                    <img className={'page__header__logo__img'} src={logo} alt={'logo'}></img>
+                <div className={'page__header__logo'} onClick={onClickLogo} role='button'>
+                    <img className={'page__header__logo__img'} src={logo} alt={'logo'} />
                     <div className={'page__header__logo__text'}>Fern</div>
                 </div>
                 {
-                    authenticated ? (
-                        <SearchBar />
-                    ) : (
-                        <button className={'login_btn'} onClick={onClick}>Login</button>
+                    authenticated && (
+                        <>
+                            {/*<SearchBar />*/}
+                            <UserActions />
+                        </>
                     )
                 }
             </div>

@@ -1,145 +1,118 @@
-.App {
-  text-align: left;
-}
-
-.Logo {
-  width: 60px;
-  height: 60px;
-  margin-top: 5px;
-  margin-left: 5px;
-}
-
-.Fern {
-  width: 71px;
-  height: 28px;
-  margin-top: 20px;
-  margin-left: 10px;
-}
-
-.Header {
-  height: fit-content;
-  
-}
-
-.PageTitle {
-  font-size: 22px;
-  font-weight: bold;
-  margin-left: 280px;
-}
-
-.Body {
-  height: 400px;
-  width: 50%;
-  margin-left: 30px;
-  margin-top: 20px;
-}
-
-.ProductImage {
+.details_page {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
-.ProductEcoStats {
-  text-align: left;
-  margin-top: 20px;
-  height: 50px
-}
-
-.EcoStatsIcon {
-  height: 35px;
-  margin-left: 20px;
-  margin-top: 10px;
-}
-
-.EcoStatsText {
-  font-size: 16px;
-  margin-left: 5px;
-}
-
-.ProductBody {
-  flex-direction: row;
+.details {
+  width: 100%;
   display: flex;
-  text-align: left;
-  margin-top: 10px;
+  margin-bottom: 2rem;
 }
 
-
-.ProductRatingText {
-    font-size: 14px;
-    margin-left: -10px;
-    margin-top: 17px;
-    margin-right: -10px;
+.details__image {
+  width: 25%;
+  margin-right: 2rem;
 }
 
-.ProductRating {
-    font-size: 14px;
-    margin-left: -20px;
-    margin-top: 17px;
-    margin-right: -10px;
-    width: 100px;
+.details__info {
+  width: 70%;
 }
 
-.ProductRatings {
-    font-size: 14px;
-    color: #7d7d7d;
-    margin-top: 17px;
-    margin-left: -25px;
+.details__info__name {
+  line-height: 2rem;
+  margin-top: 0;
 }
 
-.ProductSource {
-    font-size: 12px;
-    color: #7d7d7d;
-    margin-top: 20px;
-    margin-left: -10px;
-    margin-right: -20px;
-}
-
-.ProductPrice {
-    font-size: 20px;
-    margin-left: -20px;
-    width: 30px;
-    margin-top: 10px;
-    margin-right: 15px;
+.details__info__body {
+  display: flex;
 }
 
 .EcoDetsIcon {
-  height: 30px;
+  height: 20px;
   margin-top: 10px;
 }
 
-.DetailsBody {
-  flex-direction: row;
-  display: flex;
-  width: 1080px;
-  margin-left: 40px;
-}
-
 .EcoDetsText {
-  font-size: 16px;
+  font-size: 0.8rem;
   margin-left: 5px;
   margin-right: 25px;
 }
 
-.SourceText {
-  font-size: 16px;
-  color: #7d7d7d;
-  margin-top: 16px;
-  font-weight: bold;
-  margin-right: 20px;
-  margin-left: -20px;
-}
-
-.Source {
-  flex-direction: row;
+.details__info__more {
   display: flex;
-  width: 308px;
-  margin-left: 40px;
+  margin-top: 1rem;
 }
 
-.DescriptionBody {
-  width: 800px;
+.details__info__more__actions {
+  width: 50%;
 }
 
-.ProductDescriptionText {
-  color: #7d7d7d;
-  font-size: 16px;
+.details__info__more__description {
+  width: 50%;
+  color: var(--third-text-color);
+}
+
+.details__info__more__actions__ratings {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.details__info__more__actions__ratings__stars {
+  margin-right: 1rem;
+}
+
+.details__info__more__actions__ratings__stars__source {
+  color: var(--third-text-color);
+  margin-left: 0.5rem;
+}
+
+.details__info__more__actions__price {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.details__info__more__actions__buttons > button {
+  border-radius: 20px;
+  padding: 0.7rem 2.8rem;
+  box-shadow: none;
+  margin-right: 0.5rem;
+}
+
+.details__info__more__actions__buttons-save, .details__info__more__actions__buttons-save:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+.details__info__more__actions__buttons-unsave, .details__info__more__actions__buttons-unsave:hover {
+  background-color: var(--third-text-color) !important;
+}
+
+.details__info__more__actions__buttons-buy, .details__info__more__actions__buttons-buy:hover {
+  background-color: var(--primary-color) !important;
+}
+
+
+/* Similar products */
+.similar_products__title {
+  font-size: 1.5rem;
+}
+
+.similar_catalog__list {
+  width: 80%;
+  height: fit-content;
+  margin-left: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.similar_catalog__list > div {
+  /*height: 600px;*/
+  border-radius: 20px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  flex-basis: calc(33.333333% - 0.7rem);
+}
+
+.similar_catalog__list > div:nth-child(3n) {
+  margin-right: 0;
 }

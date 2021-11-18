@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@cypress/instrument-cra": "^1.4.0",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.1.0",
+    "@mui/material": "^5.1.0",
     "@react-navigation/native-stack": "^6.2.5",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -14,15 +18,16 @@
     "firebase": "^9.2.0",
     "firebaseui": "^6.0.0",
     "geckodriver": "^2.0.4",
-    "firebase": "^9.2.0",
-    "firebaseui": "^6.0.0",
     "history": "^4.10.1",
     "identity-obj-proxy": "^3.0.0",
     "jest-cucumber": "^3.0.1",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-lines-ellipsis": "^0.15.0",
     "react-minimal-side-navigation": "^1.9.2",
+    "react-number-format": "^4.8.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
@@ -61,7 +66,9 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "enzyme": "^3.11.0",
     "istanbul-instrumenter-loader": "^3.0.1",
+    "msw": "^0.35.0",
     "nyc": "^15.1.0",
+    "redux-mock-store": "^1.5.4",
     "source-map-support": "^0.5.20",
     "ts-node": "^10.4.0"
   },
@@ -97,7 +104,9 @@
       "!src/index.js",
       "!**/babel.config.js",
       "!**/serviceWorker.js",
-      "!**/firebaseUtils.js"
+      "!**/firebaseUtils.js",
+      "!src/store.js",
+      "!src/App.js"
     ],
     "setupFilesAfterEnv": [
       "./src/setupTests.js"
