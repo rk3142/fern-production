@@ -8,7 +8,7 @@ application up and running.
 
 
 * Application URL(Heroku): http://fern-environment-2.herokuapp.com/
-* Code Repo URL(GitHub): https://github.com/rk3142/fern-production
+* Code Repo URL(GitHub): https://github.com/rk3142/fern-production/tree/iteration_2
 ## Installation Instructions
 ### Clone this repo
 ```commandline
