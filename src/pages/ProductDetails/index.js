@@ -6,7 +6,7 @@ import energy_icon from '../../assets/energy_icon.jpeg'
 import './ProductDetails.css';
 import SimilarItemCard from "../../components/SimilarItemCard";
 import { useDispatch, useSelector } from "react-redux";
-import { selectProducts } from "../../reducers/catalogSlice";
+import {getAllCatalog, selectProducts} from "../../reducers/catalogSlice";
 import { Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import {addSaved, addSavedItem, removeSaved, removeSavedItem, selectSaved} from "../../reducers/savedSlice";
@@ -23,11 +23,13 @@ function ProductDetails() {
     const [product, setProduct] = useState(JSON.parse(localStorage.getItem('recently_clicked')))
     const [similarProducts, setSimilarProducts] = useState([])
     const [isSaved, setIsSaved] = useState(false)
-    const items = useSelector(selectProducts).filteredProducts
+    const items = useSelector(selectProducts).products
     const status = useSelector(selectProducts).status
     const savedItems = useSelector(selectSaved)
 
     useEffect(() => {
+        // FIXME
+        dispatch(getAllCatalog())
         setSimilarProducts(getSimilarProducts())
     }, [])
 

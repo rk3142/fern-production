@@ -26,8 +26,8 @@ function UserProfile(props) {
             alert("Not enough spores")
             return;
         }
-        console.log(spores)
-        console.log(user)
+        // console.log(spores)
+        // console.log(user)
         return spendSpores().then(res => {
             if (!res) return null
             //console.log(res)
@@ -40,17 +40,17 @@ function UserProfile(props) {
         setSpores(spore)
     }, [])
 
-    const uploadImage = () => {
-        if (image.length === 0) {
-            alert("Please choose an image")
-            return 
-        }
-        alert("Image uploaded")
-    }
-
-    const changeImage = (event) => {
-        setImage(event.target.files[0])
-    }
+    // const uploadImage = () => {
+    //     if (image.length === 0) {
+    //         alert("Please choose an image")
+    //         return
+    //     }
+    //     alert("Image uploaded")
+    // }
+    //
+    // const changeImage = (event) => {
+    //     setImage(event.target.files[0])
+    // }
 
     return (
         <div className="User_Info">

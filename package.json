@@ -104,7 +104,9 @@
       "!src/index.js",
       "!**/babel.config.js",
       "!**/serviceWorker.js",
-      "!**/firebaseUtils.js"
+      "!**/firebaseUtils.js",
+      "!src/store.js",
+      "!src/App.js"
     ],
     "setupFilesAfterEnv": [
       "./src/setupTests.js"
