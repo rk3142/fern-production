@@ -49,7 +49,7 @@ function ItemCard({item}) {
 
     const handleSaved = (item) => {
         if (!saved) {
-            dispatch(addSaved(item))
+            dispatch(addSaved({...item, is_bookmarked: true}))
             dispatch(addSavedItem(product_id))
         }
         else {
