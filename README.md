@@ -121,6 +121,6 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 - Frontend
   - After clarifications with George in OH we confirmed that the lower than perfect coverage for front end is adequate since config files needed for firebase authentication cannot be tested. All files that we created have been tested, the components folder has lower than expected coverage since it is simply a wrapper for other files. 
   - ![alt text](https://github.com/rk3142/fern-production/blob/main/BDD.png)
-  - ![alt text](https://github.com/rk3142/fern-production/blob/main/frontend_coverage.png)
+  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_2/frontend_coverage.png)
 - Backend
   - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_2/backend_coverage.png)
