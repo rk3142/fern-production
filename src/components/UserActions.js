@@ -17,9 +17,9 @@ function UserActions() {
     }
     return (
         <div className='user_actions'>
-            <Logout onClick={onClickLogout} />
             <BookmarksIcon onClick={onClickSaved} />
             <PersonIcon onClick={onClickProfile} />
+            <Logout onClick={onClickLogout} />
         </div>
     );
 }

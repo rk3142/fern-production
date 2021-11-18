@@ -22,4 +22,11 @@ describe('user actions', () => {
         fireEvent.click(bookmarkIcon)
         expect(authMock).toHaveBeenCalledWith(undefined, '/profile');
     });
+
+    test('logout', () => {
+        const {container} = render(<UserActions />)
+        const logoutIcon = container.firstChild.getElementsByClassName('MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root')[2]
+        fireEvent.click(logoutIcon)
+        expect(authMock).toHaveBeenCalledWith(undefined, '/catalog');
+    });
 })
