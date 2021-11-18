@@ -8,24 +8,16 @@ jest.mock("../../common/firebaseUtils", () => ({
     startFirebaseUI: () => <div>Mock</div>
 }))
 
+jest.mock('react-router-dom', () => ({
+    useHistory: () => ({
+      push: jest.fn(),
+    }),
+}));
+
 test("renders", async () => {
   localStorage.removeItem("auth_token");
   render(<Authentication />);
 
   const signIn = screen.queryByText(/Sign in/i);
   expect(signIn).toBeInTheDocument();
-});
-
-test("redirects if logged in", async () => {
-    const history = createMemoryHistory()
-    const pushSpy = jest.spyOn(history, 'push')
-
-    localStorage.setItem("auth_token", "test token");
-    render(
-        <Router history={history}>
-            <Authentication />
-        </Router>
-    );
-
-    expect(pushSpy).toBeCalled();
 });
