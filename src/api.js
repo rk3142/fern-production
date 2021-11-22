@@ -50,6 +50,13 @@ export const signIn = async function () {
     });
 }
 
+export const getSimilarProducts = async function (productId) {
+    return await axios.get(BASE_URL + "/product/similar?product_id=" + productId)
+    .then(response => {
+        return response["data"]["products"]
+    })
+}
+
 export const spendSpores = async function () {
     const body = {
         "redeem": {
@@ -58,4 +65,11 @@ export const spendSpores = async function () {
         }
     }
     await axios.put(BASE_URL + "/spores/redeem", body)
+}
+
+export const getSporesHistory = async function () {
+    return await axios.get(BASE_URL + "/spores/history")
+    .then(response => {
+        return response["data"]
+    })
 }

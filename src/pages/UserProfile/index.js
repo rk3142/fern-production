@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './UserProfile.css';
-import { getUserDetails, spendSpores } from "../../api.js"
+import { getUserDetails, spendSpores, getSporesHistory } from "../../api.js"
 import { Button } from "@mui/material";
 
 function UserProfile(props) {
@@ -20,13 +20,14 @@ function UserProfile(props) {
         // })
     }
 
-    useEffect( () => {
+    useEffect( async () => {
         getUserDetails().then(response => {
             if (!response) return null
             let res = response["data"]["user"]
             setUser(res)
             setSpores(res['current_spore_count'])
         })
+        console.log(await getSporesHistory())
     }, [])
 
     return (

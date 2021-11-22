@@ -9,9 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {getAllCatalog, selectProducts} from "../../reducers/catalogSlice";
 import { Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
-import {addSaved, addSavedItem, removeSaved, removeSavedItem, selectSaved} from "../../reducers/savedSlice";
+import {useHistory} from "react-router-dom";
+import {addSaved, addSavedItem, removeSaved, removeSavedItem} from "../../reducers/savedSlice";
 import _ from "lodash";
-import {getProductById} from "../../api";
+import {getProductById, getSimilarProducts} from "../../api";
 
 const goToLink = (link) => {
     window.location.href = link
@@ -20,32 +21,29 @@ const goToLink = (link) => {
 
 function ProductDetails() { 
     const dispatch = useDispatch();
-    const [product, setProduct] = useState(JSON.parse(localStorage.getItem('recently_clicked')))
+    let history = useHistory()
+    const getProduct = () => { 
+        if(history.location.state != undefined) {
+            localStorage.setItem("recently_clicked", JSON.stringify(history.location.state.product))
+            return history.location.state.product 
+        } else {
+            return JSON.parse(localStorage.getItem("recently_clicked"))
+        }
+    }
+    const [product, setProduct] = useState(getProduct())
     const [similarProducts, setSimilarProducts] = useState([])
     const [isSaved, setIsSaved] = useState(false)
-    const items = useSelector(selectProducts).products
     const status = useSelector(selectProducts).status
-    const savedItems = useSelector(selectSaved)
 
-    useEffect(() => {
-        // FIXME
+    useEffect( async () => {
         dispatch(getAllCatalog())
-        setSimilarProducts(getSimilarProducts())
+        let sim_prods = await getSimilarProducts(product["product_id"])
+        setSimilarProducts(sim_prods)
     }, [])
 
     useEffect( () => {
         getProductById(product['product_id']).then(res => setIsSaved(res['is_bookmarked']))
     }, [product])
-
-    const getSimilarProducts = () => {
-        let similar_items = []
-        for(var i in items) {
-            if(product["product_id"] !== items[i]["product_id"] && product["brand"] === items[i]["brand"]) {
-                similar_items.push(items[i])
-            }
-        }
-        return similar_items;
-    }
 
     const saveItem = item => {
         dispatch(addSaved(item))
