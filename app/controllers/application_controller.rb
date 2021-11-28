@@ -28,11 +28,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
-
-
-
   def logged_in?
     session_user = session[:user_id]
     # p request.headers[:idToken]
@@ -45,6 +40,8 @@ class ApplicationController < ActionController::Base
     if session[:user_id].nil?
       firebase_response = JSON.parse(firebase_response)
       session[:user_id] = firebase_response["users"][0]['localId']
+    else
+      session[:user_id] = "kSlylzoV8KbTbvSFLUjHxjc1qbo1"
     end
     return true
     # firebase_response = JSON.parse(firebase_response)
@@ -52,6 +49,12 @@ class ApplicationController < ActionController::Base
     # #p session_user
     # # p user_id
     # return session_user == user_id
+  end
+
+  def set_user_id
+    if session[:user_id].nil?
+      session[:user_id] = "kSlylzoV8KbTbvSFLUjHxjc1qbo1"
+    end
   end
 
 end

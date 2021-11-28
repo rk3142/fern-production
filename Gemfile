@@ -4,6 +4,8 @@ ruby '>= 2.6.6', '< 2.7.0'
 gem 'rails', '4.2.10'
 gem 'active_model_serializers'
 gem 'httparty'
+gem 'pdf-reader'
+gem 'rtesseract'
 # for Heroku deployment
 group :development, :test do
   gem 'sqlite3', '1.3.11'

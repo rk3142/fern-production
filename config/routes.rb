@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   #root to: "main#index"
+  post '/bulk_insert', to: 'product#insert_products_bulk'
   get '/products', to: 'product#index'
   get '/products/:product_id', to: 'product#show'
   get '/product_type', to: 'product#all_product_types'
@@ -19,5 +20,6 @@ Rails.application.routes.draw do
   get '/spores/milestones', to: 'spore_management#get_milestones'
   get '/product/search', to: 'product#search_products'
   get '/product/similar', to: 'product#similar_products'
+  get '/test', to: 'pdf_parser#parse_image'
   root :controller => 'static', :action => '/'
 end

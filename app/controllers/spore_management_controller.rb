@@ -1,14 +1,13 @@
 class SporeManagementController < ApplicationController
 
-  before_action :require_login
+  # before_action :require_login
+  before_action :set_user_id
 
   def claim_spores
     user_id = session[:user_id]
-    claim_params = params[:claim]
-    amount = claim_params[:amount]
-    product_id = claim_params[:product_id]
-    invoice_id = claim_params[:invoice_id]
-    is_claimed, response = SporeManagementHelper.process_claim_request amount, product_id, user_id, invoice_id
+    base64_encoded_image  = params[:invoice]
+    invoice_id, amount = SporeManagementHelper.get_image_from_encoding base64_encoded_image
+    is_claimed, response = SporeManagementHelper.process_claim_request amount, user_id, invoice_id
     resp_msg = {:msg => response}
     if is_claimed
       render json: resp_msg, status: :accepted

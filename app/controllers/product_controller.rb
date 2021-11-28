@@ -1,6 +1,6 @@
 class ProductController < ApplicationController
 
-  before_action :require_login
+  # before_action :require_login
 
   def index
     resp = Hash.new
@@ -91,6 +91,12 @@ class ProductController < ApplicationController
     resp[:products] = product_list
     Rails.logger.info "Response sent to client #{resp.inspect}"
     render json: resp, status: :ok
+  end
+
+  def insert_products_bulk
+    product_list = params[:products]
+    ProductHelper.process_bulk_insertion(product_list)
+    render :nothing => true, status: 201
   end
 
 end
