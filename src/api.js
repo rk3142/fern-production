@@ -3,8 +3,9 @@ import axios from "axios";
 // const BASE_URL = "http://localhost:5000";
 // const BASE_URL = "https://fern-development.herokuapp.com";
 // const BASE_URL = "http://ac28-71-104-49-45.ngrok.io";
+// const BASE_URL = "https://fern-iteration-2.herokuapp.com";
 
-const BASE_URL = "https://fern-iteration-2.herokuapp.com";
+const BASE_URL = "https://fern-iteration-3.herokuapp.com";
 export const getAllProducts = async function () {
     return await axios.get(BASE_URL + "/products")
         .then(response => {
@@ -57,10 +58,10 @@ export const getSimilarProducts = async function (productId) {
     })
 }
 
-export const spendSpores = async function () {
+export const spendSpores = async function (type_key) {
     const body = {
         "redeem": {
-            "type_key": "TREE",
+            "type_key": type_key,
             "quantity": "1"
         }
     }
@@ -68,7 +69,7 @@ export const spendSpores = async function () {
 }
 
 export const getSporesHistory = async function () {
-    return await axios.get(BASE_URL + "/spores/history")
+    return await axios.get(BASE_URL + "/spores/milestones")
     .then(response => {
         return response["data"]
     })
