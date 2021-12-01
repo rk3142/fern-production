@@ -13,7 +13,7 @@ import energy_icon from "../assets/energy_icon.jpeg";
 import StarRatings from "react-star-ratings";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addSaved, addSavedItem, removeSaved, removeSavedItem, selectSaved} from "../reducers/savedSlice";
+import {addSaved, addSavedItem, removeSaved, removeSavedItem} from "../reducers/savedSlice";
 
 function ItemCard({item}) {
     const dispatch = useDispatch();
@@ -36,8 +36,8 @@ function ItemCard({item}) {
     const [saved, setSaved] = useState(is_bookmarked)
 
     const goToDetails = async () => {
-        localStorage.setItem('recently_clicked', JSON.stringify(item))
-        history.push("/productdetails");
+        //localStorage.setItem('recently_clicked', JSON.stringify(item))
+        history.push({pathname: "/productdetails", state: {product: item}});
     }
 
     const goToLink = (link) => {
