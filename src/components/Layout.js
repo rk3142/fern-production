@@ -1,18 +1,24 @@
 import React, {useEffect} from 'react';
 import {useHistory, useLocation} from "react-router-dom";
 import './Layout.css'
-// import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar";
 import logo from '../assets/logo.png'
 import {authenticateAccess} from "../common/utils";
 import UserActions from "./UserActions";
+import {useDispatch} from "react-redux";
+import {setSearchWord} from "../reducers/catalogSlice";
 
 function Layout({children, authenticated=false}) {
     let history = useHistory()
     let location = useLocation()
+    const dispatch = useDispatch();
 
     useEffect(() => authenticated && authenticateAccess(history, location['pathname']), [])
 
-    const onClickLogo = () => authenticateAccess(history, '/catalog')
+    const onClickLogo = () => {
+        dispatch(setSearchWord({searchWord: '', isSearch: true}))
+        authenticateAccess(history, '/catalog')
+    }
 
     return (
         <div className={'page'}>
@@ -24,7 +30,7 @@ function Layout({children, authenticated=false}) {
                 {
                     authenticated && (
                         <>
-                            {/*<SearchBar />*/}
+                            <SearchBar />
                             <UserActions />
                         </>
                     )

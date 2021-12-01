@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, current} from '@reduxjs/toolkit';
 import _ from 'lodash'
-import {getAllProducts} from "../api";
+import {getAllProducts, getProductsBySearch} from "../api";
 import filters from '../filters.json'
 
 const BreakException = {};
@@ -13,11 +13,20 @@ export const getAllCatalog = createAsyncThunk('catalog/getAllCatalog',
         })
 })
 
+export const getCatalogBySearch = createAsyncThunk('catalog/getCatalogBySearch',
+    async ({searchWord}) => {
+        return getProductsBySearch(searchWord).then(res => {
+            if (!res) return null
+            return res
+        })
+})
+
 const initialState = {
     products: [],
     filteredProducts: [],
     currentFilter: [],
     searchWord: '',
+    isSearch: true,
     status: 'idle',
     error: null
 };
@@ -26,6 +35,10 @@ export const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
   reducers: {
+      setSearchWord: (state, {payload}) => {
+          state.searchWord = payload.searchWord
+          state.isSearch = payload.isSearch
+      },
       addFilter: (state, {payload}) => {
           state.currentFilter.push({[payload.title]: payload.label})
       },
@@ -76,10 +89,22 @@ export const catalogSlice = createSlice({
             state.status = 'failed'
             state.error = action.error.message
         },
+        [getCatalogBySearch.pending]: (state, action) => {
+            state.status = 'loading'
+        },
+        [getCatalogBySearch.fulfilled]: (state, {payload}) => {
+            state.products = payload
+            state.filteredProducts = payload
+            state.status = 'success'
+        },
+        [getCatalogBySearch.rejected]: (state, action) => {
+            state.status = 'failed'
+            state.error = action.error.message
+        },
     }
 });
 
-export const { addFilter, removeFilter, filterProducts } = catalogSlice.actions;
+export const { addFilter, removeFilter, filterProducts, setSearchWord } = catalogSlice.actions;
 
 export const selectProducts = (state) => state.catalog;
 
