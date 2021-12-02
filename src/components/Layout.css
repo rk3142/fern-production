@@ -44,7 +44,5 @@
 
 .page__content {
     height: calc(100vh - 100px);
-    display: flex;
-    justify-content: center;
     margin: 0 6rem;
 }
