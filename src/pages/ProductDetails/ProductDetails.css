@@ -98,9 +98,7 @@
 }
 
 .similar_catalog__list {
-  width: 80%;
   height: fit-content;
-  margin-left: 1rem;
   display: flex;
   flex-wrap: wrap;
 }
