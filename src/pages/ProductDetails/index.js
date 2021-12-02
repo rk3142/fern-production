@@ -158,8 +158,11 @@ function ProductDetails() {
                             <div className={'similar_catalog__list'}>
                                 {
                                     isSimilarLoaded ?
-                                        similarProducts.map(item => <SimilarItemCard item={item} key={item.product_id} />)
-                                        : <CircularProgress />
+                                        similarProducts.map(item => (
+                                            <div className="similar_catalog__list__item">
+                                                <SimilarItemCard item={item} key={item.product_id} />
+                                            </div>
+                                        )) : <CircularProgress />
                                 }
                             </div>
                         </div>

@@ -100,15 +100,32 @@
 .similar_catalog__list {
   height: fit-content;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  /*Hide scrollbar*/
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
-.similar_catalog__list > div {
-  /*height: 600px;*/
-  border-radius: 20px;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.similar_catalog__list::-webkit-scrollbar {
+  display: none;
+}
+
+.similar_catalog__list__item {
+  width: 100%;
+  flex-basis: calc(33.333333% - 0.7rem);
+}
+
+.similar_catalog__list__item > div {
+  flex-basis: calc(33.333333% - 0.7rem);
+  width: max-content;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  flex-basis: calc(33.333333% - 0.7rem);
+  border-radius: 20px;
 }
 
 .similar_catalog__list > div:nth-child(3n) {
