@@ -83,9 +83,11 @@ module SporeManagementHelper
     @user_spores = User.select("current_spore_count").where(:user_id => user_id).first
     if @user_spores.present?
       user_current_spores = @user_spores.current_spore_count
+      p user_current_spores
       @spores_types = SporesMilestoneMapper.select('type_key, amount, type_key').where(:type_key => redemption_type_key).first
       if @spores_types.present?
         spore_amount = @spores_types.amount*quantity.to_i
+        p spore_amount
         if user_current_spores > spore_amount
           SporeManagementHelper.save_spore_history(user_id, "redeem", spore_amount, @spores_types.type_key)
           user_current_spores -= spore_amount

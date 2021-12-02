@@ -11,7 +11,11 @@ class Product < ApplicationRecord
   end
 
   def self.get_products_by_title(title)
-    Product.where("product_name LIKE ?", "%#{sanitize_sql_like(title)}%").all
+    if Rails.env.production?
+      Product.where("product_name ILIKE ?", "%#{sanitize_sql_like(title)}%").all
+    else
+      Product.where("product_name LIKE ?", "%#{sanitize_sql_like(title)}%").all
+    end
   end
 
   def self.get_random_products(size, product_id)

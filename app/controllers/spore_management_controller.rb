@@ -1,11 +1,12 @@
 class SporeManagementController < ApplicationController
 
-  # before_action :require_login
-  before_action :set_user_id
+  before_action :require_login
+  #before_action :set_user_id
 
   def claim_spores
     user_id = session[:user_id]
     base64_encoded_image  = params[:invoice]
+    p base64_encoded_image
     invoice_id, amount = SporeManagementHelper.get_image_from_encoding base64_encoded_image
     is_claimed, response = SporeManagementHelper.process_claim_request amount, user_id, invoice_id
     resp_msg = {:msg => response}
