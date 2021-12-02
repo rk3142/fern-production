@@ -3,8 +3,9 @@ import axios from "axios";
 // const BASE_URL = "http://localhost:5000";
 // const BASE_URL = "https://fern-development.herokuapp.com";
 // const BASE_URL = "http://ac28-71-104-49-45.ngrok.io";
-
-const BASE_URL = "https://fern-iteration-2.herokuapp.com";
+// const BASE_URL = "https://fern-iteration-2.herokuapp.com";
+// const BASE_URL = "https://fern-iteration-3.herokuapp.com";
+const BASE_URL = "http://b03f-71-104-49-45.ngrok.io";
 export const getAllProducts = async function () {
     return await axios.get(BASE_URL + "/products")
         .then(response => {
@@ -50,12 +51,33 @@ export const signIn = async function () {
     });
 }
 
-export const spendSpores = async function () {
+export const getSimilarProducts = async function (productId) {
+    return await axios.get(BASE_URL + "/product/similar?product_id=" + productId)
+    .then(response => {
+        return response["data"]["products"]
+    })
+}
+
+export const spendSpores = async function (type_key) {
     const body = {
         "redeem": {
-            "type_key": "TREE",
+            "type_key": type_key,
             "quantity": "1"
         }
     }
     await axios.put(BASE_URL + "/spores/redeem", body)
+}
+
+export const getSporesHistory = async function () {
+    return await axios.get(BASE_URL + "/spores/milestones")
+    .then(response => {
+        return response["data"]
+    })
+}
+
+export const sendImage = async function (image) {
+    let bodyFormData = new FormData();
+    bodyFormData.append("invoice", image)
+    let headers = { "Content-Type": "multipart/form-data" }
+    return await axios.put(BASE_URL + "/spores/claim", bodyFormData, headers)
 }
