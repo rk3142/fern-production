@@ -81,3 +81,10 @@ export const getSporesHistory = async function () {
         return response["data"]
     })
 }
+
+export const sendImage = async function (image) {
+    let bodyFormData = new FormData();
+    bodyFormData.append("invoice", image)
+    let headers = { "Content-Type": "multipart/form-data" }
+    return await axios.put(BASE_URL + "/spores/claim", bodyFormData, headers)
+}
