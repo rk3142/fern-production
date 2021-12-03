@@ -4,19 +4,26 @@ import axios from "axios";
 // const BASE_URL = "https://fern-development.herokuapp.com";
 // const BASE_URL = "http://ac28-71-104-49-45.ngrok.io";
 // const BASE_URL = "https://fern-iteration-2.herokuapp.com";
-// const BASE_URL = "https://fern-iteration-3.herokuapp.com";
-const BASE_URL = "http://b03f-71-104-49-45.ngrok.io";
-export const getAllProducts = async function () {
+
+const BASE_URL = "https://fern-iteration-3.herokuapp.com";
+
+export const getAllProducts = async function() {
     return await axios.get(BASE_URL + "/products")
         .then(response => {
             return response["data"]["products"]
         })
 }
 
+export const getProductsBySearch = async function(searchWord) {
+    return await axios.get(BASE_URL + "/product/search?search_key=" + searchWord)
+        .then(response => {
+            return response["data"]['products']
+        })
+}
+
 export const getUserDetails = async function () {
     return await axios.get(BASE_URL + "/user/kSlylzoV8KbTbvSFLUjHxjc1qbo1")
         .then(response => {
-            //console.log(response)
             return response
         })
 }
