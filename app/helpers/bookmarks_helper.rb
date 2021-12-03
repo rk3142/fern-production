@@ -1,7 +1,7 @@
 module BookmarksHelper
 
   def self.get_bookmarked_products(user_id)
-    fav_product_id = UserFavorite.find_by_user_id(user_id)
+    fav_product_id = UserFavorite.find_by_user_id(user_id).order(created_at: :desc)
     product_id_list = []
     if fav_product_id.present?
       fav_product_id.each do |product_id|
