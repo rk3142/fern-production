@@ -16,6 +16,7 @@ module ProductHelper
       product_hash[:carbon] = product.carbon
       product_hash[:water] = product.water
       product_hash[:energy] = product.energy
+      product_hash[:green_quotient] = (0.1337*product.carbon + 0.5175*product.water + 0.1252*product.energy).round(3)
       type_list.push(ProductType.find_by_product_type(product.product_type))
       price_list.push(ProductPriceMapper.find_by_product_id(product.product_id))
       product_hash['product_type'] = type_list
