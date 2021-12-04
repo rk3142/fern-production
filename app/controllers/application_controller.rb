@@ -29,7 +29,6 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    session_user = session[:user_id]
     # p request.headers[:idToken]
     firebase_response, error_code = FirebaseHelper.validate_token(request.headers[:idToken])
     #p error_code
@@ -37,12 +36,9 @@ class ApplicationController < ActionController::Base
     unless error_code.to_s == "200"
       return false
     end
-    if session[:user_id].nil?
-      firebase_response = JSON.parse(firebase_response)
-      session[:user_id] = firebase_response["users"][0]['localId']
-    else
-      session[:user_id] = "kSlylzoV8KbTbvSFLUjHxjc1qbo1"
-    end
+
+    firebase_response = JSON.parse(firebase_response)
+    session[:user_id] = firebase_response["users"][0]['localId']
     return true
     # firebase_response = JSON.parse(firebase_response)
     # user_id = firebase_response["users"][0]['localId']
