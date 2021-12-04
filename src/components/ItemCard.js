@@ -14,6 +14,7 @@ import StarRatings from "react-star-ratings";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {addSaved, addSavedItem, removeSaved, removeSavedItem} from "../reducers/savedSlice";
+import GreenScoreLabel from "./GreenScoreLabel";
 
 function ItemCard({item}) {
     const dispatch = useDispatch();
@@ -30,7 +31,8 @@ function ItemCard({item}) {
             product_description,
             carbon,
             water,
-            energy } = item
+            energy,
+            green_quotient } = item
 
     const [hover, setHover] = useState(false)
     const [saved, setSaved] = useState(is_bookmarked)
@@ -65,12 +67,15 @@ function ItemCard({item}) {
                 <div className="item__name">{product_name}</div>
 
                 <div className="item__eco_status">
-                    <img className="EcoStatsIcon" src={co2_icon} alt='CO2 icon' />
-                    <p className="EcoStatsText">{carbon} kg</p>
-                    <img className="EcoStatsIcon" src={h2o_icon} alt='H2O icon' />
-                    <p className="EcoStatsText">{water}k Liters</p>
-                    <img className="EcoStatsIcon" src={energy_icon} alt='Electricity icon' />
-                    <p className="EcoStatsText">{energy} kWh</p>
+                    <GreenScoreLabel greenScore={green_quotient} />
+                    <div className='item__eco_status__details'>
+                        <img className="EcoStatsIcon" src={co2_icon} alt='CO2 icon' />
+                        <p className="EcoStatsText">{carbon}kg</p>
+                        <img className="EcoStatsIcon" src={h2o_icon} alt='H2O icon' />
+                        <p className="EcoStatsText">{water}kL</p>
+                        <img className="EcoStatsIcon" src={energy_icon} alt='Electricity icon' />
+                        <p className="EcoStatsText">{energy}kWh</p>
+                    </div>
                 </div>
 
                 <div className="product_image">
