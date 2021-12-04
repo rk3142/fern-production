@@ -5,13 +5,13 @@ import h2o_icon from '../../assets/h2o_icon.png'
 import energy_icon from '../../assets/energy_icon.jpeg'
 import './ProductDetails.css';
 import SimilarItemCard from "../../components/SimilarItemCard";
-import { useDispatch, useSelector } from "react-redux";
-import {selectProducts} from "../../reducers/catalogSlice";
+import { useDispatch } from "react-redux";
 import { Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import {useHistory} from "react-router-dom";
 import {addSaved, addSavedItem, removeSaved, removeSavedItem} from "../../reducers/savedSlice";
 import {getProductById, getSimilarProducts} from "../../api";
+import GreenScoreLabel from "../../components/GreenScoreLabel";
 
 const goToLink = (link) => {
     window.location.href = link
@@ -83,6 +83,7 @@ function ProductDetails() {
                             <div className="details__info">
                                 <h1 className="details__info__name">{product['product_name']}</h1>
 
+                                <GreenScoreLabel greenScore={product['green_quotient']} isDetail />
                                 <div className="details__info__body">
                                     <img className="EcoDetsIcon" src={co2_icon} alt='CO2 icon' />
                                     <p className="EcoDetsText">{product['carbon']}kg of carbon released into the atmosphere</p>

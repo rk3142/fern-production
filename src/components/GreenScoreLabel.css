@@ -1,9 +1,27 @@
-.green_score_label {
+.green_score {
+    display: flex;
+}
+
+.green_score__label {
     width: 40px;
     height: 20px;
     border-radius: 5px;
     background: #2A6CD0;
     margin-right: 1rem;
+}
+
+.green_score__label__detail {
+    display: flex;
+    align-content: center;
+}
+
+.green_score__label__detail__score {
+    margin-right: 0.5rem;
+}
+
+.green_score__label__detail__popover {
+    width: 200px;
+    padding: 1rem 1rem;
 }
 
 .score-1 {
