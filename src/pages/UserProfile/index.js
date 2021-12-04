@@ -33,7 +33,9 @@ function UserProfile(props) {
         })
         setTimeout(async function () {
             getSporesHistory().then(async response => {
-                if (!response) return null
+                if (!response) {
+                    return null
+                }
                 let res = response["data"]
                 await setHistory(res)
                 localStorage.setItem("history", JSON.stringify(res))
@@ -88,6 +90,12 @@ function UserProfile(props) {
         }
     }
 
+    const renderHistory = () => {
+        let history = JSON.parse(localStorage.getItem("history"))
+        if (history == null) { return(<p></p>) }
+        return (history).map(item => <p>{item["details"]}</p>)
+    }
+
     return (
         <div>
             <div className="User_Info">
@@ -118,9 +126,7 @@ function UserProfile(props) {
                 <p className="User_Subtitle">
                     My Impact
                 </p>
-                {
-                    (JSON.parse(localStorage.getItem("history"))).map(item => <p>{item["details"]}</p>)
-                }
+                {renderHistory()}
             </div>
         </div>
     );
