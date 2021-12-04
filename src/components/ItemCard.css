@@ -8,7 +8,12 @@
 
 .item__eco_status {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item__eco_status__details {
+    display: flex;
     align-items: center;
 }
 

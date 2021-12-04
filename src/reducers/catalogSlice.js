@@ -73,6 +73,7 @@ export const catalogSlice = createSlice({
                   let index = 0
                   for (const [filterCategory, filterValueArray] of Object.entries(state.currentFilter)) {
                       if (filterCategory === 'Price') productDetail = product['prices'][0]['price']
+                      else if (filterCategory === 'Greenness Score') productDetail = product['green_quotient']
                       else productDetail = product[filterCategory.toLowerCase()]
 
                       // Loop through the filter values and determine if the product matches the filter constraint
