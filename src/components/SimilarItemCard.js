@@ -8,6 +8,7 @@ import energy_icon from "../assets/energy_icon.jpeg";
 import StarRatings from "react-star-ratings";
 import { useHistory } from "react-router-dom";
 import LinesEllipsis from "react-lines-ellipsis";
+import GreenScoreLabel from "./GreenScoreLabel";
 
 function SimilarItemCard({ item }) {
     const { product_name,
@@ -16,7 +17,8 @@ function SimilarItemCard({ item }) {
         rating,
         carbon,
         water,
-        energy } = item
+        energy,
+        green_quotient } = item
 
     let history = useHistory()
 
@@ -48,6 +50,7 @@ function SimilarItemCard({ item }) {
 
                     <div className="similar_card__body__details">
                         <div className="similar_card__body__details__rating">
+                            <GreenScoreLabel greenScore={green_quotient} />
                             <div className="ProductRatingText">{rating}</div>
                             <div className="ProductRating">
                                 <StarRatings
@@ -62,21 +65,21 @@ function SimilarItemCard({ item }) {
                         </div>
 
                         <div className="similar_card__body__details__eco_status">
-                                <div className="similar_card__body__details__eco_status__stats">
-                                    <img className="EcoStatsIcon" src={co2_icon} alt='CO2 icon' />
-                                    <p className="EcoStatsText">{carbon} kg of carbon</p>
-                                </div>
-                                <div className="similar_card__body__details__eco_status__stats">
-                                    <img className="EcoStatsIcon" src={h2o_icon} alt='H2O icon' />
-                                    <p className="EcoStatsText">{water}k Liters of water</p>
-                                </div>
-                                <div className="similar_card__body__details__eco_status__stats">
-                                    <img className="EcoStatsIcon" src={energy_icon} alt='Electricity icon' />
-                                    <p className="EcoStatsText">{energy} kWh of energy</p>
-                                </div>
+                            <div className="similar_card__body__details__eco_status__stats">
+                                <img className="EcoStatsIcon" src={co2_icon} alt='CO2 icon' />
+                                <p className="EcoStatsText">{carbon} kg of carbon</p>
+                            </div>
+                            <div className="similar_card__body__details__eco_status__stats">
+                                <img className="EcoStatsIcon" src={h2o_icon} alt='H2O icon' />
+                                <p className="EcoStatsText">{water}k Liters of water</p>
+                            </div>
+                            <div className="similar_card__body__details__eco_status__stats">
+                                <img className="EcoStatsIcon" src={energy_icon} alt='Electricity icon' />
+                                <p className="EcoStatsText">{energy} kWh of energy</p>
                             </div>
                         </div>
                     </div>
+                </div>
             </CardContent>
         </Card>
     );
