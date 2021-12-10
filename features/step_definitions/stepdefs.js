@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { By, Key, Builder } = require("selenium-webdriver");
-const auth_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWUyOTRlZWRjMTY3Y2Q5N2JiNWE4MTliYmY3OTA2MzZmMTIzN2UiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQXVtIFVwYWRoeWF5IiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBVFhBSnpRWnpJWnFxd3hRRWJCdk1jQ25VendpYW9DQmJNdkdnUGg2VnlJPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2Zlcm4tZGVhNGQiLCJhdWQiOiJmZXJuLWRlYTRkIiwiYXV0aF90aW1lIjoxNjM3MjAwOTgxLCJ1c2VyX2lkIjoiUWRDMW1BYnJzdlgyMkJhMDVuNHR2bnZ1d2Q2MyIsInN1YiI6IlFkQzFtQWJyc3ZYMjJCYTA1bjR0dm52dXdkNjMiLCJpYXQiOjE2MzcyMDA5ODEsImV4cCI6MTYzNzIwNDU4MSwiZW1haWwiOiJhdW1zcGVha3NAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDA5NzkwNjEyMTA4NDY4MDM4MDIiXSwiZW1haWwiOlsiYXVtc3BlYWtzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.I7dicGx39rypC3rLjeo_9W6PdcafftaS0D7oyvOek1AWUHaKLbtCeGu_e5_hUXz4w7R3Mu2pjUSXikTRNnYo6rrNbPBFAfik42w_PmxnVK4BnzbQff5cy0abs8krX7QthJQgm40Luv738_4SA4M3preIWBJHhWWWO-7P5tUsMterOrjKS0NLKfsQ8QTQgzY3eBe_olIsaZhClWewA6nOuW3Btiy_MHNwSNH2aoNYBGmsjYWEMbw5Iy-EA-mu5VrhtOcPmRANbXXc59W6HGwiusrOIlWn5Ozkey3fXk2JXye944dEs5Jq3AyNSNaPoHq1_pY3jLxPBs7VXdC-hyHTrQ';
+const auth_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ3OTg5ZTU4ZWU1ODM4OTgzZDhhNDQwNWRlOTVkYTllZTZmNWVlYjgiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQXVtIFVwYWRoeWF5IiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBVFhBSnpRWnpJWnFxd3hRRWJCdk1jQ25VendpYW9DQmJNdkdnUGg2VnlJPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2Zlcm4tZGVhNGQiLCJhdWQiOiJmZXJuLWRlYTRkIiwiYXV0aF90aW1lIjoxNjM5MTUzOTAxLCJ1c2VyX2lkIjoiUWRDMW1BYnJzdlgyMkJhMDVuNHR2bnZ1d2Q2MyIsInN1YiI6IlFkQzFtQWJyc3ZYMjJCYTA1bjR0dm52dXdkNjMiLCJpYXQiOjE2MzkxNTM5MDEsImV4cCI6MTYzOTE1NzUwMSwiZW1haWwiOiJhdW1zcGVha3NAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDA5NzkwNjEyMTA4NDY4MDM4MDIiXSwiZW1haWwiOlsiYXVtc3BlYWtzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.JNvX77XCSUdftoyoopFOtOkj-SdfiCOXwrPVepGvDP5qwDU2h7ZvIVTCl43InSgfsvo7JlOJTKRe_FM-ADlwsI_LyAunVpbLV-Uf0AGHRIogRUaYuK_y_tWW05l4XFStb89nn3LY0Ji19JM20NxY5MXIZViyLh2hmzdAUTU7zi9yFn3izmGZWdNe_ij_qedyfSqne14224-F_N_5zhzHSBDsJ2uYvvG1BVsQNT8jt_gQdBvUKlrZPYPEv8-mqYG_1bvlDViD5bsVYNCRwew7xYArPjNVaRXc6JuoQFgNDFWaRzqI72piSGgdtNfmGm5LrtOrfSxKGoScp7Nd2bstCg';
 let driver = require("chromedriver");
 
 driver = new Builder().forBrowser("chrome").build();
@@ -99,7 +99,7 @@ Then('I should see the filters', async function () {
 
 Then('I should see all the shirts', async function () {
     setTimeout(async function () {
-        let shirts = await driver.findElements(By.className("Item"))
+        let shirts = await driver.findElements(By.className("MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"))
         assert.equal(await shirts.length != 0, true)
     }, 3000);
 
@@ -132,30 +132,30 @@ When('I remove an item from the cart', async function () {
 
 When('I filter by price', async function () {
     setTimeout(async function () {
-        let filter_buttons = await driver.findElements(By.className("Check"))
+        let filter_buttons = await driver.findElements(By.className("PrivateSwitchBase-input css-1m9pwf3"))
         filter_buttons[0].click()
     }, 3000);
 })
 
 When('I filter by rating', async function () {
     setTimeout(async function () {
-        let filter_buttons = await driver.findElements(By.className("Check"))
+        let filter_buttons = await driver.findElements(By.className("PrivateSwitchBase-input css-1m9pwf3"))
         filter_buttons[6].click()
     }, 3000);
 })
 
 When('I search for the brand Generic', async function () {
     setTimeout(async function () {
-        let filter_buttons = await driver.findElements(By.className("SearchBar"))
-        filter_buttons[1].sendKeys("Generic")
-        let search_button = await driver.findElements(By.className("SearchIcon"))
+        let filter_buttons = await driver.findElements(By.className("MuiInputBase-input css-yz9k0d-MuiInputBase-input"))
+        filter_buttons[0].sendKeys("Generic")
+        let search_button = await driver.findElements(By.className("MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1gtpq4r-MuiButtonBase-root-MuiIconButton-root"))
         search_button[0].click()
     }, 3000);
 })
 
 When('I click on product image', async function () {
     setTimeout(async function () {
-        let products = await driver.findElements(By.className("ProductImage"))
+        let products = await driver.findElements(By.className("product_image__img"))
         products[1].click()
     }, 3000);
 })
@@ -309,5 +309,13 @@ Then('I should be on the catalog page', async function () {
         let filters = await driver.findElements(By.className("MuiFormGroup-root css-dmmspl-MuiFormGroup-root"))
         let text = await filters[0].getText()
         assert.equal(text.includes("Price"), true)
+    }, 5000);
+})
+
+Then('I should see my impact', async function () {
+    setTimeout(async function () {
+        let impact = await driver.findElements(By.className("User_Subtitle"))
+        let text = await impact[0].getText()
+        assert.equal(text.includes("Impact"), true)
     }, 5000);
 })
