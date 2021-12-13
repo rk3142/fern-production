@@ -32,7 +32,3 @@ Scenario: I want to upload receipt
   Given I am on the user profile page
   When I click on verify image button
   Then I should see upload
-
-Scenario: I want to see my impact
-  Given I am on the user profile page
-  Then I should see my impact
