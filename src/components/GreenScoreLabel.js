@@ -29,7 +29,7 @@ function GreenScoreLabel({greenScore, isDetail}) {
 
     return (
         <div className={'green_score'}>
-            <div className={`green_score__label ${color}`}></div>
+            <div className={`green_score__label ${color}`} data-testid={color}></div>
             { isDetail && (
                 <div className={'green_score__label__detail'}>
                     <div className={'green_score__label__detail__score'}>Greenness Score: {greenScore}</div>
@@ -53,7 +53,7 @@ function GreenScoreLabel({greenScore, isDetail}) {
                             onClose={handlePopoverClose}
                             disableRestoreFocus
                     >
-                        <div className={'green_score__label__detail__popover'}>
+                        <div className={'green_score__label__detail__popover'} data-testid='green_score__label__detail__popover'>
                             We calculate the greenness of products by considering carbon emission, water consumption, and
                             energy cost. The lower the score is, the greener the product is!
                         </div>
