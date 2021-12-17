@@ -1,7 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from '../common/test-utils'
 import GreenScoreLabel from "./GreenScoreLabel";
-import {getByTestId} from "@testing-library/react";
 
 describe('green score label', () => {
     test('open popover', () => {
