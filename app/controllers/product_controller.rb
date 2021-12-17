@@ -93,10 +93,10 @@ class ProductController < ApplicationController
     render json: resp, status: :ok
   end
 
-  def insert_products_bulk
-    product_list = params[:products]
-    ProductHelper.process_bulk_insertion(product_list)
-    render :nothing => true, status: 201
-  end
+  # def insert_products_bulk
+  #   product_list = params[:products]
+  #   ProductHelper.process_bulk_insertion(product_list)
+  #   render :nothing => true, status: 201
+  # end
 
 end

@@ -24,59 +24,57 @@ module ProductHelper
       return product_hash
   end
 
-  def self.process_bulk_insertion(products)
-      begin
-          types_of_product = ['silk', 'cotton', 'polyster']
-          product_map = products
-          product_map.each do |single_product|
-              @product = Product.new
-              @product.product_name = single_product['title']
-              @product.product_id = single_product['asin']
-              @product.link = single_product['link']
-              @product.image_url = single_product['image']
-              @product.brand = single_product['brand']
-              @product.rating = single_product['rating']
-              @product.ratings = single_product['ratings_total']
-              @product.product_type = 1
 
-              carbon, water, energy = ProductHelper.get_environment_metrics types_of_product.sample
-              @product.carbon = carbon
-              @product.water = water
-              @product.energy = energy
-              @product.save!
-              price_list = single_product['prices']
-              price_list.each do |price|
-                  @price_obj = ProductPriceMapper.new
-                  @price_obj.product_id = single_product['asin']
-                  @price_obj.product_link = single_product['link']
-                  @price_obj.price = price['value']
-                  @price_obj.save!
-              end
-          end
-      rescue Exception => e
-          p e.backtrace
-      end
-  end
+  # def self.process_bulk_insertion(products)
+  #     begin
+  #         types_of_product = ['silk', 'cotton', 'polyster']
+  #         product_map = products
+  #         product_map.each do |single_product|
+  #             @product = Product.new
+  #             @product.product_name = single_product['title']
+  #             @product.product_id = single_product['asin']
+  #             @product.link = single_product['link']
+  #             @product.image_url = single_product['image']
+  #             @product.brand = single_product['brand']
+  #             @product.rating = single_product['rating']
+  #             @product.ratings = single_product['ratings_total']
+  #             @product.product_type = 1
+  #
+  #             carbon, water, energy = ProductHelper.get_environment_metrics types_of_product.sample
+  #             @product.carbon = carbon
+  #             @product.water = water
+  #             @product.energy = energy
+  #             @product.save!
+  #             price_list = single_product['prices']
+  #             price_list.each do |price|
+  #                 @price_obj = ProductPriceMapper.new
+  #                 @price_obj.product_id = single_product['asin']
+  #                 @price_obj.product_link = single_product['link']
+  #                 @price_obj.price = price['value']
+  #                 @price_obj.save!
+  #             end
+  #         end
+  #     rescue Exception => e
+  #         p e.backtrace
+  #     end
+  # end
 
 
-  def self.get_environment_metrics(product_type)
-      case product_type
-      when "silk"
-          carbon = rand(2.4...2.6).round(2)
-          water = rand(2.4...2.8).round(2)
-          energy = rand(1.0...1.2).round(2)
-      when "polyster"
-          carbon = rand(2.1...2.4).round(2)
-          water = rand(3.0...3.4).round(2)
-          energy = rand(2.0...2.4).round(2)
-      when "cotton"
-          carbon = rand(2.7...3.0).round(2)
-          water = rand(3.0...4.0).round(2)
-          energy = rand(1.3...1.8).round(2)
-      end
-      p "Carbon " + carbon.to_s
-      p "Water " + water.to_s
-      p "Energu " + energy.to_s
-      return carbon, water, energy
-  end
+  # def self.get_environment_metrics(product_type)
+  #     case product_type
+  #     when "silk"
+  #         carbon = rand(2.4...2.6).round(2)
+  #         water = rand(2.4...2.8).round(2)
+  #         energy = rand(1.0...1.2).round(2)
+  #     when "polyster"
+  #         carbon = rand(2.1...2.4).round(2)
+  #         water = rand(3.0...3.4).round(2)
+  #         energy = rand(2.0...2.4).round(2)
+  #     when "cotton"
+  #         carbon = rand(2.7...3.0).round(2)
+  #         water = rand(3.0...4.0).round(2)
+  #         energy = rand(1.3...1.8).round(2)
+  #     end
+  #     return carbon, water, energy
+  # end
 end

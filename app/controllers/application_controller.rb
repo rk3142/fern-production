@@ -46,11 +46,4 @@ class ApplicationController < ActionController::Base
     # # p user_id
     # return session_user == user_id
   end
-
-  def set_user_id
-    if session[:user_id].nil?
-      session[:user_id] = "kSlylzoV8KbTbvSFLUjHxjc1qbo1"
-    end
-  end
-
 end
