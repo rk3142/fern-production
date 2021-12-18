@@ -1,0 +1,29 @@
+.saved__list {
+    width: 100%;
+    height: fit-content;
+    margin-left: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.saved__list > div {
+    /*height: 600px;*/
+    border-radius: 20px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    flex-basis: calc(33.333333% - 0.7rem);
+}
+
+.saved__list > div:nth-child(3n) {
+    margin-right: 0;
+}
+
+.saved__list__empty {
+    margin: 0 !important;
+    flex-basis: 100% !important;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
