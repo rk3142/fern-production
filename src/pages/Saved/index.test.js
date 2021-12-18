@@ -4,10 +4,11 @@ import apiMock from "../../common/ApiMock";
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { render, fireEvent, screen } from '../../common/test-utils'
+import {BASE_URL} from "../../api";
 
 
 export const handlers = [
-    rest.get('https://fern-iteration-2.herokuapp.com/bookmarks', (req, res, ctx) => {
+    rest.get(BASE_URL + '/bookmarks', (req, res, ctx) => {
       return res(ctx.json({
         products: apiMock()
       }), ctx.delay(100))

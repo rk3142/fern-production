@@ -106,7 +106,9 @@
       "!**/serviceWorker.js",
       "!**/firebaseUtils.js",
       "!src/store.js",
-      "!src/App.js"
+      "!src/App.js",
+      "!src/reducers/*",
+      "!src/pages/UserProfile/index.js"
     ],
     "setupFilesAfterEnv": [
       "./src/setupTests.js"

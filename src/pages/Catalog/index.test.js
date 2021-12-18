@@ -3,10 +3,12 @@ import Catalog from "./index";
 import apiMock from "../../common/ApiMock";
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import { render, fireEvent, screen } from '../../common/test-utils'
+import { render, screen } from '../../common/test-utils'
+import {BASE_URL} from "../../api";
+import reducer, {setSearchWord} from "../../reducers/catalogSlice";
 
 export const handlers = [
-  rest.get('https://fern-iteration-2.herokuapp.com/products', (req, res, ctx) => {
+  rest.get(BASE_URL + '/products', (req, res, ctx) => {
     return res(ctx.json({products: apiMock()}), ctx.delay(100))
   })
 ]
@@ -25,5 +27,4 @@ describe('Catalog', () => {
     const myElement = await screen.findAllByText(/Generic/i)
     expect(myElement.length).toBe(apiMock().length)
   });
-
 });

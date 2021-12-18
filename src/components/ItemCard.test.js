@@ -20,7 +20,7 @@ describe('item card', () => {
         const {container} = render(<ItemCard item={props} />)
         const card = container.firstChild.getElementsByClassName('MuiCardContent-root')[0]
         fireEvent.click(card)
-        expect(mockHistoryPush).toHaveBeenCalledWith('/productdetails');
+        expect(mockHistoryPush).toHaveBeenCalledWith({pathname: '/productdetails', state: {product: props}});
     });
 
     test('go to external link', () => {
