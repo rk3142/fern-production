@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import './UserProfile.css';
 import { getUserDetails, spendSpores, getSporesHistory, sendImage } from "../../api.js"
 import { Button } from "@mui/material";
+import sporesImage from '../../assets/spores.png'
 
-function UserProfile(props) {
+function UserProfile() {
     const [user, setUser] = useState({})
     const [spores, setSpores] = useState(0)
     const [history, setHistory] = useState({})
@@ -33,7 +34,9 @@ function UserProfile(props) {
         })
         setTimeout(async function () {
             getSporesHistory().then(async response => {
-                if (!response) return null
+                if (!response) {
+                    return null
+                }
                 let res = response["data"]
                 await setHistory(res)
                 localStorage.setItem("history", JSON.stringify(res))
@@ -76,52 +79,91 @@ function UserProfile(props) {
     const renderImageVerification = () => {
         if (verifyImage) {
             return (
-                <p className="Verify_Text" onClick={() => setVerifyImage(!verifyImage)}>Verify Image</p>
+                <Button variant='contained'
+                        className="user_page_btn Verify_Text"
+                        onClick={() => setVerifyImage(!verifyImage)}>
+                    Verify Purchase
+                </Button>
             )
         } else {
             return (
                 <div>
-                    <input type="file" onChange={changeImage}></input>
-                    <Button onClick={async () => await uploadImage()}>Upload</Button>
+                    <input type="file" onChange={changeImage} data-testid={'file_upload'}></input>
+                    <Button variant='contained'
+                            className='user_page_btn Verify_Text'
+                            onClick={async () => await uploadImage()}>
+                        Upload
+                    </Button>
                 </div>
             )
         }
     }
 
+    const renderHistory = () => {
+        let history = JSON.parse(localStorage.getItem("history"))
+        if (history == null) { return(<p></p>) }
+        return (history).map(item => <div className='impact_history'>{item["details"]}</div>)
+    }
+
     return (
-        <div>
+        <div className={'user_page'}>
             <div className="User_Info">
                 <div className="User_Account_Info">
-                    <p className="User_Title">
+                    <h1 className="User_Title">
                         Hi {user["first_name"]}
-                    </p>
-                    <p className="User_Subtitle">
-                        {spores} spores
-                    </p>
+                    </h1>
+                    <div className={'User_Account_Info__spores'}>
+                        <h2 className="User_Subtitle">
+                            {spores} spores
+                        </h2>
+                        <div className="Collect_Trash">
+                           {renderImageVerification()}
+                        </div>
+                    </div>
                 </div>
+
                 <div className="Token_Spend">
-                    <div className="Plant_Tree">
-                        <Button variant='contained' className={'details__info__more__actions__buttons-spend'} onClick={() => updateSporesCount(300, "TREE")}>Plant a Tree!</Button>
-                    </div>
-                    <div className="Collect_Trash">
-                        <Button variant='contained' className={'details__info__more__actions__buttons-spend'} onClick={() => updateSporesCount(400, "OCEAN")}>Collect a pound of trash!</Button>
-                    </div>
-                    <div className="Collect_Trash">
-                        <Button variant='contained' className={'details__info__more__actions__buttons-spend'} onClick={() => updateSporesCount(50, "CARBON")}>Capture a pound of carbon!</Button>
-                    </div>
-                    <div className="Collect_Trash">
-                        {renderImageVerification()}
+                    <h2>Make an Impact</h2>
+                    <div className='Token_Spend__details'>
+                        <div className="Plant_Tree">
+                            For 300 Spores, plant a tree!
+                            <Button variant='contained'
+                                    className={'user_page_btn details__info__more__actions__buttons-spend'}
+                                    onClick={() => updateSporesCount(300, "TREE")}>
+                                Plant!
+                            </Button>
+                        </div>
+                        <div className="Collect_Trash">
+                            For 400 Spores, collect a pound of trash!
+                            <Button variant='contained'
+                                    className={'user_page_btn details__info__more__actions__buttons-spend'}
+                                    onClick={() => updateSporesCount(400, "OCEAN")}>
+                                Collect!
+                            </Button>
+                        </div>
+                        <div className="Collect_Trash">
+                            For 50 Spores, capture a pound of carbon!
+                            <Button variant='contained'
+                                    className={'user_page_btn details__info__more__actions__buttons-spend'}
+                                    onClick={() => updateSporesCount(50, "CARBON")}>
+                                Capture!
+                            </Button>
+                        </div>
                     </div>
                 </div>
+
+                <div className="Token_Spend">
+                    <h2 className="User_Subtitle">
+                        My Impact
+                    </h2>
+                    {renderHistory()}
+                </div>
             </div>
-            <div className="Token_Spend">
-                <p className="User_Subtitle">
-                    My Impact
-                </p>
-                {
-                    (JSON.parse(localStorage.getItem("history"))).map(item => <p>{item["details"]}</p>)
-                }
+
+            <div className={'user_page__spores'}>
+                <img src={sporesImage} alt={'Spores'} />
             </div>
+
         </div>
     );
 }

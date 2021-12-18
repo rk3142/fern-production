@@ -7,6 +7,8 @@ import h2o_icon from "../assets/h2o_icon.png";
 import energy_icon from "../assets/energy_icon.jpeg";
 import StarRatings from "react-star-ratings";
 import { useHistory } from "react-router-dom";
+import LinesEllipsis from "react-lines-ellipsis";
+import GreenScoreLabel from "./GreenScoreLabel";
 
 function SimilarItemCard({ item }) {
     const { product_name,
@@ -15,7 +17,8 @@ function SimilarItemCard({ item }) {
         rating,
         carbon,
         water,
-        energy } = item
+        energy,
+        green_quotient } = item
 
     let history = useHistory()
 
@@ -27,45 +30,53 @@ function SimilarItemCard({ item }) {
 
     return (
         <Card>
-            <CardContent onClick={goToDetails} className={'card'}>
-                <div className="item__name">{product_name}</div>
-                <div className="item__body">
-                    <div className="item__eco_status">
-                        <div className="EcoStats">
-                            <img className="EcoStatsIcon" src={co2_icon} alt='CO2 icon' />
-                            <p className="EcoStatsText">{carbon} kg</p>
-                        </div>
-                        <div className="EcoStats">
-                            <img className="EcoStatsIcon" src={h2o_icon} alt='H2O icon' />
-                            <p className="EcoStatsText">{water}k Liters</p>
-                        </div>
-                        <div className="EcoStats">
-                            <img className="EcoStatsIcon" src={energy_icon} alt='Electricity icon' />
-                            <p className="EcoStatsText">{energy} kWh</p>
-                        </div>s
+            <CardContent onClick={goToDetails} className={'similar_card'}>
+                <div className="similar_card__header">
+                    <div className="similar_card__header__name">
+                        <LinesEllipsis
+                            text={product_name}
+                            maxLine='2'
+                            ellipsis='...'
+                            trimRight
+                            basedOn='words'
+                        />
                     </div>
-
-                    <div className="product_image">
-                        <img className="product_image__img" src={image_url} alt={product_name} />
-                    </div>
+                    <div className="similar_card__header__price">${prices[0]["price"]}</div>
                 </div>
-
-                <div className="product_details">
-                    <div className="product_details__price_seller">
-                        <div className="ProductPrice">${prices[0]["price"]}</div>
+                <div className="similar_card__body">
+                    <div className="similar_card__body__image">
+                        <img className="similar_card__body__image__img" src={image_url} alt={product_name} />
                     </div>
 
-                    <div className="product_details__ratings">
-                        <div className="ProductRatingText">{rating}</div>
-                        <div className="ProductRating">
-                            <StarRatings
-                                rating={rating}
-                                starRatedColor="#FFDC61"
-                                numberOfStars={5}
-                                name='rating'
-                                starDimension="15"
-                                starSpacing="5"
-                            />
+                    <div className="similar_card__body__details">
+                        <div className="similar_card__body__details__rating">
+                            <GreenScoreLabel greenScore={green_quotient} />
+                            <div className="ProductRatingText">{rating}</div>
+                            <div className="ProductRating">
+                                <StarRatings
+                                    rating={rating}
+                                    starRatedColor="#FFDC61"
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension="15"
+                                    starSpacing="5"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="similar_card__body__details__eco_status">
+                            <div className="similar_card__body__details__eco_status__stats">
+                                <img className="EcoStatsIcon" src={co2_icon} alt='CO2 icon' />
+                                <p className="EcoStatsText">{carbon} kg of carbon</p>
+                            </div>
+                            <div className="similar_card__body__details__eco_status__stats">
+                                <img className="EcoStatsIcon" src={h2o_icon} alt='H2O icon' />
+                                <p className="EcoStatsText">{water}k Liters of water</p>
+                            </div>
+                            <div className="similar_card__body__details__eco_status__stats">
+                                <img className="EcoStatsIcon" src={energy_icon} alt='Electricity icon' />
+                                <p className="EcoStatsText">{energy} kWh of energy</p>
+                            </div>
                         </div>
                     </div>
                 </div>

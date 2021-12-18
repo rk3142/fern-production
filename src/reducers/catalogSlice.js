@@ -1,9 +1,6 @@
-import {createAsyncThunk, createSlice, current} from '@reduxjs/toolkit';
-import _ from 'lodash'
-import {getAllProducts} from "../api";
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {getAllProducts, getProductsBySearch} from "../api";
 import filters from '../filters.json'
-
-const BreakException = {};
 
 export const getAllCatalog = createAsyncThunk('catalog/getAllCatalog',
     async () => {
@@ -13,11 +10,20 @@ export const getAllCatalog = createAsyncThunk('catalog/getAllCatalog',
         })
 })
 
+export const getCatalogBySearch = createAsyncThunk('catalog/getCatalogBySearch',
+    async ({searchWord}) => {
+        return getProductsBySearch(searchWord).then(res => {
+            if (!res) return null
+            return res
+        })
+})
+
 const initialState = {
     products: [],
     filteredProducts: [],
-    currentFilter: [],
+    currentFilter: {},
     searchWord: '',
+    isSearch: true,
     status: 'idle',
     error: null
 };
@@ -26,45 +32,70 @@ export const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
   reducers: {
+      setSearchWord: (state, {payload}) => {
+          state.searchWord = payload.searchWord
+          state.isSearch = payload.isSearch
+      },
       addFilter: (state, {payload}) => {
-          state.currentFilter.push({[payload.title]: payload.label})
+          if (!state.currentFilter[payload.title]) state.currentFilter[payload.title] = []
+          state.currentFilter[payload.title].push(payload.label)
       },
       removeFilter: (state, {payload}) => {
-          state.currentFilter = state.currentFilter.filter(product => {
-              return !_.isEqual(current(product), {[payload.title]: payload.label})
-          })
+          let updatedFilter = {}
+          for (const [key, value] of Object.entries(state.currentFilter)) {
+              if (!updatedFilter[key]) updatedFilter[key] = []
+              value.forEach(val => {
+                  if (key === payload.title && val === payload.label) return
+                  updatedFilter[key].push(val)
+              })
+          }
+          state.currentFilter = updatedFilter
       },
-      filterProducts: (state, action) => {
-          if (state.currentFilter.length <= 0) {
+      filterProducts: (state,) => {
+          let filterCount = 0
+          for (const [, val] of Object.entries(state.currentFilter)) {
+              filterCount += val.length
+          }
+
+          // If no filter, display all
+          if (filterCount === 0) {
               state.filteredProducts = state.products
           } else {
+              // Filter through the products
               state.filteredProducts = state.products.filter(product => {
-                  let isInclude = true
-                  let productDetail, filterCategory, filterValue, filterDetails, filterMin, filterMax
+                  let isInclude = []
+                  // Check if product complies with each filter category
+                  // If two categories, the array length will be 2
+                  for (let i = 0; i < state.currentFilter.length; i++) isInclude.push(false)
 
-                  try {
-                      state.currentFilter.forEach(filter => {
-                          filterCategory = Object.keys(filter)[0]
-                          if (filterCategory === 'Price') productDetail = product['prices'][0]['price']
-                          else productDetail = product[filterCategory.toLowerCase()]
-                          filterValue = Object.values(filter)[0]
+                  let productDetail, filterDetails, filterMin, filterMax
+
+                  let index = 0
+                  for (const [filterCategory, filterValueArray] of Object.entries(state.currentFilter)) {
+                      if (filterCategory === 'Price') productDetail = product['prices'][0]['price']
+                      else if (filterCategory === 'Greenness Score') productDetail = product['green_quotient']
+                      else productDetail = product[filterCategory.toLowerCase()]
+
+                      // Loop through the filter values and determine if the product matches the filter constraint
+                      filterValueArray.forEach(filterValue => {
                           filterDetails = filters[filterCategory]['filter'][filterValue]
                           filterMin = filterDetails['min']
                           filterMax = filterDetails['max']
-                          isInclude = filterMin <= productDetail && productDetail <= filterMax
-                          if (isInclude) throw BreakException;
+
+                          // Keep track of if this product should be included
+                          isInclude[index] = isInclude[index] || (filterMin <= productDetail && productDetail <= filterMax)
                       })
-                  } catch (e) {
-                      if (e !== BreakException) throw e;
+                      index++
                   }
 
-                  return isInclude
+                  // Take the AND of the filters since they are from different categories
+                  return isInclude.reduce((prev, curr) => prev && curr)
               })
           }
       }
   },
     extraReducers: {
-        [getAllCatalog.pending]: (state, action) => {
+        [getAllCatalog.pending]: (state,) => {
             state.status = 'loading'
         },
         [getAllCatalog.fulfilled]: (state, {payload}) => {
@@ -76,10 +107,22 @@ export const catalogSlice = createSlice({
             state.status = 'failed'
             state.error = action.error.message
         },
+        [getCatalogBySearch.pending]: (state,) => {
+            state.status = 'loading'
+        },
+        [getCatalogBySearch.fulfilled]: (state, {payload}) => {
+            state.products = payload
+            state.filteredProducts = payload
+            state.status = 'success'
+        },
+        [getCatalogBySearch.rejected]: (state, action) => {
+            state.status = 'failed'
+            state.error = action.error.message
+        },
     }
 });
 
-export const { addFilter, removeFilter, filterProducts } = catalogSlice.actions;
+export const { addFilter, removeFilter, filterProducts, setSearchWord } = catalogSlice.actions;
 
 export const selectProducts = (state) => state.catalog;
 

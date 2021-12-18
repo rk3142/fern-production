@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "./Layout";
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '../common/test-utils'
 import axios from "axios";
 
 const mockHistoryPush = jest.fn();
@@ -36,5 +36,15 @@ describe('Layout', () => {
 
         fireEvent.click(getByRole('button'));
         expect(axios.post).toBeCalled();
+    });
+
+    it('Push login btn as authenticated user', () => {
+        render(
+          <MemoryRouter>
+            <Layout authenticated={true} />
+          </MemoryRouter>,
+        );
+
+        expect(screen.getByTestId('SearchIcon')).toBeInTheDocument();
     });
 })

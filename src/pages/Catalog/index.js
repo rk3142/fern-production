@@ -6,17 +6,26 @@ import SearchBar from "../../components/SearchBar";
 import ItemCard from "../../components/ItemCard";
 import filters from '../../filters.json'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCatalog, selectProducts, searchProducts, searchQuery } from "../../reducers/catalogSlice";
+import {
+    getAllCatalog,
+    selectProducts,
+    searchProducts,
+    searchQuery,
+    getCatalogBySearch
+} from "../../reducers/catalogSlice";
 import { CircularProgress } from "@mui/material";
 
 function Catalog() {
     const dispatch = useDispatch();
-    var items = useSelector(selectProducts).filteredProducts
+    const items = useSelector(selectProducts).filteredProducts
     const status = useSelector(selectProducts).status
+    const searchWord = useSelector(selectProducts).searchWord
+    const isSearch = useSelector(selectProducts).isSearch
 
-    useEffect(async () => {
-        dispatch(getAllCatalog())
-    }, [])
+    useEffect(() => {
+        if (searchWord === '' && isSearch) dispatch(getAllCatalog())
+        else if (isSearch) dispatch(getCatalogBySearch({searchWord}))
+    }, [searchWord, isSearch])
 
     return (
         <div>
