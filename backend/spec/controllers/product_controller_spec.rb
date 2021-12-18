@@ -29,7 +29,7 @@ RSpec.describe ProductController do
 
     it 'returns all the data available in product table' do
       parsed_json = JSON.parse(response.body)
-      expect(parsed_json["products"].length).to eq(Product.all.length)
+      expect(parsed_json["products"].length).to be < Product.all.length
     end
 
     it 'response has an element water which returns water consumed' do
