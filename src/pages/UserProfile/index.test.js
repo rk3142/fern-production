@@ -3,9 +3,10 @@ import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { render, fireEvent, screen } from '../../common/test-utils'
 import UserProfile from "./index";
+import {BASE_URL} from "../../api";
 
 export const handlers = [
-  rest.get('https://fern-iteration-2.herokuapp.com/user/kSlylzoV8KbTbvSFLUjHxjc1qbo1', (req, res, ctx) => {
+  rest.get(BASE_URL + '/user/kSlylzoV8KbTbvSFLUjHxjc1qbo1', (req, res, ctx) => {
     return res(ctx.json({
         'user': {
             'first_name': 'testUser',
