@@ -120,3 +120,5 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
   - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/frontend_coverage.png)
 - Backend
   - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/backend_coverage.png)
+4. **Invoice Testing**
+ You can use the invoice at [Test Invoice](https://github.com/rk3142/fern-production/blob/iteration_3/TestImage.png) to test the spore claim flow. Please note an invoice can be redeemed only once.
