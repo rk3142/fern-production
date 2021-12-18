@@ -88,7 +88,7 @@ function UserProfile() {
         } else {
             return (
                 <div>
-                    <input type="file" onChange={changeImage}></input>
+                    <input type="file" onChange={changeImage} data-testid={'file_upload'}></input>
                     <Button variant='contained'
                             className='user_page_btn Verify_Text'
                             onClick={async () => await uploadImage()}>
