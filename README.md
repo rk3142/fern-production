@@ -8,7 +8,7 @@ application up and running.
 
 
 * Application URL(Heroku): http://fern-environment-2.herokuapp.com/
-* Code Repo URL(GitHub): https://github.com/rk3142/fern-production/tree/iteration_2
+* Code Repo URL(GitHub): https://github.com/rk3142/fern-production/tree/iteration_3
 ## Installation Instructions
 ### Clone this repo
 ```commandline
@@ -116,7 +116,9 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 	
 3. **Coverage Reports**
 - Frontend
-  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_2/BDD.png)
-  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_2/frontend_coverage.png)
+  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/BDD.png)
+  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/frontend_coverage.png)
 - Backend
-  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_2/backend_coverage.png)
+  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/backend_coverage.png)
+4. **Invoice Testing**
+ You can use the invoice at [Test Invoice](https://github.com/rk3142/fern-production/blob/iteration_3/TestImage.png) to test the spore claim flow. Please note an invoice can be redeemed only once.
