@@ -12,7 +12,7 @@ application up and running.
 ## Installation Instructions
 ### Clone this repo
 ```commandline
-git clone -b iteration_2 git@github.com:rk3142/fern-production.git
+git clone -b iteration_3 git@github.com:rk3142/fern-production.git
 
 ```
 
