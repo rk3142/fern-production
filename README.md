@@ -117,7 +117,8 @@ Pre-requisite: Ruby v2.6.6 or v2.6.8  and SQLLite should be installed in the sys
 3. **Coverage Reports**
 - Frontend
   - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/BDD.png)
-  - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/frontend_coverage.png)
+  - ![frontend coverage](https://github.com/rk3142/fern-production/blob/iteration_3/fontend_coverage.png)
+  - ![frontend unit tests](https://github.com/rk3142/fern-production/blob/iteration_3/frontend_unittests.png)
 - Backend
   - ![alt text](https://github.com/rk3142/fern-production/blob/iteration_3/backend_coverage.png)
 4. **Invoice Testing**
